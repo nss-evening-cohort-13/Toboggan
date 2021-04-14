@@ -18,11 +18,13 @@ namespace Toboggan.DataAccess
 
             var sql = @"select *
                         from [User]";
+
             var results = connection.Query<User>(sql).ToList();
 
             return results;
-
         }
+
+
 
     }
 }
