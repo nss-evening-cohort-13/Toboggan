@@ -24,6 +24,19 @@ namespace Toboggan.DataAccess
             return results;
         }
 
+        public User GetSingleUser(int id)
+        {
+            var sql = @"select *
+                        from [User]
+                        where Id = @Id";
+
+            using var db = new SqlConnection(ConnectionString);
+
+            var user = db.QueryFirstOrDefault<User>(sql, new { Id = id });
+
+            return user;
+        }
+
 
 
     }
