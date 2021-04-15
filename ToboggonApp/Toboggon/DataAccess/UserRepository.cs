@@ -66,6 +66,14 @@ namespace Toboggan.DataAccess
             db.Execute(sql, user);
         }
 
+        public void DeleteUser(int id)
+        {
+            using var db = new SqlConnection(ConnectionString);
+
+            var sql = "Delete from [User] Where Id = @id";
+
+            db.Execute(sql, new { id });
+        }
 
     }
 }
