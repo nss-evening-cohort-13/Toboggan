@@ -27,7 +27,7 @@ namespace Toboggan.Controllers
         }
 
         //GET to /api/PaymentType/{id}
-        [HttpGet("{id")]
+        [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
             var paymentType = _repo.Get(id);
