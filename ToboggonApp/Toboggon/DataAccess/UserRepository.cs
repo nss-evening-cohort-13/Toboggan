@@ -37,6 +37,18 @@ namespace Toboggan.DataAccess
             return user;
         }
 
+        public void AddAUser(User user)
+        {
+            using var db = new SqlConnection(ConnectionString);
+
+            var sql = @"INSERT INTO [dbo].[User]([FirstName],[LastName],[Email],[ImageUrl],[CreatedDate],[TotalSales])
+                        OUTPUT inserted.Id
+                        VALUES(@FirstName,@LastName,@Email,@ImageUrl,@CreatedDate,@TotalSales)";
+
+            var id = db.ExecuteScalar<int>(sql, user);
+
+            user.Id = id;
+        }
 
 
     }

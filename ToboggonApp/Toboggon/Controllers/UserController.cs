@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Toboggan.DataAccess;
+using Toboggan.Models;
 
 namespace Toboggan.Controllers
 {
@@ -36,6 +37,13 @@ namespace Toboggan.Controllers
             }
 
             return Ok(user);
+        }
+
+        [HttpPost]
+        public IActionResult AddAUser(User user)
+        {
+            _repo.AddAUser(user);
+            return Created($"api/Users/{user.Id}", user);
         }
     }
 }

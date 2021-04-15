@@ -11,7 +11,7 @@ namespace Toboggan.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        public string ImgUrl { get; set; }
+        public string ImageUrl { get; set; }
         public DateTime CreatedDate { get; set; }
         public double TotalSales { get; set; }
 
