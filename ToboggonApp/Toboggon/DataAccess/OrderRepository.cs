@@ -25,7 +25,7 @@ namespace Toboggan.DataAccess
             return results;
         }
 
-        public User GetSingleOrder(int id)
+        public Order GetSingleOrder(int id)
         {
             var sql = @"select *
                         from [Order]
@@ -33,9 +33,9 @@ namespace Toboggan.DataAccess
 
             using var db = new SqlConnection(ConnectionString);
 
-            var user = db.QueryFirstOrDefault<User>(sql, new { Id = id });
+            var order = db.QueryFirstOrDefault<Order>(sql, new { Id = id });
 
-            return user;
+            return order;
         }
 
         public void AddAnOrder(Order order)
