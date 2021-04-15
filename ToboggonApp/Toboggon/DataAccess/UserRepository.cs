@@ -50,6 +50,22 @@ namespace Toboggan.DataAccess
             user.Id = id;
         }
 
+        public void UpdateUser(User user)
+        {
+            using var db = new SqlConnection(ConnectionString);
+
+            var sql = @"UPDATE [dbo].[User]
+                        SET [FirstName] = @FirstName
+                            ,[LastName] = @LastName
+                            ,[Email] = @Email
+                            ,[ImageUrl] = @ImageUrl
+                            ,[CreatedDate] = @CreateDate
+                            ,[TotalSales] = @TotalSales
+                             WHERE Id = @id";
+
+            db.Execute(sql, user);
+        }
+
 
     }
 }
