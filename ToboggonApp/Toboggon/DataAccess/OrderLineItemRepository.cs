@@ -10,7 +10,7 @@ namespace Toboggan.DataAccess
 {
     public class OrderLineItemRepository
     {
-        const string ConnectionString = "Server=localhost;Database=LoafAndStranger;Trusted_Connection=True;";
+        const string ConnectionString = "Server=localhost;Database=Toboggan;Trusted_Connection=True;";
         
         public List<OrderLineItem> GetAll()
         {
