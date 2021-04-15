@@ -51,7 +51,7 @@ namespace Toboggan.DataAccess
             order.Id = id;
         }
 
-        public void UpdateOrder(User user)
+        public void UpdateOrder(Order order)
         {
             using var db = new SqlConnection(ConnectionString);
 
@@ -63,7 +63,7 @@ namespace Toboggan.DataAccess
                         ,[OrderLineItemId] = @OrderLineItemId
                         WHERE Id = @id";
 
-            db.Execute(sql, user);
+            db.Execute(sql, order);
         }
 
         public void DeleteOrder(int id)
