@@ -53,5 +53,13 @@ namespace Toboggan.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteUser(int id)
+        {
+            _repo.DeleteUser(id);
+
+            return Ok();
+        }
     }
 }
