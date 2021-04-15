@@ -24,5 +24,18 @@ namespace Toboggan.Controllers
         {
             return Ok(_repo.GetAll());
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetSingleUserById(int id)
+        {
+            var user = _repo.GetSingleUser(id);
+
+            if(user == null)
+            {
+                return NotFound("This user does not exist.");
+            }
+
+            return Ok(user);
+        }
     }
 }
