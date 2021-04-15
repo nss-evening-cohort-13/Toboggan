@@ -9,47 +9,47 @@ using Toboggan.Models;
 
 namespace Toboggan.Controllers
 {
-    [Route("api/Users")]
+    [Route("api/Orders")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class OrderController : ControllerBase
     {
-        UserRepository _repo;
+        OrderRepository _repo;
 
-        public UserController()
+        public OrderController()
         {
-            _repo = new UserRepository();
+            _repo = new OrderRepository();
         }
 
         [HttpGet]
-        public IActionResult GetAllUsers()
+        public IActionResult GetAllOrders()
         {
             return Ok(_repo.GetAll());
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetSingleUserById(int id)
+        public IActionResult GetSingleOrderById(int id)
         {
-            var user = _repo.GetSingleUser(id);
+            var user = _repo.GetSingleOrder(id);
 
-            if(user == null)
+            if (user == null)
             {
-                return NotFound("This user does not exist.");
+                return NotFound("This order does not exist.");
             }
 
             return Ok(user);
         }
 
         [HttpPost]
-        public IActionResult AddAUser(User user)
+        public IActionResult AddAnOrder(Order order)
         {
-            _repo.AddAUser(user);
-            return Created($"api/Users/{user.Id}", user);
+            _repo.AddAnOrder(order);
+            return Created($"api/Users/{order.Id}", order);
         }
 
         [HttpPatch]
-        public IActionResult UpdateUser(User user)
+        public IActionResult UpdateUser(Order order)
         {
-            _repo.UpdateUser(user);
+            _repo.UpdateOrder(order);
 
             return NoContent();
         }
@@ -57,7 +57,7 @@ namespace Toboggan.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteUser(int id)
         {
-            _repo.DeleteUser(id);
+            _repo.DeleteOrder(id);
 
             return Ok();
         }
