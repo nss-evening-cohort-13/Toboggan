@@ -59,7 +59,7 @@ namespace Toboggan.DataAccess
                             ,[LastName] = @LastName
                             ,[Email] = @Email
                             ,[ImageUrl] = @ImageUrl
-                            ,[CreatedDate] = @CreateDate
+                            ,[CreatedDate] = @CreatedDate
                             ,[TotalSales] = @TotalSales
                              WHERE Id = @id";
 

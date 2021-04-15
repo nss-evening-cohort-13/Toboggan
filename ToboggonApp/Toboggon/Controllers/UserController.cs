@@ -45,5 +45,13 @@ namespace Toboggan.Controllers
             _repo.AddAUser(user);
             return Created($"api/Users/{user.Id}", user);
         }
+
+        [HttpPatch]
+        public IActionResult UpdateUser(User user)
+        {
+            _repo.UpdateUser(user);
+
+            return NoContent();
+        }
     }
 }
