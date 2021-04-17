@@ -39,5 +39,14 @@ namespace Toboggan.Controllers
 
             return Ok(paymentType);
         }
+
+        //POST to /api/PaymentType
+        [HttpPost]
+        public IActionResult AddAPaymentType(PaymentType pt)
+        {
+            _repo.Add(pt);
+            return Created($"api/PaymentType/{pt.Id}", pt);
+        }
+
     }
 }
