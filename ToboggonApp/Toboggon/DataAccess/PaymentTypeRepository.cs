@@ -58,5 +58,15 @@ namespace Toboggan.DataAccess
             db.Execute(sql, pt);
         }
 
+        public void DeletePaymentType(int id)
+        {
+            var sql = @"DELETE
+                        FROM PaymentType
+                        WHERE Id = @id";
+
+            using var db = new SqlConnection(ConnectionString);
+            db.Execute(sql, new { id });
+        }
+
     }
 }
