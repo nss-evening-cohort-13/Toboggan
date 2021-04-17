@@ -73,8 +73,8 @@ namespace Toboggan.DataAccess
             var user = GetSingleUser(id);
 
             var sql = @"UPDATE[dbo].[User]
-                        SET[FirstName] = Null
-                            ,[LastName] = Null
+                        SET[FirstName] = 'Deleted'
+                            ,[LastName] = 'User'
                             ,[Email] = Null
                             ,[ImageUrl] = Null
                             ,[TotalSales] = Null
