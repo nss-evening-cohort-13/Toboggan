@@ -19,14 +19,12 @@ namespace Toboggan.Controllers
             _repo = new PaymentTypeRepository();
         }
 
-        //GET to /api/PaymentType
         [HttpGet]
         public IActionResult GetAllPaymentTypes()
         {
             return Ok(_repo.GetAll());
         }
 
-        //GET to /api/PaymentType/{id}
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -39,5 +37,28 @@ namespace Toboggan.Controllers
 
             return Ok(paymentType);
         }
+
+        [HttpPost]
+        public IActionResult AddPaymentType(PaymentType pt)
+        {
+            _repo.Add(pt);
+            return Created($"api/PaymentType/{pt.Id}", pt);
+        }
+
+        [HttpPatch]
+        public IActionResult UpdatePaymentType(PaymentType pt)
+        {
+            _repo.UpdatePaymentType(pt);
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeletePaymentType(int id)
+        {
+            _repo.DeletePaymentType(id);
+            return Ok();
+        }
+
     }
 }
