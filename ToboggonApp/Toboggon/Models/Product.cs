@@ -14,6 +14,6 @@ namespace Toboggan.Models
         public int Quantity { get; set; }
         public int ShopId { get; set; }
         public int CategoryId { get; set; }
-        public DateTime CreationDate { get; set; }
+        public DateTime CreatedDate { get; set; }
     }
 }
