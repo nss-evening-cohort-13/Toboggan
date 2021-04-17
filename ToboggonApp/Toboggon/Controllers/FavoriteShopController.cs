@@ -24,13 +24,13 @@ namespace Toboggan.Controllers
         [HttpGet]
         public IActionResult GetAllFavoriteShops()
         {
-            return Ok(_repo.GetAll());
+            return Ok(_repo.GetAllFavoriteShops());
         }
 
         [HttpGet("{id}")]
         public IActionResult GetFavoriteShop(int id)
         {
-            var shop = _repo.Get(id);
+            var shop = _repo.GetSingleFavoriteShop(id);
             if (shop == null)
             {
                 return NotFound("This shop does not exist");
@@ -41,21 +41,21 @@ namespace Toboggan.Controllers
         [HttpPost]
         public IActionResult AddNewFavoriteShop(FavoriteShop shop)
         {
-            _repo.Add(shop);
+            _repo.AddAFavoriteShop(shop);
             return Created($"api/FavoriteShop/{shop.Id}", shop);
         }
 
-        [HttpPut("{id}")]
+        [HttpPatch]
         public IActionResult UpdateFavoriteShop(FavoriteShop shop)
         {
-            _repo.Update(shop);
+            _repo.UpdateFavoriteShop(shop);
             return Ok();
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteFavoriteShop(int id)
         {
-            _repo.Delete(id);
+            _repo.DeleteFavoriteShop(id);
             return Ok();
         }
 

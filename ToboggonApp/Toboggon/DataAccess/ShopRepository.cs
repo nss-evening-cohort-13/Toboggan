@@ -13,14 +13,14 @@ namespace Toboggan.DataAccess
     {
         const string ConnectionString = "Server=localhost;Database=Toboggan;Trusted_Connection=True;";
 
-        public List<Shop> GetAll()
+        public List<Shop> GetAllShops()
         {
             using var db = new SqlConnection(ConnectionString);
             var sql = "SELECT * FROM Shop";
             return db.Query<Shop>(sql).ToList();
         }
 
-        public Shop Get(int id)
+        public Shop GetSingleShop(int id)
         {
             using var db = new SqlConnection(ConnectionString);
             var sql = "SELECT * FROM Shop WHERE Id = @id";
@@ -28,28 +28,30 @@ namespace Toboggan.DataAccess
             return shop;
         }
 
-        public void Add(Shop shop)
+        public void AddAShop(Shop shop)
         {
             using var db = new SqlConnection(ConnectionString);
-            var sql = @"INSERT INTO [Shop]
-                               ([Name]
-                               ,[UserId])
-                         VALUES (@Name, @UserId)";
+
+            var sql = @"INSERT INTO [dbo].[Shop]([Name],[UserId])
+                        OUTPUT inserted.Id
+                        VALUES(@Name,@UserId)";
+
             var id = db.ExecuteScalar<int>(sql, shop);
+
             shop.Id = id;
         }
 
-        public void Update(Shop shop)
+        public void UpdateShop(Shop shop)
         {
             using var db = new SqlConnection(ConnectionString);
-            var sql = @"UPDATE Shop
-                        SET Name = @name,
-                            UserId = @userId,
+            var sql = @"UPDATE [dbo].[Shop]
+                        SET [Name] = @Name,
+                            [UserId] = @UserId
                         WHERE Id = @id";
             db.Execute(sql, shop);
         }
 
-        public void Delete(int id)
+        public void DeleteShop(int id)
         {
             using var db = new SqlConnection(ConnectionString);
             var sql = "DELETE FROM Shop WHERE Id = @id";

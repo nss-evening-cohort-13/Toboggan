@@ -24,13 +24,13 @@ namespace Toboggan.Controllers
         [HttpGet]
         public IActionResult GetAllShops()
         {
-            return Ok(_repo.GetAll());
+            return Ok(_repo.GetAllShops());
         }
 
         [HttpGet("{id}")]
         public IActionResult GetShop(int id)
         {
-            var shop = _repo.Get(id);
+            var shop = _repo.GetSingleShop(id);
             if (shop == null)
             {
                 return NotFound("This shop does not exist");
@@ -41,21 +41,21 @@ namespace Toboggan.Controllers
         [HttpPost]
         public IActionResult AddNewShop(Shop shop)
         {
-            _repo.Add(shop);
-            return Created($"api/Shop", shop);
+            _repo.AddAShop(shop);
+            return Created($"api/Shop{shop.Id}", shop);
         }
 
-        [HttpPut("{id}")]
+        [HttpPatch]
         public IActionResult UpdateShop(Shop shop)
         {
-            _repo.Update(shop);
+            _repo.UpdateShop(shop);
             return Ok();
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteShop(int id)
         {
-            _repo.Delete(id);
+            _repo.DeleteShop(id);
             return Ok();
         }
     }
