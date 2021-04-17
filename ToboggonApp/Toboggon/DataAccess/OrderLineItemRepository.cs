@@ -36,7 +36,7 @@ namespace Toboggan.DataAccess
         {
             var sql = @"INSERT INTO [OrderLineItem] ([ProductId], [Quantity])
                         OUTPUT inserted.Id
-                        VALUES(@ProductId, @Quantity)";
+                        VALUES(@ProductId, @OrderId, @Quantity)";
 
             using var db = new SqlConnection(ConnectionString);
             var id = db.ExecuteScalar<int>(sql, orderLI);
