@@ -19,14 +19,12 @@ namespace Toboggan.Controllers
             _repo = new OrderLineItemRepository();
         }
 
-        //GET to /api/OrderLineItem
         [HttpGet]
         public IActionResult GetAllOrderLineItems()
         {
             return Ok(_repo.GetAll());
         }
 
-        //GET to /api/OrderLineItem/{id}
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -37,6 +35,13 @@ namespace Toboggan.Controllers
             }
 
             return Ok(orderLineItem);
+        }
+
+        [HttpPost]
+        public IActionResult AddOrderLineItem(OrderLineItem orderLI)
+        {
+            _repo.AddOrderLineItem(orderLI);
+            return Created($"api/OrderLineItem/{orderLI.Id}", orderLI);
         }
     }
 }

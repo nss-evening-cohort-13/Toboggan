@@ -32,5 +32,15 @@ namespace Toboggan.DataAccess
             var orderLineItem = db.QueryFirstOrDefault<OrderLineItem>(sql, new { id = id });
             return orderLineItem;
         }
+        public void AddOrderLineItem(OrderLineItem orderLI)
+        {
+            var sql = @"INSERT INTO [OrderLineItem] ([ProductId], [Quantity])
+                        OUTPUT inserted.Id
+                        VALUES(@ProductId, @Quantity)";
+
+            using var db = new SqlConnection(ConnectionString);
+            var id = db.ExecuteScalar<int>(sql, orderLI);
+            orderLI.Id = id;
+        }
     }
 }
