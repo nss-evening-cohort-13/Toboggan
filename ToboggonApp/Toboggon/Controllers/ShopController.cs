@@ -42,7 +42,7 @@ namespace Toboggan.Controllers
         public IActionResult AddNewShop(Shop shop)
         {
             _repo.AddAShop(shop);
-            return Created($"api/Shop{shop.Id}", shop);
+            return Created($"api/Shop/{shop.Id}", shop);
         }
 
         [HttpPatch]
