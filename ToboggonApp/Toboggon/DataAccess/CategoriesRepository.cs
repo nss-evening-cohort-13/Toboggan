@@ -21,12 +21,38 @@ namespace Toboggan.DataAccess
             return results;
         }
 
-        public Category Get(int id)
+        public Category GetSingleCategory(int id)
         {
             var sql = @"SELECT * from Category WHERE Id = @id";
             using var db = new SqlConnection(ConnectionString);
             var product = db.QueryFirstOrDefault<Category>(sql, new { Id = id });
             return product;
+        }
+
+        public void AddACategory(Category category)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = @"INSERT INTO Category(Name) 
+                              OUTPUT inserted.Id 
+                              VALUES (@Name)";
+            var id = db.ExecuteScalar<int>(sql, category);
+            category.Id = id;
+        }
+
+        public void UpdateCategory(Category category)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = @"UPDATE Category 
+                    SET Name=@Name
+                    WHERE Id = @id";
+            db.Execute(sql,category);
+        }
+
+        public void DeleteCategory(int id)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = @"DELETE FROM Category WHERE Id=@id";
+            db.Execute(sql, new { id });
         }
     }
 }
