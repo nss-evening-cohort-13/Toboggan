@@ -21,12 +21,48 @@ namespace Toboggan.DataAccess
             return results;
         }
 
-        public Product Get(int id)
+        public Product GetSingleProduct(int id)
         {
             var sql = @"SELECT * from Product WHERE Id=@id";
             using var db = new SqlConnection(ConnectionString);
             var product = db.QueryFirstOrDefault<Product>(sql, new { Id = id });
             return product;
+        }
+
+        public void AddAProduct(Product product)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = @$"INSERT INTO Product(Title,Description,Price, Quantity, ShopId, CategoryId)
+                        OUTPUT inserted.Id
+                        VALUES(@Title,@Description,@Price, @Quantity, @ShopId, @CategoryId)";
+
+            var id = db.ExecuteScalar<int>(sql, product);
+
+            product.Id = id;
+        }
+
+        public void UpdateProduct(Product product)
+        {
+            using var db = new SqlConnection(ConnectionString);
+
+            var sql = @$"UPDATE Product SET 
+                        Title=@Title
+                       ,Description=@Description
+                       ,Price=@Price
+                       ,Quantity=@Quantity
+                       ,ShopId=@ShopId
+                       ,CategoryId=@CategoryId
+                       WHERE Id= @id";
+
+            db.Execute(sql, product);
+        }
+
+        public void DeleteProduct(int id)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = @"DELETE FROM Product WHERE Id= @id";
+
+            db.Execute(sql, new { id });
         }
     }
 }

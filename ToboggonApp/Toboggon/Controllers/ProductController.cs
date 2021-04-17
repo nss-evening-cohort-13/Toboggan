@@ -19,18 +19,16 @@ namespace Toboggan.Controllers
             _repo = new ProductsRepository();
         }
 
-        // GET to / api/products
         [HttpGet]
         public IActionResult GetAllProducts()
         {
             return Ok(_repo.GetAll());
         }
 
-        //GET /api/products/id
         [HttpGet("{id}")]
         public IActionResult GetProductById(int id)
         {
-            var product = _repo.Get(id);
+            var product = _repo.GetSingleProduct(id);
 
             if (product == null)
             {
@@ -38,5 +36,27 @@ namespace Toboggan.Controllers
             }
             return Ok(product);
         }
+
+        [HttpPost]
+        public IActionResult AddAProduct(Product product)
+        {
+            _repo.AddAProduct(product);
+            return Created($"api/Products/{product.Id}", product);
+        }
+
+        [HttpPatch]
+        public IActionResult UpdateProduct(Product product)
+        {
+            _repo.UpdateProduct(product);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteProduct(int id)
+        {
+            _repo.DeleteProduct(id);
+            return Ok();
+        }
+
     }
 }
