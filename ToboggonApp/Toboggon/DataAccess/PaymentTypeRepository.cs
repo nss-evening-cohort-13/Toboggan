@@ -36,5 +36,17 @@ namespace Toboggan.DataAccess
             return paymentType;
         }
 
+        public void Add(PaymentType pt)
+        {
+            var sql = @"INSERT INTO [PaymentType] ([AccountNumber], [TypeName])
+                        OUTPUT inserted.Id
+                        VALUES(@AccountNumber, @TypeName)";
+
+            using var db = new SqlConnection(ConnectionString);
+            var id = db.ExecuteScalar<int>(sql, pt);
+
+            pt.Id = id;
+        }
+
     }
 }
