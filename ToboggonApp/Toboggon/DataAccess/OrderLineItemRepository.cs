@@ -34,9 +34,9 @@ namespace Toboggan.DataAccess
         }
         public void AddOrderLineItem(OrderLineItem orderLI)
         {
-            var sql = @"INSERT INTO [OrderLineItem] ([ProductId], [Quantity])
+            var sql = @"INSERT INTO [OrderLineItem] ([ProductId], [Quantity], [OrderId])
                         OUTPUT inserted.Id
-                        VALUES(@ProductId, @OrderId, @Quantity)";
+                        VALUES(@ProductId, @Quantity, @OrderId)";
 
             using var db = new SqlConnection(ConnectionString);
             var id = db.ExecuteScalar<int>(sql, orderLI);
