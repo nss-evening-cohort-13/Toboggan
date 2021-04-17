@@ -40,11 +40,10 @@ namespace Toboggan.DataAccess
         {
             var sql = @"INSERT INTO [PaymentType] ([AccountNumber], [TypeName])
                         OUTPUT inserted.Id
-                        VALUES(@AccountNumber, @TypeName)";
+                        VALUES(@AccountNumber, @Name)";
 
             using var db = new SqlConnection(ConnectionString);
             var id = db.ExecuteScalar<int>(sql, pt);
-
             pt.Id = id;
         }
 
