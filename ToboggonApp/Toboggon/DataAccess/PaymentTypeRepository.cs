@@ -46,6 +46,17 @@ namespace Toboggan.DataAccess
             var id = db.ExecuteScalar<int>(sql, pt);
             pt.Id = id;
         }
+        public void UpdatePaymentType(PaymentType pt)
+        {
+            using var db = new SqlConnection(ConnectionString);
+
+            var sql = @"UPDATE [dbo].[PaymentType]
+                        SET [AccountNumber] = @AccountNumber
+                            ,[TypeName] = @Name
+                             WHERE Id = @id";
+
+            db.Execute(sql, pt);
+        }
 
     }
 }

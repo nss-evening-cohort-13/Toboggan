@@ -48,5 +48,13 @@ namespace Toboggan.Controllers
             return Created($"api/PaymentType/{pt.Id}", pt);
         }
 
+        [HttpPatch]
+        public IActionResult UpdatePaymentType(PaymentType pt)
+        {
+            _repo.UpdatePaymentType(pt);
+
+            return NoContent();
+        }
+
     }
 }
