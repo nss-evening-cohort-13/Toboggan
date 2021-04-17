@@ -41,9 +41,9 @@ namespace Toboggan.DataAccess
         {
             using var db = new SqlConnection(ConnectionString);
 
-            var sql = @"INSERT INTO [dbo].[User]([FirstName],[LastName],[Email],[ImageUrl],[CreatedDate],[TotalSales])
+            var sql = @"INSERT INTO [dbo].[User]([FirstName],[LastName],[Email],[ImageUrl],[TotalSales])
                         OUTPUT inserted.Id
-                        VALUES(@FirstName,@LastName,@Email,@ImageUrl,@CreatedDate,@TotalSales)";
+                        VALUES(@FirstName,@LastName,@Email,@ImageUrl,@TotalSales)";
 
             var id = db.ExecuteScalar<int>(sql, user);
 
@@ -70,9 +70,17 @@ namespace Toboggan.DataAccess
         {
             using var db = new SqlConnection(ConnectionString);
 
-            var sql = "Delete from [User] Where Id = @id";
+            var user = GetSingleUser(id);
 
-            db.Execute(sql, new { id });
+            var sql = @"UPDATE[dbo].[User]
+                        SET[FirstName] = Null
+                            ,[LastName] = Null
+                            ,[Email] = Null
+                            ,[ImageUrl] = Null
+                            ,[TotalSales] = Null
+                             WHERE Id = @id";
+
+            db.Execute(sql, user);
         }
 
     }
