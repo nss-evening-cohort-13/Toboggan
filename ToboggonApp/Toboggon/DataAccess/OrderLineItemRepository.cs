@@ -42,5 +42,17 @@ namespace Toboggan.DataAccess
             var id = db.ExecuteScalar<int>(sql, orderLI);
             orderLI.Id = id;
         }
+        public void UpdateOrderLineItem(OrderLineItem orderLI)
+        {
+            using var db = new SqlConnection(ConnectionString);
+
+            var sql = @"UPDATE [dbo].[OrderLineItem]
+                        SET [ProductId] = @ProductId
+                            ,[Quantity] = @Quantity
+                            ,[OrderId] = @OrderId
+                             WHERE Id = @id";
+
+            db.Execute(sql, orderLI);
+        }
     }
 }

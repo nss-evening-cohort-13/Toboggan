@@ -43,5 +43,13 @@ namespace Toboggan.Controllers
             _repo.AddOrderLineItem(orderLI);
             return Created($"api/OrderLineItem/{orderLI.Id}", orderLI);
         }
+
+        [HttpPatch]
+        public IActionResult UpdateOrderLineItem(OrderLineItem orderLI)
+        {
+            _repo.UpdateOrderLineItem(orderLI);
+
+            return NoContent();
+        }
     }
 }
