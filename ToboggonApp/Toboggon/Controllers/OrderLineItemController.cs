@@ -51,5 +51,12 @@ namespace Toboggan.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteOrderLineItem(int id)
+        {
+            _repo.DeleteOrderLineItem(id);
+            return Ok();
+        }
     }
 }

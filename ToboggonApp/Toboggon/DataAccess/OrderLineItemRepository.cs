@@ -54,5 +54,13 @@ namespace Toboggan.DataAccess
 
             db.Execute(sql, orderLI);
         }
+
+        public void DeleteOrderLineItem(int id)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = @"DELETE FROM OrderLineItem WHERE Id= @id";
+
+            db.Execute(sql, new { id });
+        }
     }
 }

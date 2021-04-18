@@ -70,7 +70,7 @@ namespace Toboggan.DataAccess
         {
             using var db = new SqlConnection(ConnectionString);
 
-            var sql = "Delete from [Order] Where Id = @id";
+            var sql = "Delete from Order Where Id = @id";
 
             db.Execute(sql, new { id });
         }
