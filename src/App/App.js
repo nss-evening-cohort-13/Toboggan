@@ -1,12 +1,15 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Nav from '../Components/Nav';
 import './App.scss';
 
 class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <h2>INSIDE APP COMPONENT</h2>
-        <button className="btn btn-info">I am a button</button>
+        <Router>
+          <Nav />
+        </Router>
       </div>
     );
   }
