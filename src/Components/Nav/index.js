@@ -6,9 +6,7 @@ export default function Nav() {
   return (
     <div className="navbar-container">
       <header className="brand-container">
-        <Link to="/">
-          <h1 className="brand">Toboggan</h1>
-        </Link>
+        <Link to="/" className='brand'>Toboggan</Link>
       </header>
       <nav className="navbar">
         <div className="navbar-items">
