@@ -25,15 +25,15 @@ export default function MediaCard({ productData }) {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={productData.ProductImage}
+          image={productData.productImage}
           title="ProductCars"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {productData.Title}
+            {productData.title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {productData.Description}
+            {productData.description}
           </Typography>
         </CardContent>
       </CardActionArea>
