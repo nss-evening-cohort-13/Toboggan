@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ProductCard from '../Components/Products/ProductCard';
-import { getAllProducts } from '../helpers/data/productData';
+import getAllProducts from '../helpers/data/productData';
 
 export default class HomePageView extends Component {
   state = {
@@ -17,10 +17,15 @@ export default class HomePageView extends Component {
 
   render() {
     const { products } = this.state;
-    const renderProducts = () =>
-      products.map((product) => (
-        <ProductCard key={product.id} productData={product} />
-      ));
-      
+    const renderProducts = () => products.map((product) => (<ProductCard key={product.Id} productData={product} />));
+
+    return (
+        <>
+          <h1 className="m-2">Products</h1>
+          <div className="d-flex justify-content-center  align-items-center">
+          {renderProducts()}
+          </div>
+          </>
+    );
   }
 }
