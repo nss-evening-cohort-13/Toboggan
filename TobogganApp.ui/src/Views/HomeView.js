@@ -4,5 +4,16 @@ import { getAllProducts } from '../helpers/data/productData';
 
 
 export default class HomePageView extends Component{
+    state = {
+        products: [],
+    }
+
+    componentDidMount() {
+        getAllProducts().then((response) => {
+            this.setState({
+                products: response,
+            })
+        })
+    }
     
 }
