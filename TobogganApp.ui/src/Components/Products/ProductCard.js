@@ -37,14 +37,6 @@ export default function MediaCard({ productData }) {
           </Typography>
         </CardContent>
       </CardActionArea>
-      {/* <CardActions className='d-flex mt-auto justify-content-center'>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
-      </CardActions> */}
     </Card>
   );
 }
