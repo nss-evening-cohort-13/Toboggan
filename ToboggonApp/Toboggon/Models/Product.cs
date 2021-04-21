@@ -15,5 +15,6 @@ namespace Toboggan.Models
         public int ShopId { get; set; }
         public int CategoryId { get; set; }
         public DateTime CreatedDate { get; set; }
+        public string ProductImage { get; set; }
     }
 }
