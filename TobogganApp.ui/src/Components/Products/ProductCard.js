@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     maxWidth: 345,
   },
   media: {
-    height: 140,
+    height: 250,
   },
 });
 
@@ -21,7 +21,7 @@ export default function MediaCard({ productData }) {
   const classes = useStyles();
 
   return (
-    <Card className={`${classes.root} m-2 d-flex flex-column`}>
+    <Card className={`${classes.root} m-1 d-flex flex-column`}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
@@ -37,14 +37,14 @@ export default function MediaCard({ productData }) {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions className='d-flex mt-auto justify-content-center'>
+      {/* <CardActions className='d-flex mt-auto justify-content-center'>
         <Button size="small" color="primary">
           Share
         </Button>
         <Button size="small" color="primary">
           Learn More
         </Button>
-      </CardActions>
+      </CardActions> */}
     </Card>
   );
 }

@@ -22,7 +22,7 @@ export default class HomePageView extends Component {
     return (
         <>
           <h1 className="m-2">Products</h1>
-          <div className="d-flex flex-wrap">
+          <div className="d-flex flex-wrap justify-content-center">
           {renderProducts()}
           </div>
           </>
