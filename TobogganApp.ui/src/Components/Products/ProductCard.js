@@ -22,7 +22,7 @@ const useStyles = makeStyles({
     const classes = useStyles();
   
     return (
-      <Card className={`${classes.root} m-2 toDoCard d-flex flex-column`}>
+      <Card className={`${classes.root} m-2 d-flex flex-column`}>
         {success ? <ClimbAddedToToDo routeData={routeData}/> : <></>}
         <a href={routeData.url} target='_blank' rel='noreferrer' className='anchors'>
         <CardActionArea>
