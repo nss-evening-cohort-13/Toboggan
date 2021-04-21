@@ -21,7 +21,7 @@ export default function MediaCard({ productData }) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card className={`${classes.root} m-2 d-flex flex-column`}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
@@ -37,7 +37,7 @@ export default function MediaCard({ productData }) {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
+      <CardActions className='d-flex mt-auto justify-content-center'>
         <Button size="small" color="primary">
           Share
         </Button>
