@@ -14,10 +14,9 @@ namespace Toboggan.DataAccess
 
         public List<Product> GetAll()
         {
-            var _products = new List<Product>();
             using var db = new SqlConnection(ConnectionString);
             var sql = @"SELECT * FROM Product";
-            var results = db.Query<Product>(sql).ToList();
+            var results = db.Query<Product>(sql).OrderByDescending(product => product.CreatedDate).ToList();
             return results;
         }
 
