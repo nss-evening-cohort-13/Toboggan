@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {
@@ -35,6 +36,14 @@ export default function MediaCard({ productData }) {
           <Typography variant="body2" color="textSecondary" component="p">
             {productData.description}
           </Typography>
+          <CardActions className='d-flex mt-auto justify-content-center'>
+          <Link to={{
+            pathname: 'productDetails',
+            state: productData,
+          }}>
+          <button className="btn btn-success">Product Details</button>
+          </Link>
+          </CardActions>
         </CardContent>
       </CardActionArea>
     </Card>
