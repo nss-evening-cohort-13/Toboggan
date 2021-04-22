@@ -11,7 +11,7 @@ export default class ProductDetailsView extends Component {
 
       return (
           <>
-            <h1 className="m-2">Products</h1>
+            <h1 className="m-2">{singleProduct.title}</h1>
             <div className="d-flex flex-wrap justify-content-center">
             {<ProductCard productData={singleProduct} />}
             </div>
