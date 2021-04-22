@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ProductCard from '../Components/Products/ProductCard';
 
-export default class HomePageView extends Component {
+export default class ProductDetailsView extends Component {
     state = {
       singleProduct: this.props.location.state,
     };
