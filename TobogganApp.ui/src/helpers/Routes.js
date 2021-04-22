@@ -1,10 +1,11 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Home from '../Components/Home';
-import Shops from '../Components/Shops';
+// import Shops from '../Components/Shops';
 import Products from '../Components/Products';
 import Categories from '../Components/Categories';
 import UserProfile from '../Components/UserProfile';
+import Shops from '../Views/ShopView';
 
 export default function Routes() {
   return (
