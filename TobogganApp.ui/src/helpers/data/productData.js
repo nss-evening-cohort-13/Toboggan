@@ -1,15 +1,20 @@
 import axios from 'axios';
-import { baseUrl } from "./config.json";
+import { baseUrl } from './config.json';
 
 const productsUrl = `${baseUrl}/Products`;
 
 const getAllProducts = () => new Promise((resolve, reject) => {
-    axios.get(productsUrl).then((response) => {
-      resolve(response.data);
-    }).catch((error) => reject(error));
-  });
+  axios.get(productsUrl).then((response) => {
+    resolve(response.data);
+  })
+    .catch((error) => reject(error));
+});
 
+const getSingleProduct = (id) => new Promise((resolve, reject) => {
+  axios.get(`${productsUrl}/${id}`).then((response) => {
+    resolve(response.data);
+  })
+    .catch((error) => reject(error));
+});
 
-  export {
-    getAllProducts
-  };
+export default getAllProducts;

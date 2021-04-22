@@ -18,11 +18,9 @@ export default class ProductCategoryView extends Component {
       <>
         <h2>Categories</h2>
         <div>
-          {
-          categories.map((category) => (
+          {categories.map((category) => (
             <p key={category.id}>{category.name}</p>
-          ))
-          }
+          ))}
         </div>
       </>
     );
