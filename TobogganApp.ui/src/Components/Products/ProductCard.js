@@ -36,16 +36,16 @@ export default function MediaCard({ productData }) {
           <Typography variant="body2" color="textSecondary" component="p">
             {productData.description}
           </Typography>
-          <CardActions className='d-flex mt-auto justify-content-center'>
+        </CardContent>
+      </CardActionArea>
+      <CardActions className='d-flex mt-auto justify-content-center'>
           <Link to={{
             pathname: 'productDetails',
             state: productData,
           }}>
           <button className="btn btn-success">Product Details</button>
           </Link>
-          </CardActions>
-        </CardContent>
-      </CardActionArea>
+      </CardActions>
     </Card>
   );
 }
