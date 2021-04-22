@@ -25,7 +25,7 @@ export default class HomePageView extends Component {
           <div className="d-flex flex-wrap justify-content-center">
           {renderProducts()}
           </div>
-          </>
+        </>
     );
   }
 }
