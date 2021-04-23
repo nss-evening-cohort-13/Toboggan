@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Shops from '../Components/Shops';
-import Products from '../Components/Products';
+import Shops from '../Views/ShopView';
+import Products from '../Views/ProductDetailsView';
 import Categories from '../Views/ProductCategoryView';
-import UserProfile from '../Components/UserProfile';
+import UserProfile from '../Views/UserProfileView';
 import HomeView from '../Views/HomeView';
 
 export default function Routes() {
