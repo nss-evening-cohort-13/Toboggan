@@ -6,7 +6,6 @@ export default function UserProfileView(props) {
   const [userInfo, setUserInfo] = useState([]);
   const [error, updateError] = useState([]);
   const { id } = props.match.params;
-  console.warn(id);
 
   useEffect(() => { // Pass in a callback function!
     fetchUserData(id)
