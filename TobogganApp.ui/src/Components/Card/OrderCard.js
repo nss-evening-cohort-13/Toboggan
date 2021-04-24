@@ -38,8 +38,8 @@ function createData(name, calories, fat, carbs, protein, price) {
   };
 }
 
-function Row(props) {
-  const { row } = props;
+function OrderRow({ order }) {
+  console.warn('order');
   const [open, setOpen] = React.useState(false);
   const classes = useRowStyles();
 
@@ -51,13 +51,10 @@ function Row(props) {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell component="th" scope="row">
-          {row.name}
-        </TableCell>
-        <TableCell align="right">{row.calories}</TableCell>
-        <TableCell align="right">{row.fat}</TableCell>
-        <TableCell align="right">{row.carbs}</TableCell>
-        <TableCell align="right">{row.protein}</TableCell>
+        <TableCell component="th" scope="row">{order.saleDate}</TableCell>
+        <TableCell align="right">{order.id}</TableCell>
+        <TableCell align="right">{order.totalCost}</TableCell>
+        <TableCell align="right">{order.paymentTypeId}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -76,18 +73,6 @@ function Row(props) {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {row.history.map((historyRow) => (
-                    <TableRow key={historyRow.date}>
-                      <TableCell component="th" scope="row">
-                        {historyRow.date}
-                      </TableCell>
-                      <TableCell>{historyRow.customerId}</TableCell>
-                      <TableCell align="right">{historyRow.amount}</TableCell>
-                      <TableCell align="right">
-                        {Math.round(historyRow.amount * row.price * 100) / 100}
-                      </TableCell>
-                    </TableRow>
-                  ))}
                 </TableBody>
               </Table>
             </Box>
@@ -98,24 +83,6 @@ function Row(props) {
   );
 }
 
-Row.propTypes = {
-  row: PropTypes.shape({
-    calories: PropTypes.number.isRequired,
-    carbs: PropTypes.number.isRequired,
-    fat: PropTypes.number.isRequired,
-    history: PropTypes.arrayOf(
-      PropTypes.shape({
-        amount: PropTypes.number.isRequired,
-        customerId: PropTypes.string.isRequired,
-        date: PropTypes.string.isRequired,
-      }),
-    ).isRequired,
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    protein: PropTypes.number.isRequired,
-  }).isRequired,
-};
-
 const rows = [
   createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 3.99),
   createData('Ice cream sandwich', 237, 9.0, 37, 4.3, 4.99),
@@ -124,23 +91,24 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9, 1.5),
 ];
 
-export default function CollapsibleTable() {
+export default function CollapsibleTable(props) {
+  const { orderData } = props;
+  console.warn(orderData);
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
             <TableCell />
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+            <TableCell>Order Invoiced date</TableCell>
+            <TableCell align="right">id</TableCell>
+            <TableCell align="right">Total Cost</TableCell>
+            <TableCell align="right">Payment Type Id</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <Row key={row.name} row={row} />
+          { [orderData].map((order) => (
+            <OrderRow key={order.id} order={order} />
           ))}
         </TableBody>
       </Table>
