@@ -7,6 +7,13 @@ export default class ProductDetailsView extends Component {
       quantity: 0,
     };
 
+    handleChange = (e) => {
+      e.preventDefault();
+      this.setState({
+        [e.target.name]: e.target.value,
+      });
+    };
+
     render() {
       const { singleProduct } = this.state;
 
