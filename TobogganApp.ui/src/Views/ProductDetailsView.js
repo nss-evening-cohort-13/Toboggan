@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ProductCard from '../Components/Products/ProductCard';
+import ProductCard from '../Components/Card/ProductCard';
 
 export default class ProductDetailsView extends Component {
     state = {

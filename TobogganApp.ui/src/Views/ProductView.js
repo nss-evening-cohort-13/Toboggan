@@ -1,8 +1,8 @@
 import React from 'react';
 
-export default function Products() {
+export default function ProductView() {
   return (
-    <div className="Products">
+    <div className='Products'>
       <h2>Products Page</h2>
     </div>
   );
