@@ -13,7 +13,7 @@ export default class ProductDetailsView extends Component {
           <>
             <h1 className="m-2">{singleProduct.title}</h1>
             <div className="d-flex flex-wrap justify-content-center">
-            {<ProductCard productData={singleProduct} />}
+            {<ProductCard productData={singleProduct}/>}
             </div>
           </>
       );
