@@ -26,17 +26,43 @@ namespace Toboggan.Controllers
             return Ok(_repo.GetAll());
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("User/{id}")]
         public IActionResult GetSingleOrderById(int id)
         {
-            var user = _repo.GetSingleOrder(id);
+            var order = _repo.GetOrderByUserId(id);
 
-            if (user == null)
+            if (order == null)
             {
                 return NotFound("This order does not exist.");
             }
 
-            return Ok(user);
+            return Ok(order);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetOrderByUserId(int id)
+        {
+            var orders = _repo.GetOrderByUserId(id);
+
+            if (orders == null)
+            {
+                return NotFound("This order does not exist.");
+            }
+
+            return Ok(orders);
+        }
+
+        [HttpGet("orderLineItems/{id}")]
+        public IActionResult GetOrderAndLineItemsByUserId(int id)
+        {
+            var orders = _repo.GetOrderAndLineItemsByUserId(id);
+
+            if (orders == null)
+            {
+                return NotFound("This order does not exist.");
+            }
+
+            return Ok(orders);
         }
 
         [HttpPost]

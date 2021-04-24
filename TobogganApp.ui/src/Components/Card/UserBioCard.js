@@ -4,6 +4,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles({
   root: {
@@ -21,6 +22,7 @@ export default function BioCard({ userData }) {
   const classes = useStyles();
   const date = new Date(userData.createdDate);
   return (
+    <Box component="span" m={1}>
     <Card className={`${classes.root} m-1 d-flex flex-column`}>
       <CardActionArea>
         <CardMedia
@@ -39,5 +41,6 @@ export default function BioCard({ userData }) {
         </CardContent>
       </CardActionArea>
     </Card>
+    </Box>
   );
 }
