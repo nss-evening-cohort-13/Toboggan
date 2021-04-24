@@ -19,7 +19,7 @@ export default class ProductDetailsView extends Component {
 
       return (
           <>
-            <h1 className="m-2">{singleProduct.title}</h1>
+            <h1 className="mb-5 mt-2">{singleProduct.title}</h1>
             <div className="d-flex justify-content-center">
             <img className="singleProductImage m-2" src={singleProduct.productImage} alt="product Image"/>
             <div className="d-flex p-5 productDescription flex-column">
@@ -31,7 +31,7 @@ export default class ProductDetailsView extends Component {
                       value={this.state.name}
                       onChange={this.handleChange}
                       placeholder='Enter a Quantity'
-                      className='form-control form-control-lg m-1'
+                      className='form-control form-control mb-2 mr-2'
                       required
                     />
                <button className="btn btn-outline-success">Add to cart</button>
