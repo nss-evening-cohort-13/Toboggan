@@ -5,7 +5,7 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 export default function Nav() {
   return (
     <div className="navbar-container">
-      <header className="brand-container">
+      <header className="brand-container mt-2">
         <Link to="/" className='brand'>Toboggan</Link>
       </header>
       <nav className="navbar">
