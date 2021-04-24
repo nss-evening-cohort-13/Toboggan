@@ -14,10 +14,24 @@ namespace Toboggan.DataAccess
 
         public List<Category> GetAll()
         {
-            var _products = new List<Category>();
+            //var _products = new List<Category>();
             using var db = new SqlConnection(ConnectionString);
-            var sql = @"SELECT * FROM Category";
+            var sql = @"SELECT * FROM Category ORDER BY [Name] ASC";
             var results = db.Query<Category>(sql).ToList();
+            return results;
+        }
+
+        public IEnumerable<CategoryProductQuantity> GetQuantityOfProductsPerCategory()
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = @"SELECT
+                        [Name], Count(Name) as Quantity
+                        FROM Category as c
+                        INNER JOIN Product as p
+                        ON c.Id = p.CategoryId
+                        Group By Name
+                        Order By Name Asc";
+            var results = db.Query<CategoryProductQuantity>(sql).ToList();
             return results;
         }
 
