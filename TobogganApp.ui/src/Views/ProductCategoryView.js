@@ -8,7 +8,7 @@ export default class ProductCategoryView extends Component {
 
   componentDidMount() {
     categoryData
-      .GetAllCategories()
+      .GetQuantityOfProductsPerCategory()
       .then((response) => this.setState({ categories: response }));
   }
 
@@ -18,7 +18,7 @@ export default class ProductCategoryView extends Component {
       <>
         <h3>
           {categories.map((category) => (
-            <p key={category.id}>{category.name}</p>
+            <p key={category.id}>{category.name} - {category.quantity}</p>
           ))}
         </h3>
       </>
