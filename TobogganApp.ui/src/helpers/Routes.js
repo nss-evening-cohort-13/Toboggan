@@ -13,7 +13,7 @@ export default function Routes() {
       <Route exact path='/shops' component={Shops} />
       <Route exact path='/products' component={Products} />
       <Route exact path='/categories' component={Categories} />
-      <Route exact path='/user-profile' component={UserProfile} />
+      <Route exact path="/user-profile/:id" component= { UserProfile } />
     </Switch>
   );
 }
