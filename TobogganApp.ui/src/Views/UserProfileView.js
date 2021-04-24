@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import BioCard from '../Components/Card/UserBioCard';
+import OrderHistoryTable from '../Components/Card/OrderCard';
 import fetchUserData from '../helpers/data/userData';
 
 export default function UserProfileView(props) {
@@ -18,6 +19,7 @@ export default function UserProfileView(props) {
     <div className='User-Profile'>
       <h2>User Profile Page</h2>
       <BioCard userData={ userInfo }/>
+      <OrderHistoryTable />
     </div>
   );
 }
