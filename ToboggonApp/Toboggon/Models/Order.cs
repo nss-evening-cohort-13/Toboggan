@@ -12,6 +12,6 @@ namespace Toboggan.Models
         public double TotalCost { get; set; }
         public int PaymentTypeId { get; set; }
         public DateTime SaleDate { get; set; }
-        public int OrderLineItemId { get; set; }
+        public List<OrderLineItem> orderLineItems { get; set; } = new List<OrderLineItem>();
     }
 }
