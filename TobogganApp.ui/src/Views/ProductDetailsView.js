@@ -24,6 +24,15 @@ export default class ProductDetailsView extends Component {
             <img className="singleProductImage m-2" src={singleProduct.productImage} alt="product Image"/>
             <div className="d-flex p-5 productDescription flex-column">
                <p>{singleProduct.description}</p>
+               <input
+                      type='text'
+                      name='quantity'
+                      value={this.state.name}
+                      onChange={this.handleChange}
+                      placeholder='Enter a Quantity'
+                      className='form-control form-control-lg m-1'
+                      required
+                    />
                <button className="btn btn-outline-success">Add to cart</button>
             </div>
             </div>
