@@ -39,7 +39,7 @@ export default class ProductDetailsView extends Component {
                <Link to={{
                  pathname: 'sellerPage',
                }}>
-               <button className="btn btn-outline-primary m-1">View Seller's Page</button>
+               <button className="btn btn-outline-primary m-1">View Shop's Page</button>
                </Link>
             </div>
             </div>
