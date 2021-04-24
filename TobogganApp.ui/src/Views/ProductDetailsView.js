@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import QuantityAlert from '../Components/Alerts/QuantityAlert';
 
 export default class ProductDetailsView extends Component {
@@ -34,7 +35,12 @@ export default class ProductDetailsView extends Component {
                       className='form-control form-control mb-2 mr-2'
                       required
                     />
-               <button className="btn btn-outline-success">Add to cart</button>
+               <button className="btn btn-outline-success m-1">Add to cart</button>
+               <Link to={{
+                 pathname: 'sellerPage',
+               }}>
+               <button className="btn btn-outline-primary m-1">View Seller's Page</button>
+               </Link>
             </div>
             </div>
           </>
