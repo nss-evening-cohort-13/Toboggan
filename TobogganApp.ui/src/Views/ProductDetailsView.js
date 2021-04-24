@@ -19,7 +19,7 @@ export default class ProductDetailsView extends Component {
 
       return (
           <>
-            <h1 className="mb-5 mt-2">{singleProduct.title}</h1>
+            <h1 className="mb-4 mt-2">{singleProduct.title}</h1>
             <div className="d-flex justify-content-center">
             <img className="singleProductImage m-2" src={singleProduct.productImage} alt="product Image"/>
             <div className="d-flex p-5 productDescription flex-column">
