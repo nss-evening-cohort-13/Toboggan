@@ -37,7 +37,7 @@ export default class ProductDetailsView extends Component {
                     />
                <button className="btn btn-outline-success m-1">Add to cart</button>
                <Link to={{
-                 pathname: 'sellerPage',
+                 pathname: 'shopPage',
                }}>
                <button className="btn btn-outline-primary m-1">View Shop's Page</button>
                </Link>
