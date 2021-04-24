@@ -14,12 +14,17 @@ export default class ProductCategoryView extends Component {
 
   render() {
     const { categories } = this.state;
+    const renderCategories = () => categories.map((category) => (
+    <>
+      <p key={category.id}>{category.name} - {category.quantity}</p>
+      {/* Show last 3 created products from each category */}
+    </>
+    ));
+
     return (
       <>
         <h3>
-          {categories.map((category) => (
-            <p key={category.id}>{category.name} - {category.quantity}</p>
-          ))}
+          {renderCategories()}
         </h3>
       </>
     );
