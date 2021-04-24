@@ -19,6 +19,7 @@ const useStyles = makeStyles({
 
 export default function BioCard({ userData }) {
   const classes = useStyles();
+  const date = new Date(userData.createdDate);
   return (
     <Card className={`${classes.root} m-1 d-flex flex-column`}>
       <CardActionArea>
@@ -33,7 +34,7 @@ export default function BioCard({ userData }) {
             {userData.lastName}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {userData.email}
+            <strong>Joined</strong> {date.getMonth()}/{date.getDay()}/{date.getFullYear()}
           </Typography>
         </CardContent>
       </CardActionArea>
