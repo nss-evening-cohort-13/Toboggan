@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ProductCard from '../Components/Card/ProductCard';
+import QuantityAlert from '../Components/Alerts/QuantityAlert';
 
 export default class ProductDetailsView extends Component {
     state = {
@@ -15,7 +15,7 @@ export default class ProductDetailsView extends Component {
     };
 
     render() {
-      const { singleProduct } = this.state;
+      const { singleProduct, quantity } = this.state;
 
       return (
           <>
@@ -24,6 +24,7 @@ export default class ProductDetailsView extends Component {
             <img className="singleProductImage m-2" src={singleProduct.productImage} alt="product Image"/>
             <div className="d-flex p-5 productDescription flex-column">
                <p>{singleProduct.description}</p>
+               {quantity > singleProduct.quantity && <QuantityAlert productData={singleProduct}/>}
                <input
                       type='text'
                       name='quantity'
