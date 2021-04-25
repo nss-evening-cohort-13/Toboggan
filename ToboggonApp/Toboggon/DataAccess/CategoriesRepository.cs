@@ -21,32 +21,48 @@ namespace Toboggan.DataAccess
             return results;
         }
 
-        public IEnumerable<CategoryProductQuantity> GetQuantityOfProductsPerCategory()
+        public IEnumerable<CategoryProducts> GetCategoryProducts()
         {
             using var db = new SqlConnection(ConnectionString);
-            var sql = @"SELECT
-                        [Name], Count(Name) as Quantity
+            var catSql = @"SELECT
+                        c.Id as CategoryId, Count(c.Id) as Quantity, [Name]
                         FROM Category as c
                         INNER JOIN Product as p
                         ON c.Id = p.CategoryId
-                        Group By Name
+                        Group By c.Id, [Name]
                         Order By Name Asc";
-            var results = db.Query<CategoryProductQuantity>(sql).ToList();
-            return results;
+            var categories = db.Query<CategoryProducts>(catSql).ToList();
+            var products = new List<Product>();
+
+            foreach (CategoryProducts category in categories)
+            {
+                var productsSql = @"SELECT * FROM [Product] WHERE CategoryId = @CategoryId";
+                products = db.Query<Product>(productsSql, new { CategoryId = category.CategoryId }).ToList();
+                category.Products.AddRange(products);
+            }
+
+            return categories;
         }
 
-        public IEnumerable<CategoryThreeNewestProducts> GetThreeNewestProducts()
-        {
-            using var db = new SqlConnection(ConnectionString);
-            var sql = @"SELECT
-                        c.Id as CategoryId, [Name], Title, Price, CreatedDate, ProductImage
-                        FROM Category as c
-                        INNER JOIN Product as p
-                        ON c.Id = p.CategoryId
-                        Order By Name Asc";
-            var results = db.Query<CategoryThreeNewestProducts>(sql).ToList();
-            return results;
-        }
+        //multi-mapping, talk to nathan
+        //public IEnumerable<Category> GetCategoryProducts()
+        //{
+        //    using var db = new SqlConnection(ConnectionString);
+        //    var sql = @"SELECT
+        //                *
+        //                FROM Category as c
+        //                INNER JOIN Product as p
+        //                ON c.Id = p.CategoryId
+        //                Order By Name Asc";
+        //    var results = db.Query<Category, Product, Category>(sql, (category, product) =>
+        //    {
+        //        category.Product = product;
+        //        return category;
+        //    },
+        //    splitOn: "Id");
+        //    results.ToList();
+        //    return results;
+        //}
 
         public Category GetSingleCategory(int id)
         {

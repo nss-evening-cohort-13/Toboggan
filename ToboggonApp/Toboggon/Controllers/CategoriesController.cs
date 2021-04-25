@@ -25,18 +25,18 @@ namespace Toboggan.Controllers
             return Ok(_repo.GetAll());
         }
 
-        [HttpGet("ProductQuantity")]
-        public IActionResult GetQuantityOfProductsPerCategory()
+        [HttpGet("Products")]
+        public IActionResult GetCategoryProducts()
         {
-            return Ok(_repo.GetQuantityOfProductsPerCategory());
+            return Ok(_repo.GetCategoryProducts());
         }
 
 
-        [HttpGet("ThreeNewestProducts")]
-        public IActionResult GetThreeNewestProducts()
-        {
-            return Ok(_repo.GetThreeNewestProducts());
-        }
+        //[HttpGet("Products")]
+        //public IActionResult GetCategoryProducts()
+        //{
+        //    return Ok(_repo.GetCategoryProducts());
+        //}
 
         [HttpGet("{id}")]
         public IActionResult GetSingleCategory(int id)
