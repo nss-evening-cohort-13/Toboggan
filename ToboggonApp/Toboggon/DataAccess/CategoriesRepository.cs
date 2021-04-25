@@ -35,6 +35,19 @@ namespace Toboggan.DataAccess
             return results;
         }
 
+        public IEnumerable<CategoryThreeNewestProducts> GetThreeNewestProducts()
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = @"SELECT
+                        c.Id as CategoryId, [Name], Title, Price, CreatedDate, ProductImage
+                        FROM Category as c
+                        INNER JOIN Product as p
+                        ON c.Id = p.CategoryId
+                        Order By Name Asc";
+            var results = db.Query<CategoryThreeNewestProducts>(sql).ToList();
+            return results;
+        }
+
         public Category GetSingleCategory(int id)
         {
             var sql = @"SELECT * from Category WHERE Id = @id";
