@@ -31,6 +31,13 @@ namespace Toboggan.Controllers
             return Ok(_repo.GetQuantityOfProductsPerCategory());
         }
 
+
+        [HttpGet("ThreeNewestProducts")]
+        public IActionResult GetThreeNewestProducts()
+        {
+            return Ok(_repo.GetThreeNewestProducts());
+        }
+
         [HttpGet("{id}")]
         public IActionResult GetSingleCategory(int id)
         {
