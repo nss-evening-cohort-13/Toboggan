@@ -9,11 +9,11 @@ const GetAllCategories = () => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-const GetQuantityOfProductsPerCategory = () => new Promise((resolve, reject) => {
-  axios.get(`${categoryUrl}/ProductQuantity`).then((response) => {
+const GetCategoryProducts = () => new Promise((resolve, reject) => {
+  axios.get(`${categoryUrl}/Products`).then((response) => {
     resolve(response.data);
   }).catch((error) => reject(error));
 });
 
 // eslint-disable-next-line
-export default { GetAllCategories, GetQuantityOfProductsPerCategory };
+export default { GetAllCategories, GetCategoryProducts };
