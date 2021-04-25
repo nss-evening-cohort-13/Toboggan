@@ -31,13 +31,6 @@ namespace Toboggan.Controllers
             return Ok(_repo.GetCategoryProducts());
         }
 
-
-        //[HttpGet("Products")]
-        //public IActionResult GetCategoryProducts()
-        //{
-        //    return Ok(_repo.GetCategoryProducts());
-        //}
-
         [HttpGet("{id}")]
         public IActionResult GetSingleCategory(int id)
         {
