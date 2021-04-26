@@ -23,7 +23,7 @@ export default function ShopCard({ shopData }) {
           image={shopData.shopImage}
           title="ShopCards"
         />
-        <h1>{shopData.name}</h1>
+        <h1>{shopData.name}/{shopData.userId}</h1>
     </Card>
   );
 }

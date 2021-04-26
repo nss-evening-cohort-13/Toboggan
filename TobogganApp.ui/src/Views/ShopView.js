@@ -30,16 +30,13 @@ class Shops extends React.Component {
     clearInterval(this.timer);
   }
 
-  // printUserShops = (shopObject) => {
-  //   if (shopObject.userId === )
-  // }
+  //   printUserShops = (shopObject) => {
+  //     if (shopObject.userId === )
+  //   }
 
   render() {
     const { shops, loading } = this.state;
     const renderShops = () => shops.slice(0, 20).map((shop) => (<ShopCard key={shop.Id} shopData={shop} />));
-    const showShops = () => (
-      shops.map((shop) => <div key={shop.Id} shop={shop}>{shop.name}</div>)
-    );
 
     return (
       <>
