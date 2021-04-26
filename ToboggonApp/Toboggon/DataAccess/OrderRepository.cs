@@ -70,7 +70,25 @@ namespace Toboggan.DataAccess
             return orders;
         }
 
+        public List<SellerOrders> SellerOrdersById(int id)
+        {
+            using var db = new SqlConnection(ConnectionString);
 
+            var sql = @"select s.Id, s.Name as ShopName, o.Id as OrderTableId, o.SaleDate, o.TotalCost, c.Name, p.Title, 
+                          p.Description, p.Price, oli.Quantity as QuantityBought, 
+                          p.Quantity as QuantityLeft from [Order] o
+                          JOIN [OrderLineItem] oli on oli.OrderId = o.Id 
+                          JOIN [Product] p ON p.Id = oli.Id
+                          JOIN [Category] c ON c.Id = P.CategoryId
+                          JOIN [Shop] s ON s.Id = p.ShopId
+                          JOIN [User] u ON u.Id = s.UserId
+                          WHERE u.Id = @id
+                          ORDER BY s.Id ASC, o.SaleDate DESC;";
+
+            var sellerOrders = db.Query<SellerOrders>(sql, new { Id = id }).ToList();
+
+            return sellerOrders;
+        }
         public void AddAnOrder(Order order)
         {
             using var db = new SqlConnection(ConnectionString);
