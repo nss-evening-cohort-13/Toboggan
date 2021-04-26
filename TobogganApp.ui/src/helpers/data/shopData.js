@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import axios from 'axios';
 import { baseUrl } from './config.json';
 
@@ -12,6 +11,3 @@ const getAllShops = () => new Promise((resolve, reject) => {
 });
 
 export default { getAllShops };
-=======
-import { baseUrl } from './config.json';
->>>>>>> development
