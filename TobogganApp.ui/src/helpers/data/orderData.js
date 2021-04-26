@@ -1,1 +1,1 @@
-import { baseUrl } from "./config.json";
+import { baseUrl } from './config.json';
