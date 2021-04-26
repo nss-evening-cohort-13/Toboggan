@@ -5,6 +5,7 @@ import Products from '../Views/ProductView';
 import Categories from '../Views/ProductCategoryView';
 import UserProfile from '../Views/UserProfileView';
 import HomeView from '../Views/HomeView';
+import ProductDetailsView from '../Views/ProductDetailsView';
 
 export default function Routes() {
   return (
@@ -12,8 +13,9 @@ export default function Routes() {
       <Route exact path='/' component={HomeView} />
       <Route exact path='/shops' component={Shops} />
       <Route exact path='/products' component={Products} />
+      <Route exact path='/productDetails' component={ProductDetailsView} />
       <Route exact path='/categories' component={Categories} />
-      <Route exact path='/user-profile' component={UserProfile} />
+      <Route exact path="/user-profile/:id" component= { UserProfile } />
     </Switch>
   );
 }

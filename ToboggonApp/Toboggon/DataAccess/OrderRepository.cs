@@ -38,6 +38,39 @@ namespace Toboggan.DataAccess
             return order;
         }
 
+        public Order GetOrderByUserId(int id)
+        {
+            var sql = @"select *
+                        from [Order]
+                        where userId = @Id";
+
+            using var db = new SqlConnection(ConnectionString);
+
+            var order = db.QueryFirstOrDefault<Order>(sql, new { Id = id });
+
+            return order;
+        }
+
+        public List<Order> GetOrderAndLineItemsByUserId(int id)
+        {
+            var orderSql = @"select * from [Order] where userId = @Id";
+
+            using var db = new SqlConnection(ConnectionString);
+
+            var orders = db.Query<Order>(orderSql, new { Id = id }).ToList();
+            var orderLineItems =  new List<OrderLineItem>();
+
+            foreach (Order order in orders)
+            {  
+                var orderLineItemsSql = @"select * from [OrderLineItem] where OrderId = @OrderId";
+                orderLineItems = db.Query<OrderLineItem>(orderLineItemsSql, new {  OrderId = order.Id }).ToList();
+                order.orderLineItems.AddRange(orderLineItems);
+                
+            }
+            return orders;
+        }
+
+
         public void AddAnOrder(Order order)
         {
             using var db = new SqlConnection(ConnectionString);
