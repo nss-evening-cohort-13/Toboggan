@@ -11,7 +11,7 @@ namespace Toboggan.Controllers
 {
     [Route("api/Categories")]
     [ApiController]
-    public class CategoriesController : ControllerBase
+    public class CategoriesController : FirebaseEnabledController
     {
         CategoriesRepository _repo;
         public CategoriesController()
