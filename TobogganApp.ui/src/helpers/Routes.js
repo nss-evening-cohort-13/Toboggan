@@ -7,6 +7,7 @@ import UserProfileDashboard from '../Views/UserProfileDashboardView';
 import UserProfileEditShopPage from '../Views/UserProfileEditShopView';
 import HomeView from '../Views/HomeView';
 import ProductDetailsView from '../Views/ProductDetailsView';
+import SearchProductResults from '../Views/SearchProductsResults';
 
 export default function Routes() {
   return (
@@ -14,6 +15,7 @@ export default function Routes() {
       <Route exact path='/' component={HomeView} />
       <Route exact path='/shops' component={Shops} />
       <Route exact path='/productDetails' component={ProductDetailsView} />
+      <Route exact path='/search/:term' component={(props) => <SearchProductResults {...props}/>} />
       <Route exact path='/categories' component={Categories} />
       <Route exact path="/user-profile/history/:id" component= { UserProfileHistory } />
       <Route exact path="/user-profile/dashboard/:id" component= { UserProfileDashboard } />

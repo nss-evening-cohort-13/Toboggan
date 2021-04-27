@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ProductCard from '../Components/Card/ProductCard';
-import getAllProducts from '../helpers/data/productData';
+import productsData from '../helpers/data/productData';
+import SearchBar from '../Components/SearchBar';
 
 export default class HomePageView extends Component {
   state = {
@@ -8,7 +9,7 @@ export default class HomePageView extends Component {
   };
 
   componentDidMount() {
-    getAllProducts().then((response) => {
+    productsData.getAllProducts().then((response) => {
       this.setState({
         products: response,
       });
@@ -21,6 +22,7 @@ export default class HomePageView extends Component {
 
     return (
         <>
+        <SearchBar/>
           <h1 className="m-2">Products</h1>
           <div className="d-flex flex-wrap justify-content-center">
           {renderProducts()}

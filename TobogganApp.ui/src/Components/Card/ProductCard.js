@@ -40,7 +40,7 @@ export default function MediaCard({ productData }) {
       </CardActionArea>
       <CardActions className='d-flex mt-auto justify-content-center'>
           <Link to={{
-            pathname: 'productDetails',
+            pathname: '/productDetails',
             state: productData,
           }}>
           <button className="btn btn-success">Product Details</button>
