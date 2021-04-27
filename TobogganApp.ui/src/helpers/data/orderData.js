@@ -20,4 +20,12 @@ const fetchOrdersWithLineItemData = (id) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-export default { fetchOrderData, fetchOrdersWithLineItemData };
+const fetchOrdersForAllSales = (id) => new Promise((resolve, reject) => {
+  axios.get(`${orderDataUrl}/SellerOrder/${id}`, {
+    params: { userId: id },
+  }).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
+export default { fetchOrderData, fetchOrdersWithLineItemData, fetchOrdersForAllSales };
