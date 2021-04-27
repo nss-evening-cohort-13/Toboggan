@@ -1,13 +1,41 @@
 import React from 'react';
+import firebase from 'firebase/app';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Routes from '../helpers/Routes';
 import Nav from '../Components/Nav';
 import './App.scss';
+import Auth from '../Components/Auth';
+import fbConnection from '../helpers/data/fbConnection';
+
+fbConnection();
 
 class App extends React.Component {
+  state = {
+    user: null,
+  };
+
+  componentDidMount() {
+    this.removeListener = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        user
+          .getIdToken()
+          .then((token) => sessionStorage.setItem('token', token));
+
+        this.setState({ user });
+      } else {
+        this.setState({ user: false });
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    this.removeListener();
+  }
+
   render() {
     return (
-      <div className="App">
+      <div className='App'>
+        <Auth/>
         <Router>
           <Nav />
           <Routes />
