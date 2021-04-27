@@ -41,7 +41,6 @@ export default class SearchProductResults extends Component {
     return (
       <>
         <SearchBar />
-        <h1>Search Results</h1>
         <div className='d-flex flex-wrap justify-content-center'>
           {showResults()}
         </div>
