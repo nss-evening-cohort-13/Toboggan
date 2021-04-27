@@ -39,10 +39,10 @@ namespace Toboggan.Controllers
             return Ok(order);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("SellerOrder/{id}")]
         public IActionResult GetOrderByUserId(int id)
         {
-            var orders = _repo.GetOrderByUserId(id);
+            var orders = _repo.SellerOrdersById(id);
 
             if (orders == null)
             {
@@ -64,6 +64,8 @@ namespace Toboggan.Controllers
 
             return Ok(orders);
         }
+
+       
 
         [HttpPost]
         public IActionResult AddAnOrder(Order order)
