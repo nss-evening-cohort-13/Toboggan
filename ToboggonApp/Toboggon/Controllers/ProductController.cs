@@ -6,11 +6,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Toboggan.Models;
 using Toboggan.DataAccess;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Toboggan.Controllers
 {
     [Route("api/Products")]
     [ApiController]
+    [Authorize]
     public class ProductsController : ControllerBase
     {
         ProductsRepository _repo;
@@ -20,6 +22,7 @@ namespace Toboggan.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult GetAllProducts()
         {
             return Ok(_repo.GetAll());
