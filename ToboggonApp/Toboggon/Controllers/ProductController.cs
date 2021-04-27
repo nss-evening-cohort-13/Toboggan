@@ -12,6 +12,7 @@ namespace Toboggan.Controllers
 {
     [Route("api/Products")]
     [ApiController]
+    [Authorize]
 
     public class ProductsController : FirebaseEnabledController
     {
