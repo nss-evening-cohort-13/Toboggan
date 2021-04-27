@@ -26,7 +26,7 @@ const getFilteredProductsBackEnd = (searchInput) => new Promise((resolve, reject
 
 const getFilteredProducts = (searchInput) => new Promise((resolve, reject) => {
   axios.get(productsUrl).then((response) => {
-    const filteredList = response.data.filter((product) => product.title.toLowerCase().includes(searchInput));
+    const filteredList = response.data.filter((product) => product.title.toLowerCase().includes(searchInput) || product.description.toLowerCase().includes(searchInput));
     resolve(filteredList);
   })
     .catch((error) => reject(error));
