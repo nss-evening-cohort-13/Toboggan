@@ -11,7 +11,7 @@ namespace Toboggan.Controllers
 {
     [Route("api/Orders")]
     [ApiController]
-    public class OrderController : ControllerBase
+    public class OrderController : FirebaseEnabledController
     {
         OrderRepository _repo;
 
