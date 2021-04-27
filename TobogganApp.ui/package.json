@@ -16,7 +16,7 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.0",
     "bootstrap": "^4.5.3",
-    "firebase": "^8.0.0",
+    "firebase": "^8.4.2",
     "indicative": "^7.4.4",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",

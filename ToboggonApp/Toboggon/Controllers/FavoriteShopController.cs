@@ -12,7 +12,7 @@ namespace Toboggan.Controllers
 {
     [ApiController]
     [Route("api/FavoriteShop")]
-    public class FavoriteShopController : ControllerBase
+    public class FavoriteShopController : FirebaseEnabledController
     {
         FavoriteShopRepository _repo;
 

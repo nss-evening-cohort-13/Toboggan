@@ -1,3 +1,12 @@
 {
-    "baseUrl": "https://localhost:44368/api"
+    "baseUrl": "https://localhost:44368/api",
+    "firebaseConfig":{
+        "apiKey": "AIzaSyDnynBYTDEVntMQ9zilpwerw0Dv9wpor6c",
+        "authDomain": "toboggan-42319.firebaseapp.com",
+        "projectId": "toboggan-42319",
+        "storageBucket": "toboggan-42319.appspot.com",
+        "messagingSenderId": "184716886829",
+        "appId": "1:184716886829:web:20d669fea9659baef609a4",
+        "measurementId": "G-QG31JD646T"
+      }
 }

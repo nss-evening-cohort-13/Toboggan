@@ -11,7 +11,7 @@ namespace Toboggan.Controllers
 {
     [Route("api/PaymentType")]
     [ApiController]
-    public class PaymentTypeController : ControllerBase
+    public class PaymentTypeController : FirebaseEnabledController
     {
         PaymentTypeRepository _repo;
         public PaymentTypeController()
