@@ -45,6 +45,7 @@ export default class ProductDetailsView extends Component {
           />
           <div className='d-flex p-5 productDescription flex-column'>
             <p>{singleProduct.description}</p>
+            <h6>${singleProduct.price}</h6>
             {quantity > singleProduct.quantity && (
               <QuantityAlert productData={singleProduct} />
             )}
