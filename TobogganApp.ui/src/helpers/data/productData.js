@@ -17,4 +17,15 @@ const getSingleProduct = (id) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export default getAllProducts;
+const getFilteredProducts = (searchInput) => new Promise((resolve, reject) => {
+  axios.get(`${productsUrl}`).then((response) => {
+    const filteredData = response.data.filter((product) => product.filter.toLowerCase().includes(searchInput));
+    resolve(filteredData);
+  })
+    .catch((error) => reject(error));
+});
+
+export default {
+  getAllProducts,
+  getSingleProduct,
+};
