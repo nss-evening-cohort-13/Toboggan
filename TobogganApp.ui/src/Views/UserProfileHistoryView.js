@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BioCard from '../Components/Card/UserBioCard';
 import OrderHistoryTable from '../Components/Card/OrderCard';
-import fetchUserData from '../helpers/data/userData';
+import userData from '../helpers/data/userData';
 import orderData from '../helpers/data/orderData';
 
 export default function UserProfileView(props) {
@@ -12,14 +12,14 @@ export default function UserProfileView(props) {
   const { id } = props.match.params;
 
   useEffect(() => {
-    fetchUserData(id)
+    userData.fetchUserData(id)
       .then((data) => {
         setUserInfo(data);
       });
     Promise.all([orderData.fetchOrdersForAllSales(id)])
       .then((results) => {
         const order = results[0];
-        // console.warn(order);
+        console.warn(order);
         setOrderInfo(order);
       });
   }, []);

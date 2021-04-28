@@ -74,7 +74,7 @@ namespace Toboggan.DataAccess
         {
             using var db = new SqlConnection(ConnectionString);
 
-            var sql = @"select s.Id, s.Name as ShopName, o.Id as OrderTableId, o.SaleDate, o.TotalCost, c.Name, p.Title, 
+            var sql = @"select s.Id, s.Name as ShopName, o.Id as OrderTableId, o.SaleDate, o.TotalCost, buyer.FirstName, buyer.LastName, c.Name, p.Title, 
                           p.Description, p.Price, oli.Quantity as QuantityBought, 
                           p.Quantity as QuantityLeft from [Order] o
                           JOIN [OrderLineItem] oli on oli.OrderId = o.Id 
@@ -82,6 +82,7 @@ namespace Toboggan.DataAccess
                           JOIN [Category] c ON c.Id = P.CategoryId
                           JOIN [Shop] s ON s.Id = p.ShopId
                           JOIN [User] u ON u.Id = s.UserId
+						  JOIN [USER] buyer ON buyer.Id = o.UserId
                           WHERE u.Id = @id
                           ORDER BY s.Id ASC, o.SaleDate DESC;";
 

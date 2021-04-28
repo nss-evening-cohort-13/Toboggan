@@ -16,4 +16,5 @@ namespace Toboggan.Models
         public double TotalSales { get; set; }
 
     }
+   
 }
