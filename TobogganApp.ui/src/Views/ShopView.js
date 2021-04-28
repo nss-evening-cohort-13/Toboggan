@@ -40,14 +40,17 @@ class Shops extends React.Component {
   }
 
     printUserShops = () => {
-      console.warn('working');
       const { users } = this.state;
-      console.warn('users in view.js', users);
 
       const results = users.map((user) => {
         if (user.shops) {
-          console.warn(user.shops);
-          return user.shops.map((shop) => <ShopCard key={shop.id} shopData={shop} />);
+          console.warn('user in map', user);
+          const html = <div>
+            <h1>{user.firstName}</h1>
+            {user.shops.map((shop) => <ShopCard key={shop.id} shopData={shop} />)}
+
+          </div>;
+          return html;
         }
         return [(<></>)];
       });
