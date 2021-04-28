@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import ProductCard from '../Components/Card/ProductCard';
 import productsData from '../helpers/data/productData';
 import SearchBar from '../Components/SearchBar';
@@ -6,9 +8,15 @@ import SearchBar from '../Components/SearchBar';
 export default class HomePageView extends Component {
   state = {
     products: [],
+    userId: '',
   };
 
   componentDidMount() {
+    firebase.auth().onAuthStateChanged((user) => {
+      this.setState({
+        userId: user.uid,
+      });
+    });
     productsData.getAllProducts().then((response) => {
       this.setState({
         products: response,
