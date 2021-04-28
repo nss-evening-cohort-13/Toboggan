@@ -1,21 +1,30 @@
 import React from 'react';
 import shopData from '../helpers/data/shopData';
+import userData from '../helpers/data/userData';
 import ShopCard from '../Components/Card/ShopCard';
 
 class Shops extends React.Component {
   state = {
-    shops: [],
+    users: [],
     loading: true,
   };
 
   componentDidMount() {
-    this.getAllOfTheShops();
+    this.getAllOfTheUsers();
   }
 
   getAllOfTheShops = () => {
     shopData.getAllShops().then((response) => {
       this.setState({
         shops: response,
+      });
+    });
+  }
+
+  getAllOfTheUsers = () => {
+    userData.getAllUsers().then((response) => {
+      this.setState({
+        users: response,
       }, this.setLoading);
     });
   }
@@ -30,34 +39,37 @@ class Shops extends React.Component {
     clearInterval(this.timer);
   }
 
-  //   printUserShops = (shopObject) => {
-  //     if (shopObject.userId === )
-  //   }
+    printUserShops = () => {
+      console.warn('working');
+      const { users } = this.state;
+      console.warn('users in view.js', users);
 
-  render() {
-    const { shops, loading } = this.state;
-    const renderShops = () => shops.slice(0, 20).map((shop) => (<ShopCard key={shop.Id} shopData={shop} />));
+      const results = users.map((user) => {
+        if (user.shops) {
+          console.warn(user.shops);
+          return user.shops.map((shop) => <ShopCard key={shop.id} shopData={shop} />);
+        }
+        return [(<></>)];
+      });
 
-    return (
-      <>
-        {loading ? (
-          <h1>Loading</h1>
-        ) : (
-            <div id='shops-container' className='d-flex flex-wrap justify-content-center'>
-            {renderShops()}
-            </div>
-        )}
-      </>
-    );
-  }
+      return results;
+    }
+
+    render() {
+      const { users, loading } = this.state;
+
+      return (
+        <>
+          {loading ? (
+            <h1>Loading</h1>
+          ) : (
+              <div id='shops-container' className='d-flex flex-wrap justify-content-center'>
+              {this.printUserShops()}
+              </div>
+          )}
+        </>
+      );
+    }
 }
 
 export default Shops;
-
-// export default function ShopView() {
-//   return (
-//     <div className='Shops'>
-//       <h2>Shops Page</h2>
-//     </div>
-//   );
-// }

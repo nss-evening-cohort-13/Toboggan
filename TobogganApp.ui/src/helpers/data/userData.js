@@ -11,7 +11,6 @@ const fetchUserData = (id) => new Promise((resolve, reject) => {
 
 const getAllUsers = () => new Promise((resolve, reject) => {
   axios.get(userDataUrl).then((response) => {
-    console.warn('user data', response.data);
     resolve(response.data);
   }).catch((error) => reject(error));
 });
