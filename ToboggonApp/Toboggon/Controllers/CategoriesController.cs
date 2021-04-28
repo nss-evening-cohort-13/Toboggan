@@ -11,7 +11,7 @@ namespace Toboggan.Controllers
 {
     [Route("api/Categories")]
     [ApiController]
-    public class CategoriesController : ControllerBase
+    public class CategoriesController : FirebaseEnabledController
     {
         CategoriesRepository _repo;
         public CategoriesController()
@@ -23,6 +23,12 @@ namespace Toboggan.Controllers
         public IActionResult GetAllCategories()
         {
             return Ok(_repo.GetAll());
+        }
+
+        [HttpGet("Products")]
+        public IActionResult GetCategoryProducts()
+        {
+            return Ok(_repo.GetCategoryProducts());
         }
 
         [HttpGet("{id}")]

@@ -6,12 +6,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Toboggan.Models;
 using Toboggan.DataAccess;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Toboggan.Controllers
 {
     [Route("api/Products")]
     [ApiController]
-    public class ProductsController : ControllerBase
+    [Authorize]
+
+    public class ProductsController : FirebaseEnabledController
     {
         ProductsRepository _repo;
         public ProductsController()
@@ -20,6 +23,7 @@ namespace Toboggan.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult GetAllProducts()
         {
             return Ok(_repo.GetAll());

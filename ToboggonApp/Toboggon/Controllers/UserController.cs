@@ -11,7 +11,7 @@ namespace Toboggan.Controllers
 {
     [Route("api/Users")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UserController : FirebaseEnabledController
     {
         UserRepository _repo;
 

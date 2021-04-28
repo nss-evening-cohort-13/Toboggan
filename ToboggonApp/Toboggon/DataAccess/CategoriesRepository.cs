@@ -14,12 +14,55 @@ namespace Toboggan.DataAccess
 
         public List<Category> GetAll()
         {
-            var _products = new List<Category>();
+            //var _products = new List<Category>();
             using var db = new SqlConnection(ConnectionString);
-            var sql = @"SELECT * FROM Category";
+            var sql = @"SELECT * FROM Category ORDER BY [Name] ASC";
             var results = db.Query<Category>(sql).ToList();
             return results;
         }
+
+        public IEnumerable<CategoryProducts> GetCategoryProducts()
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var catSql = @"SELECT
+                        c.Id as CategoryId, Count(c.Id) as Quantity, [Name]
+                        FROM Category as c
+                        INNER JOIN Product as p
+                        ON c.Id = p.CategoryId
+                        Group By c.Id, [Name]
+                        Order By Name Asc";
+            var categories = db.Query<CategoryProducts>(catSql).ToList();
+            var products = new List<Product>();
+
+            foreach (CategoryProducts category in categories)
+            {
+                var productsSql = @"SELECT * FROM [Product] WHERE CategoryId = @CategoryId";
+                products = db.Query<Product>(productsSql, new { CategoryId = category.CategoryId }).ToList();
+                category.Products.AddRange(products);
+            }
+
+            return categories;
+        }
+
+        //multi-mapping, talk to nathan
+        //public IEnumerable<Category> GetCategoryProducts()
+        //{
+        //    using var db = new SqlConnection(ConnectionString);
+        //    var sql = @"SELECT
+        //                *
+        //                FROM Category as c
+        //                INNER JOIN Product as p
+        //                ON c.Id = p.CategoryId
+        //                Order By Name Asc";
+        //    var results = db.Query<Category, Product, Category>(sql, (category, product) =>
+        //    {
+        //        category.Product = product;
+        //        return category;
+        //    },
+        //    splitOn: "Id");
+        //    results.ToList();
+        //    return results;
+        //}
 
         public Category GetSingleCategory(int id)
         {

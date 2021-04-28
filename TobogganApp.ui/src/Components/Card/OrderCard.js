@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Collapse from '@material-ui/core/Collapse';
@@ -22,27 +21,58 @@ const useRowStyles = makeStyles({
     },
   },
 });
+const rows = [];
+const myRows = [];
 
-function createData(name, calories, fat, carbs, protein, price) {
+const createRows = (orderData) => orderData.map((order) => {
+  if (!myRows.includes(order.orderTableId)) {
+    myRows.push(order.orderTableId);
+    rows.push(createData(orderData, order.orderTableId, order.saleDate, order.firstName, order.lastName,
+      order.shopId, order.shopName, order.totalCost));
+  }
+});
+
+const createData = (orderData, orderTableId, saleDate, firstName, lastName, shopId, shopName, totalCost) => {
+  const itemsAttached = orderData.filter((x) => (orderTableId === x.orderTableId));
+  const lineItems = [];
+  itemsAttached.forEach((item) => {
+    lineItems.push({
+      orderTableId: item.orderTableId,
+      category: item.name,
+      name: item.title,
+      quantity: item.quantityBought,
+      price: item.price,
+    });
+  });
   return {
-    name,
-    calories,
-    fat,
-    carbs,
-    protein,
-    price,
-    history: [
-      { date: '2020-01-05', customerId: '11091700', amount: 3 },
-      { date: '2020-01-02', customerId: 'Anonymous', amount: 1 },
-    ],
+    orderTableId,
+    saleDate,
+    firstName,
+    lastName,
+    shopId,
+    shopName,
+    totalCost,
+    lineItems,
   };
+};
+
+function OrderLineItems(odl) {
+  return (
+      <React.Fragment>
+        <TableRow>
+          <TableCell align="left">{odl.orderLineItem.orderTableId}</TableCell>
+          <TableCell align="left">{odl.orderLineItem.category}</TableCell>
+          <TableCell align="left">{odl.orderLineItem.name}</TableCell>
+          <TableCell align="left">{odl.orderLineItem.quantity}</TableCell>
+          <TableCell align="left">{odl.orderLineItem.price}</TableCell>
+        </TableRow>
+      </React.Fragment>
+  );
 }
 
-function OrderRow({ order }) {
-  console.warn('order');
+function OrderRow(row) {
   const [open, setOpen] = React.useState(false);
   const classes = useRowStyles();
-
   return (
     <React.Fragment>
       <TableRow className={classes.root}>
@@ -51,28 +81,35 @@ function OrderRow({ order }) {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell component="th" scope="row">{order.saleDate}</TableCell>
-        <TableCell align="right">{order.id}</TableCell>
-        <TableCell align="right">{order.totalCost}</TableCell>
-        <TableCell align="right">{order.paymentTypeId}</TableCell>
+        <TableCell component="th" scope="row">{row.order.saleDate}</TableCell>
+        <TableCell component="right" scope="row">{row.order.orderTableId}</TableCell>
+        <TableCell align="right">row.firstName</TableCell>
+        <TableCell align="right">row.lastName</TableCell>
+        <TableCell align="right">{row.order.shopId}</TableCell>
+        <TableCell align="right">{row.order.shopName}</TableCell>
+        <TableCell align="right">{row.order.totalCost}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box margin={1}>
               <Typography variant="h6" gutterBottom component="div">
-                History
+                Order Line Items:
               </Typography>
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Date</TableCell>
-                    <TableCell>Customer</TableCell>
-                    <TableCell align="right">Amount</TableCell>
-                    <TableCell align="right">Total price ($)</TableCell>
+                    <TableCell align="left">Order Number</TableCell>
+                    <TableCell align="left">Category</TableCell>
+                    <TableCell align="left">Item Name</TableCell>
+                    <TableCell align="left">Quantity</TableCell>
+                    <TableCell align="left">Total price ($)</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
+                {row.order.lineItems.map((oli) => (
+                <OrderLineItems key={oli} orderLineItem={oli} />
+                ))}
                 </TableBody>
               </Table>
             </Box>
@@ -83,17 +120,8 @@ function OrderRow({ order }) {
   );
 }
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 3.99),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3, 4.99),
-  createData('Eclair', 262, 16.0, 24, 6.0, 3.79),
-  createData('Cupcake', 305, 3.7, 67, 4.3, 2.5),
-  createData('Gingerbread', 356, 16.0, 49, 3.9, 1.5),
-];
-
-export default function CollapsibleTable(props) {
+export default function OrderHistoryTable(props) {
   const { orderData } = props;
-  console.warn(orderData);
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
@@ -101,15 +129,17 @@ export default function CollapsibleTable(props) {
           <TableRow>
             <TableCell />
             <TableCell>Order Invoiced date</TableCell>
-            <TableCell align="right">id</TableCell>
+            <TableCell>Order Id</TableCell>
+            <TableCell>Customer FirstName</TableCell>
+            <TableCell>Customer Last Name</TableCell>
+            <TableCell align="right">Shopid</TableCell>
+            <TableCell align="right">ShopName</TableCell>
             <TableCell align="right">Total Cost</TableCell>
-            <TableCell align="right">Payment Type Id</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          { [orderData].map((order) => (
-            <OrderRow key={order.id} order={order} />
-          ))}
+          {createRows(orderData)}
+          {rows.map((row) => (<OrderRow key={row.id} order={row} />))}
         </TableBody>
       </Table>
     </TableContainer>
