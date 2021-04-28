@@ -43,12 +43,12 @@ class Shops extends React.Component {
       const { users } = this.state;
 
       const results = users.map((user) => {
-        if (user.shops) {
-          console.warn('user in map', user);
-          const html = <div>
+        if (user.shops.length) {
+          const html = <div className='m-5'>
             <h1>{user.firstName}</h1>
-            {user.shops.map((shop) => <ShopCard key={shop.id} shopData={shop} />)}
-
+            <div className='d-flex justify-content-center'>
+              {user.shops.map((shop) => <ShopCard key={shop.id} shopData={shop} />)}
+            </div>
           </div>;
           return html;
         }
@@ -59,15 +59,15 @@ class Shops extends React.Component {
     }
 
     render() {
-      const { users, loading } = this.state;
+      const { loading } = this.state;
 
       return (
         <>
           {loading ? (
             <h1>Loading</h1>
           ) : (
-              <div id='shops-container' className='d-flex flex-wrap justify-content-center'>
-              {this.printUserShops()}
+              <div id='shops-container'>
+                {this.printUserShops()}
               </div>
           )}
         </>
