@@ -18,13 +18,12 @@ export default function ShopCard({ shopData }) {
   return (
     <>
       <Card className={`${classes.root} m-1 d-flex flex-column`}>
-        {/* update sql server database to get shop images */}
-      <CardMedia
-          className={classes.media}
-          image={shopData.shopImage}
-          title="ShopCards"
-        />
-        <h1>{shopData.name}</h1>
+        <CardMedia
+            className={classes.media}
+            image={shopData.shopImage}
+            title="ShopCards"
+          />
+          <h1>{shopData.name}</h1>
     </Card>
     </>
   );
