@@ -16,7 +16,8 @@ namespace Toboggan.DataAccess
         public List<Shop> GetAllShops()
         {
             using var db = new SqlConnection(ConnectionString);
-            var sql = "SELECT * FROM Shop";
+            var sql = @"SELECT * FROM Shop
+                                 ORDER BY UserId ASC";
             return db.Query<Shop>(sql).ToList();
         }
 
