@@ -64,5 +64,14 @@ namespace Toboggan.DataAccess
             db.Execute(sql, new { id });
         }
 
+        public List<Product> GetProductsOfAShop(int shopId)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = @"SELECT * 
+                        FROM Product
+                        WHERE ShopId = @shopId";
+            var results = db.Query<Product>(sql, new { ShopId = shopId }).OrderByDescending(product => product.CreatedDate).ToList();
+            return results;
+        }
     }
 }
