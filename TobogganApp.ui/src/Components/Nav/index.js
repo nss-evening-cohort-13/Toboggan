@@ -13,9 +13,6 @@ export default function Nav() {
           <Link to="/shops" className="navbar-item">
             shops
           </Link>
-          <Link to="/products" className="navbar-item">
-            products
-          </Link>
           <Link to="/categories" className="navbar-item">
             categories
           </Link>
