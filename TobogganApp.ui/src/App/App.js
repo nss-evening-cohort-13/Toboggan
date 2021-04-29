@@ -33,11 +33,12 @@ class App extends React.Component {
   }
 
   render() {
+    const { user } = this.state;
     return (
       <div className='App'>
         <Router>
-          <Nav />
-          <Routes />
+          <Nav user={user} />
+          <Routes user={user} />
         </Router>
       </div>
     );

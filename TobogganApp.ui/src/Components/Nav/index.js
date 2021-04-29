@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import Auth from '../Auth';
 
-export default function Nav() {
+export default function Nav(props) {
+  const { user } = props;
   return (
     <div className="navbar-container">
       <header className="brand-container mt-2">
@@ -22,6 +24,9 @@ export default function Nav() {
         <Link to="/user-profile" className="user-icon">
           <FontAwesomeIcon icon={faUserCircle} />
         </Link>
+      </div>
+      <div className='user-icon-container'>
+        <Auth user={user} />
       </div>
     </div>
   );
