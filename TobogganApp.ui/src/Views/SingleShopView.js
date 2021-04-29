@@ -1,63 +1,45 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import shopData from '../helpers/data/shopData';
+import productData from '../helpers/data/productData';
+import ProductCard from '../Components/Card/ProductCard';
 
-export default class ProductDetailsView extends Component {
+export default class SIngleShopView extends Component {
   state = {
-    idOfUser: this.props.location.state,
+    shopId: this.props.location.state,
     shopsProducts: [],
-    shop: [],
+    shop: null,
   };
 
-  componentDidMount(){
-    //Get data for the products of the shop
-    //Get data for the shop
+  componentDidMount() {
+    shopData.getSingleShop(this.state.shopId).then((response) => {
+      this.setState({
+        shop: response,
+      });
+    });
+    productData.getProductsOfAShop(this.state.shopId).then((response) => {
+      this.setState({
+        shopsProducts: response,
+      });
+    });
   }
 
   render() {
-    const { shopsProducts } = this.state;
+    const { shopsProducts, shop } = this.state;
 
     return (
       <>
-        <h1 className='mb-4 mt-2'>{singleProduct.title}</h1>
-        <div className='d-flex justify-content-center'>
-          <img
-            className='singleProductImage m-2'
-            src={singleProduct.productImage}
-            alt='product Image'
-          />
-          <div className='d-flex p-5 productDescription flex-column'>
-            <p>{singleProduct.description}</p>
-            <h6>${singleProduct.price}</h6>
-            {quantity > singleProduct.quantity && (
-              <QuantityAlert productData={singleProduct} />
-            )}
-            {addedToCart && <AddedToCartAlert productData={singleProduct} />}
-            <input
-              type='text'
-              name='quantity'
-              value={this.state.name}
-              onChange={this.handleChange}
-              placeholder='Enter a Quantity'
-              className='form-control form-control mb-2 mr-2'
-              required
-            />
-            <button
-              onClick={this.handleSubmit}
-              className='btn btn-outline-success m-1'
-            >
-              Add to cart
-            </button>
-            <Link
-              to={{
-                pathname: 'shopPage',
-              }}
-            >
-              <button className='btn btn-outline-primary m-1'>
-                View Shop's Page
-              </button>
-            </Link>
+        {shop !== null && (
+        <div className="d-flex justify-content-center">
+          <div className='d-flex flex-column'>
+            <h1>{shop[1]}</h1>
+            <img src={shop[4]} alt='shop' />
+          </div>
+          <div className='d-flex flex-wrap justify-content-center'>
+              {shopsProducts.map((product) => <ProductCard key={product.id} productData={product}/>)}
           </div>
         </div>
+        )}
       </>
     );
   }
