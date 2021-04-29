@@ -1,38 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import QuantityAlert from '../Components/Alerts/QuantityAlert';
-import AddedToCartAlert from '../Components/Alerts/AddedToCartAlert';
 
 export default class ProductDetailsView extends Component {
   state = {
-    singleProduct: this.props.location.state,
-    quantity: 0,
-    addedToCart: false,
+    idOfUser: this.props.location.state,
+    shopsProducts: [],
+    shop: [],
   };
 
-  handleChange = (e) => {
-    e.preventDefault();
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    if (this.state.quantity >= 1) {
-      this.setState({
-        addedToCart: true,
-      });
-      setTimeout(() => {
-        this.setState({
-          addedToCart: false,
-        });
-      }, 3500);
-    }
-  };
+  componentDidMount(){
+    //Get data for the products of the shop
+    //Get data for the shop
+  }
 
   render() {
-    const { singleProduct, quantity, addedToCart } = this.state;
+    const { shopsProducts } = this.state;
 
     return (
       <>
@@ -67,8 +49,7 @@ export default class ProductDetailsView extends Component {
             </button>
             <Link
               to={{
-                pathname: '/singleShopPage',
-                state: singleProduct.shopId,
+                pathname: 'shopPage',
               }}
             >
               <button className='btn btn-outline-primary m-1'>
