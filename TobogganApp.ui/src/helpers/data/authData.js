@@ -11,7 +11,9 @@ const loginClickEvent = (e) => {
 
 const logoutClickEvent = (e) => {
   e.preventDefault();
+  window.sessionStorage.removeItem('token');
   firebase.auth().signOut();
+  window.location.href = '/';
 };
 
 export default { getUid, loginClickEvent, logoutClickEvent };
