@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withTheme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import userData from '../../helpers/data/userData';
 
 const useRowStyles = makeStyles({
   root: {
@@ -83,8 +84,8 @@ function OrderRow(row) {
         </TableCell>
         <TableCell component="th" scope="row">{row.order.saleDate}</TableCell>
         <TableCell component="right" scope="row">{row.order.orderTableId}</TableCell>
-        <TableCell align="right">row.firstName</TableCell>
-        <TableCell align="right">row.lastName</TableCell>
+        <TableCell align="right">{row.order.firstName}</TableCell>
+        <TableCell align="right">{row.order.lastName}</TableCell>
         <TableCell align="right">{row.order.shopId}</TableCell>
         <TableCell align="right">{row.order.shopName}</TableCell>
         <TableCell align="right">{row.order.totalCost}</TableCell>
@@ -138,8 +139,8 @@ export default function OrderHistoryTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {createRows(orderData)}
-          {rows.map((row) => (<OrderRow key={row.id} order={row} />))}
+          { createRows(orderData) }
+          { rows.map((row) => (<OrderRow key={row.id} order={row} />)) }
         </TableBody>
       </Table>
     </TableContainer>

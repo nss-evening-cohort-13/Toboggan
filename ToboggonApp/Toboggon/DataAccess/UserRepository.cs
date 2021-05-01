@@ -41,6 +41,7 @@ namespace Toboggan.DataAccess
             var user = db.QueryFirstOrDefault<User>(sql, new { Id = id });
 
             return user;
+
         }
 
         public void AddAUser(User user)
