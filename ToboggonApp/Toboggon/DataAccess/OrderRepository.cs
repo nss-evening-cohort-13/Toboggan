@@ -70,6 +70,44 @@ namespace Toboggan.DataAccess
             return orders;
         }
 
+        public List<SalesByDate> totalSalesByDate(int id)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = @"SELECT sum(oli.Quantity* p.Price) AS total,
+               DATEPART(year, o.SaleDate) [year], 
+               DATEPART(quarter, o.SaleDate)[quarter], 
+               DATEPART(month, o.SaleDate)[month], 
+               DATEPART(day, o.SaleDate)[day]
+               FROM[Order] o JOIN[OrderLineItem] oli ON oli.OrderId = o.Id
+               JOIN[Product] p ON p.Id = oli.Id
+               JOIN[Shop] s ON s.Id = p.ShopId
+               JOIN[User] u ON u.Id = s.UserId
+                WHERE u.Id = @id
+                GROUP BY DATEPART(year, o.SaleDate), 
+                         DATEPART(quarter, o.SaleDate), 
+                         DATEPART(month, o.SaleDate), 
+                         DATEPART(day, o.SaleDate)
+                ORDER BY[year] DESC";
+
+            var totalSalesByDate = db.Query<SalesByDate>(sql, new { Id = id }).ToList();
+
+            return totalSalesByDate;
+        }
+        public List<SellerDashboard> totalSalesAvgperSeller(int id)
+        {
+            using var db = new SqlConnection(ConnectionString);
+
+            var sql = @"select sum(oli.Quantity*p.Price) as total,  sum(oli.Quantity) as totQuantity from [Order] o
+                          JOIN [OrderLineItem] oli on oli.OrderId = o.Id 
+                          JOIN [Product] p ON p.Id = oli.Id
+                          JOIN [Shop] s ON s.Id = p.ShopId
+                          JOIN [User] u ON u.Id = s.UserId
+                          WHERE u.Id = @id";
+            var dashboard = db.Query<SellerDashboard>(sql, new { Id = id }).ToList();
+
+            return dashboard;
+        }
+        
         public List<SellerOrders> SellerOrdersById(int id)
         {
             using var db = new SqlConnection(ConnectionString);

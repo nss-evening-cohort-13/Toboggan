@@ -139,8 +139,8 @@ export default function OrderHistoryTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {createRows(orderData)}
-          {rows.map((row) => (<OrderRow key={row.id} order={row} />))}
+          { createRows(orderData) }
+          { rows.map((row) => (<OrderRow key={row.id} order={row} />)) }
         </TableBody>
       </Table>
     </TableContainer>

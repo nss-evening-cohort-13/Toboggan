@@ -16,10 +16,9 @@ export default function UserProfileView(props) {
       .then((data) => {
         setUserInfo(data);
       });
-    Promise.all([orderData.fetchOrdersForAllSales(id)])
+    orderData.fetchOrdersForAllSales(id)
       .then((results) => {
-        const order = results[0];
-        console.warn(order);
+        const order = results;
         setOrderInfo(order);
       });
   }, []);
