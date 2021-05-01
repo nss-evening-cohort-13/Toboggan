@@ -1,10 +1,29 @@
 import React, { Component } from 'react';
-import 'firebase/auth';
+import firebase from 'firebase/app';
 import AuthData from '../../helpers/data/authData';
 
 export default class Auth extends Component {
+  state = {
+    user: null,
+  };
+
+  componentDidMount() {
+    this.removeListener = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ user });
+      } else {
+        this.setState({ user: false });
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    this.removeListener();
+  }
+
   render() {
-    const user = AuthData.getUid();
+    const { user } = this.state;
+
     return (
       <>
       { !user ? <button className='nav-link btn btn-primary' onClick={AuthData.loginClickEvent}>Login</button>
