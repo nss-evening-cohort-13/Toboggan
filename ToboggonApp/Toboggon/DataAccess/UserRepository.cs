@@ -14,14 +14,20 @@ namespace Toboggan.DataAccess
 
         public List<User> GetAll()
         {
-            using var connection = new SqlConnection(ConnectionString);
+            using var db = new SqlConnection(ConnectionString);
 
-            var sql = @"select *
-                        from [User]";
+            var userSql = "select * from [User]";
+            //var shopSql = "select * from [Shop] where UserId is not null";
 
-            var results = connection.Query<User>(sql).ToList();
+            var users = db.Query<User>(userSql).ToList();
+            //var shops = db.Query<Shop>(shopSql);
 
-            return results;
+            //foreach (var user in users)
+            //{
+            //    user.Shops = shops.Where(s => s.UserId == user.Id).ToList();
+            //}
+
+            return (List<User>)users;
         }
 
         public User GetSingleUser(int id)
@@ -35,6 +41,7 @@ namespace Toboggan.DataAccess
             var user = db.QueryFirstOrDefault<User>(sql, new { Id = id });
 
             return user;
+
         }
 
         public void AddAUser(User user)

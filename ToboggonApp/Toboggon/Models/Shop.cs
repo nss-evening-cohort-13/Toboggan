@@ -11,5 +11,7 @@ namespace Toboggan.Models
         public string Name { get; set; }
         public int UserId { get; set; }
         public DateTime CreatedDate { get; set; }
+        public string ShopImage { get; set; }
+        public string Description { get; set; }
     }
 }

@@ -28,4 +28,26 @@ const fetchOrdersForAllSales = (id) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-export default { fetchOrderData, fetchOrdersWithLineItemData, fetchOrdersForAllSales };
+const fetchTotalAllSalesAvgById = (id) => new Promise((resolve, reject) => {
+  axios.get(`${orderDataUrl}/SellerTotalandAvgPrice/${id}`, {
+    params: { userId: id },
+  }).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
+const fetchtotalSalesByDate = (id) => new Promise((resolve, reject) => {
+  axios.get(`${orderDataUrl}/totalSalesByDate/${id}`, {
+    params: { userId: id },
+  }).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
+export default {
+  fetchOrderData,
+  fetchOrdersWithLineItemData,
+  fetchOrdersForAllSales,
+  fetchTotalAllSalesAvgById,
+  fetchtotalSalesByDate,
+};

@@ -97,5 +97,25 @@ namespace Toboggan.DataAccess
             var sql = @"DELETE FROM Category WHERE Id=@id";
             db.Execute(sql, new { id });
         }
+
+        public List<CategoryData> CategoriesTotalSalesAndInventory(int id)
+        {
+            using var db = new SqlConnection(ConnectionString);
+
+            var sql = @"select c.Name as CategoryName, SUM(p.Quantity) as ItemsLeft, SUM(p.Price*oli.Quantity) as Cattotal from [Order] o
+                          JOIN [OrderLineItem] oli on oli.OrderId = o.Id 
+                          JOIN [Product] p ON p.Id = oli.Id
+                          JOIN [Category] c ON c.Id = P.CategoryId
+                          JOIN [Shop] s ON s.Id = p.ShopId
+                          JOIN [User] u ON u.Id = s.UserId
+						  JOIN [USER] buyer ON buyer.Id = o.UserId
+                          WHERE u.Id = @id
+                          GROUP BY c.Name;";
+
+            var categoryData = db.Query<CategoryData>(sql, new { Id = id }).ToList();
+
+            return categoryData;
+        }
+
     }
 }

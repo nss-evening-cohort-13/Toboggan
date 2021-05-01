@@ -31,9 +31,9 @@ namespace Toboggan.DataAccess
         public void AddAProduct(Product product)
         {
             using var db = new SqlConnection(ConnectionString);
-            var sql = @$"INSERT INTO Product(Title,Description,Price, Quantity, ShopId, CategoryId)
+            var sql = @$"INSERT INTO Product(Title,Description,Price, Quantity, ShopId, CategoryId, ProductImage)
                         OUTPUT inserted.Id
-                        VALUES(@Title,@Description,@Price, @Quantity, @ShopId, @CategoryId)";
+                        VALUES(@Title,@Description,@Price, @Quantity, @ShopId, @CategoryId, @ProductImage)";
 
             var id = db.ExecuteScalar<int>(sql, product);
 
@@ -51,6 +51,7 @@ namespace Toboggan.DataAccess
                        ,Quantity=@Quantity
                        ,ShopId=@ShopId
                        ,CategoryId=@CategoryId
+                       ,ProductImage=@ProductImage
                        WHERE Id= @id";
 
             db.Execute(sql, product);
@@ -64,5 +65,14 @@ namespace Toboggan.DataAccess
             db.Execute(sql, new { id });
         }
 
+        public List<Product> GetProductsOfAShop(int shopId)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = @"SELECT * 
+                        FROM Product
+                        WHERE ShopId = @shopId";
+            var results = db.Query<Product>(sql, new { ShopId = shopId }).OrderByDescending(product => product.CreatedDate).ToList();
+            return results;
+        }
     }
 }

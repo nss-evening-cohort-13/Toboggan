@@ -61,5 +61,13 @@ namespace Toboggan.Controllers
             _repo.DeleteCategory(id);
             return Ok();
         }
+
+        [HttpGet("SellerTotalCategoryInventory/{id}")]
+        public IActionResult CategoriesTotalSalesAndInventory(int id)
+        {
+            var categoryInventory = _repo.CategoriesTotalSalesAndInventory(id);
+
+            return Ok(categoryInventory);
+        }
     }
 }
