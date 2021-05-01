@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -17,7 +18,13 @@ export default function ShopCard({ shopData }) {
   const classes = useStyles();
   return (
     <>
-      <Card className={`${classes.root} m-1 d-flex flex-column`}>
+    <Link
+        to={{
+          pathname: '/singleShopPage',
+          state: shopData.id,
+        }}
+        >
+    <Card className={`${classes.root} m-1 d-flex flex-column grow`}>
         <CardMedia
             className={classes.media}
             image={shopData.shopImage}
@@ -25,6 +32,8 @@ export default function ShopCard({ shopData }) {
           />
           <h1>{shopData.name}</h1>
     </Card>
+    </Link>
+
     </>
   );
 }

@@ -17,15 +17,15 @@ namespace Toboggan.DataAccess
             using var db = new SqlConnection(ConnectionString);
 
             var userSql = "select * from [User]";
-            var shopSql = "select * from [Shop] where UserId is not null";
+            //var shopSql = "select * from [Shop] where UserId is not null";
 
-            var users = db.Query<User>(userSql);
-            var shops = db.Query<Shop>(shopSql);
+            var users = db.Query<User>(userSql).ToList();
+            //var shops = db.Query<Shop>(shopSql);
 
-            foreach (var user in users)
-            {
-                user.Shops = shops.Where(s => s.UserId == user.Id).ToList();
-            }
+            //foreach (var user in users)
+            //{
+            //    user.Shops = shops.Where(s => s.UserId == user.Id).ToList();
+            //}
 
             return (List<User>)users;
         }
