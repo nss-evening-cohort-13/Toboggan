@@ -30,7 +30,7 @@ export default class SingleShopView extends Component {
     return (
       <>
         {shop !== null && (
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center m-2">
           <div className='d-flex flex-column m-4 shopDetailsSection'>
             <h1 className="shopTitle m-3">{shop[1]}</h1>
             <img src={shop[4]} alt='shop' className="singleShopImg" />

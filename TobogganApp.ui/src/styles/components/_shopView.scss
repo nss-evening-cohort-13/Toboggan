@@ -5,3 +5,16 @@
 .singleShopImg{
     border-radius: 50%;
 }
+
+.grow { 
+    transition: all .2s ease-in-out; 
+}
+    
+.grow:hover { 
+  transform: scale(1.03); 
+}
+
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+}
