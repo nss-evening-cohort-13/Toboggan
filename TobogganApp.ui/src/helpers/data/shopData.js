@@ -9,4 +9,10 @@ const getAllShops = () => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-export default { getAllShops };
+const getSingleShop = (id) => new Promise((resolve, reject) => {
+  axios.get(`${shopUrl}/${id}`).then((response) => {
+    resolve(Object.values(response.data));
+  }).catch((error) => reject(error));
+});
+
+export default { getAllShops, getSingleShop };

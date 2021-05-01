@@ -32,8 +32,15 @@ const getFilteredProducts = (searchInput) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const getProductsOfAShop = (shopId) => new Promise((resolve, reject) => {
+  axios.get(`${productsUrl}/singleShop/${shopId}`).then((response) => {
+    resolve(Object.values(response.data));
+  }).catch((error) => reject(error));
+});
+
 export default {
   getAllProducts,
   getSingleProduct,
   getFilteredProducts,
+  getProductsOfAShop,
 };

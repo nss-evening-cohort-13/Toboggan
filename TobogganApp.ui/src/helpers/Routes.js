@@ -8,6 +8,7 @@ import UserProfileEditShopPage from '../Views/UserProfileEditShopView';
 import HomeView from '../Views/HomeView';
 import ProductDetailsView from '../Views/ProductDetailsView';
 import SearchProductResults from '../Views/SearchProductsResults';
+import SingleShopView from '../Views/SingleShopView';
 
 export default function Routes() {
   return (
@@ -17,6 +18,7 @@ export default function Routes() {
       <Route exact path='/productDetails' component={ProductDetailsView} />
       <Route exact path='/search/:term' component={(props) => <SearchProductResults {...props}/>} />
       <Route exact path='/categories' component={Categories} />
+      <Route exact path='/singleShopPage' component={SingleShopView} />
       <Route exact path="/user-profile/history/:id" component= { UserProfileHistory } />
       <Route exact path="/user-profile/dashboard/:id" component= { UserProfileDashboard } />
       <Route exact path="/user-profile/editshoppage/:id" component= { UserProfileEditShopPage } />
