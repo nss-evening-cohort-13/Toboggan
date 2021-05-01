@@ -9,4 +9,11 @@ const fetchUserData = (id) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-export default fetchUserData;
+const fetchSellerData = () => new Promise((resolve, reject) => {
+  axios.get(`${userDataUrl}/seller-search`).then((response) => {
+    console.warn('seller ids', response.data);
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
+export default { fetchUserData, fetchSellerData };
