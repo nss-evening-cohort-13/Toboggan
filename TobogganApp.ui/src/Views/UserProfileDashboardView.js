@@ -10,6 +10,7 @@ export default function UserProfileView(props) {
   const [totalInfo, setTotalInfo] = useState([]);
   const [totalByDate, SetTotalByDate] = useState([]);
   const [categoryData, setCategoryData] = useState([]);
+  const [toBeShipped, setToBeShipped] = useState([]);
   const [orderLineItems, setOrderLineItems] = useState();
   const [error, updateError] = useState([]);
   const { id } = props.match.params;
@@ -34,6 +35,11 @@ export default function UserProfileView(props) {
         const total = [...results];
         setCategoryData(total);
       });
+    orderData.fetchOrdersToBeShipped(id)
+      .then((results) => {
+        const things = [...results];
+        setToBeShipped(things);
+      });
   }, []);
 
   function getDate() {
@@ -45,12 +51,11 @@ export default function UserProfileView(props) {
   // const monthOverMonth = saleshThisMonth()[0].total;
   return (
     <>
-    { console.warn('yamaha') }
     <h2>Your Order History</h2>
     <div className='d-flex User-Profile'>
       <BioCard userData={ userInfo }/>
       <Dashboard totalInfo={ totalInfo } salesThisMonth={salesThisMonth}
-                 categoryData={categoryData}/>
+                 categoryData={categoryData} toBeShipped={toBeShipped} />
     </div>
     </>
   );

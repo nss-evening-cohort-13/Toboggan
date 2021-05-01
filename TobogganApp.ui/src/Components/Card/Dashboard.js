@@ -1,9 +1,12 @@
 import React from 'react';
 import CategoryInventory from './CategoryInventoryCard';
 import CategorySales from './CategorySalesCard';
+import OrdersToBeShipped from './ToBeShippedCard';
 
 export default function Dashboard(props) {
-  const { totalInfo, salesThisMonth, categoryData } = props;
+  const {
+    totalInfo, salesThisMonth, categoryData, toBeShipped,
+  } = props;
   return (
     <>
     <div className='d-flex User-Profile'>
@@ -20,6 +23,7 @@ export default function Dashboard(props) {
     <div>{categoryData && categoryData.length && categoryData.map((catData) => <CategorySales catData={catData}/>)}</div>
     </div>
     <h2> Orders that require shipping</h2>
+    { toBeShipped && toBeShipped.map((unshipped) => <OrdersToBeShipped orderData={toBeShipped} />) }
     </div>
     </div>
     </>
