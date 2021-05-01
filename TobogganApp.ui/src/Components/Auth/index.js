@@ -4,7 +4,7 @@ import AuthData from '../../helpers/data/authData';
 
 export default class Auth extends Component {
   render() {
-    const { user } = this.props;
+    const user = AuthData.getUid();
     return (
       <>
       { !user ? <button className='nav-link btn btn-primary' onClick={AuthData.loginClickEvent}>Login</button>
