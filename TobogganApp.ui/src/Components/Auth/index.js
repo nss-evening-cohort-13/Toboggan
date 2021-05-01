@@ -10,7 +10,6 @@ export default class Auth extends Component {
   componentDidMount() {
     this.removeListener = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        console.warn(user);
         this.setState({ user });
       } else {
         this.setState({ user: false });

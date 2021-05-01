@@ -12,22 +12,22 @@ const getSingleUser = (id) => new Promise((resolve, reject) => {
 const checkIfUserExistsInDB = (user) => {
   getSingleUser(user.uid).then((response) => {
     if (Object.values(response.data).length === 0) {
-      axios.post(`${userDataUrl}`, user).then((resp) => {
-
-      });
+      axios.post(`${userDataUrl}`, user);
+    } else {
+      console.warn('User already exists.');
     }
-  });
+  }).catch((error) => console.error(error));
 };
 
 const setCurrentUser = (userObj) => {
   const user = {
     ImageUrl: userObj.photoURL,
-    Id: userObj.uid,
+    FirebaseKey: userObj.uid,
     Email: userObj.email,
     lastSignInTime: userObj.metadata.lastSignInTime,
   };
 
-  const loggedIn = window.sessionStorage.getItem('ua');
+  const loggedIn = window.sessionStorage.getItem('token');
   if (!loggedIn) {
     checkIfUserExistsInDB(user);
   }

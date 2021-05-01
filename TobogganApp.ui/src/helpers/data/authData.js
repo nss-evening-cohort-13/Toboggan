@@ -5,15 +5,24 @@ import { baseUrl } from './config.json';
 
 const userDataUrl = `${baseUrl}/Users`;
 
-const getUid = () => firebase.auth().onAuthStateChanged((user) => user.uid);
+const getUid = () => firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    console.warn(user.uid, 'user');
+    return user.uid;
+  }
+  return console.warn('no user logged in.');
+});
 
 const loginClickEvent = (e) => {
   e.preventDefault();
+
   const provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider);
 
+  console.warn(getUid(), 'uid-test');
+
   const user = {
-    FirstName: 'Chris',
+    FirstName: 'test',
   };
 
   axios.post(`${userDataUrl}`, user);
