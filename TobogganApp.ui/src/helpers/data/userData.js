@@ -9,4 +9,4 @@ const fetchUserData = (id) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-export default fetchUserData;
+export default { fetchUserData };
