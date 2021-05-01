@@ -11,8 +11,13 @@ const fetchUserData = (id) => new Promise((resolve, reject) => {
 
 const fetchSellerData = () => new Promise((resolve, reject) => {
   axios.get(`${userDataUrl}/seller-search`).then((response) => {
-    console.warn('seller ids', response.data);
-    resolve(response.data);
+    const sellers = response.data;
+    console.warn('rep', response.data);
+    const sellerData = [];
+    const sellerArray = sellers.foreach((seller) => fetchUserData(seller.UserId));
+    console.warn(sellerArray, 'selles arrray');
+    sellerArray.map((seller) => sellerData.push(seller));
+    resolve(sellerData);
   }).catch((error) => reject(error));
 });
 
