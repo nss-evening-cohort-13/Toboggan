@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
-const getUid = () => firebase.auth().currentUser?.uid;
+const getUid = () => firebase.auth().onAuthStateChanged((user) => user.uid);
 
 const loginClickEvent = (e) => {
   e.preventDefault();
