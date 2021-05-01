@@ -16,7 +16,8 @@ namespace Toboggan.DataAccess
         public List<Shop> GetAllShops()
         {
             using var db = new SqlConnection(ConnectionString);
-            var sql = "SELECT * FROM Shop";
+            var sql = @"SELECT * FROM Shop
+                                 ORDER BY UserId ASC";
             return db.Query<Shop>(sql).ToList();
         }
 
@@ -32,9 +33,9 @@ namespace Toboggan.DataAccess
         {
             using var db = new SqlConnection(ConnectionString);
 
-            var sql = @"INSERT INTO [dbo].[Shop]([Name],[UserId])
+            var sql = @"INSERT INTO [dbo].[Shop]([Name],[UserId],[ShopImage])
                         OUTPUT inserted.Id
-                        VALUES(@Name,@UserId)";
+                        VALUES(@Name,@UserId,@ShopImage)";
 
             var id = db.ExecuteScalar<int>(sql, shop);
 
@@ -46,7 +47,8 @@ namespace Toboggan.DataAccess
             using var db = new SqlConnection(ConnectionString);
             var sql = @"UPDATE [dbo].[Shop]
                         SET [Name] = @Name,
-                            [UserId] = @UserId
+                            [UserId] = @UserId,
+                            [ShopImage] = @ShopImage
                         WHERE Id = @id";
             db.Execute(sql, shop);
         }

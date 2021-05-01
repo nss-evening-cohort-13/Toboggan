@@ -12,7 +12,7 @@ export default class Auth extends Component {
   render() {
     return (
       <div className='Auth d-flex justify-content-center'>
-        <button className='btn' onClick={this.loginClickEvent}>
+        <button className='btn btn-primary' onClick={this.loginClickEvent}>
           Google Sign in
         </button>
       </div>
