@@ -82,6 +82,7 @@ function OrderRow(row) {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
+        {console.warn(row.order)}
         <TableCell component="th" scope="row">{row.order.saleDate}</TableCell>
         <TableCell component="right" scope="row">{row.order.orderTableId}</TableCell>
         <TableCell align="right">{row.order.firstName}</TableCell>

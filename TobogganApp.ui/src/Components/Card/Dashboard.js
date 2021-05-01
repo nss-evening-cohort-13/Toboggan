@@ -23,7 +23,7 @@ export default function Dashboard(props) {
     <div>{categoryData && categoryData.length && categoryData.map((catData) => <CategorySales catData={catData}/>)}</div>
     </div>
     <h2> Orders that require shipping</h2>
-    { toBeShipped && toBeShipped.map((unshipped) => <OrdersToBeShipped orderData={toBeShipped} />) }
+    { toBeShipped && (<OrdersToBeShipped orderData={toBeShipped} />) }
     </div>
     </div>
     </>

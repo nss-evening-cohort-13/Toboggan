@@ -37,7 +37,7 @@ export default function UserProfileView(props) {
       });
     orderData.fetchOrdersToBeShipped(id)
       .then((results) => {
-        const things = [...results];
+        const things = results;
         setToBeShipped(things);
       });
   }, []);
