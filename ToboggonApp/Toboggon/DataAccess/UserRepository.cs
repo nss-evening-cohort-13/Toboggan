@@ -37,16 +37,16 @@ namespace Toboggan.DataAccess
             return user;
         }
 
-        public List<User> GetSellers()
+        public List<dynamic> GetSellers()
         {
             using var db = new SqlConnection(ConnectionString);
 
             var sql = @"select DISTINCT UserId 
                                 from Shop";
 
-            var sellers = db.Query<User>(sql);
+            var sellers = db.Query(sql).ToList();
 
-            return (List<User>)sellers;
+            return sellers;
         }
 
         public void AddAUser(User user)
