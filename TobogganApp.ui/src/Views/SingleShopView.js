@@ -4,7 +4,7 @@ import shopData from '../helpers/data/shopData';
 import productData from '../helpers/data/productData';
 import ProductCard from '../Components/Card/ProductCard';
 
-export default class SIngleShopView extends Component {
+export default class SingleShopView extends Component {
   state = {
     shopId: this.props.location.state,
     shopsProducts: [],
@@ -31,9 +31,10 @@ export default class SIngleShopView extends Component {
       <>
         {shop !== null && (
         <div className="d-flex justify-content-center">
-          <div className='d-flex flex-column'>
-            <h1>{shop[1]}</h1>
-            <img src={shop[4]} alt='shop' />
+          <div className='d-flex flex-column m-4 shopDetailsSection'>
+            <h1 className="shopTitle m-3">{shop[1]}</h1>
+            <img src={shop[4]} alt='shop' className="singleShopImg" />
+            <p className="shopDescription m-3">{shop[5]}</p>
           </div>
           <div className='d-flex flex-wrap justify-content-center'>
               {shopsProducts.map((product) => <ProductCard key={product.id} productData={product}/>)}
