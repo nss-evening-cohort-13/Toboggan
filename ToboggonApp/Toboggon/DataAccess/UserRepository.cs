@@ -30,7 +30,7 @@ namespace Toboggan.DataAccess
             return (List<User>)users;
         }
 
-        public User GetSingleUser(int id)
+        public User GetSingleUser(string id)
         {
             var sql = @"select *
                         from [User]
@@ -52,7 +52,7 @@ namespace Toboggan.DataAccess
                         OUTPUT inserted.Id
                         VALUES(@FirstName,@LastName,@Email,@ImageUrl,@TotalSales)";
 
-            var id = db.ExecuteScalar<int>(sql, user);
+            var id = db.ExecuteScalar<string>(sql, user);
 
             user.Id = id;
         }
@@ -73,7 +73,7 @@ namespace Toboggan.DataAccess
             db.Execute(sql, user);
         }
 
-        public void DeleteUser(int id)
+        public void DeleteUser(string id)
         {
             using var db = new SqlConnection(ConnectionString);
 
