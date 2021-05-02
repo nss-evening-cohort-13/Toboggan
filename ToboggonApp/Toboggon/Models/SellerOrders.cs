@@ -21,5 +21,7 @@ namespace Toboggan.Models
         public int QuantityBought { get; set; } //Order Line Item Quantity
         public int QuantityLeft { get; set; } //Products Left in Inventory
 
+        public bool Completed { get; set; }
+
     }
 }
