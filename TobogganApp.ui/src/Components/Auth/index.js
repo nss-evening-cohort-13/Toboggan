@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase/app';
 import AuthData from '../../helpers/data/authData';
+import UserData from '../../helpers/data/userData';
 
 export default class Auth extends Component {
   state = {
@@ -11,6 +12,7 @@ export default class Auth extends Component {
     this.removeListener = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ user });
+        UserData.setCurrentUser(user);
       } else {
         this.setState({ user: false });
       }

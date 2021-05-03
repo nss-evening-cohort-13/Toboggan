@@ -14,7 +14,9 @@ const loginClickEvent = (e) => {
   e.preventDefault();
 
   const provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider);
+  firebase.auth().signInWithPopup(provider).then((cred) => {
+    console.warn(cred);
+  });
 };
 
 const logoutClickEvent = (e) => {

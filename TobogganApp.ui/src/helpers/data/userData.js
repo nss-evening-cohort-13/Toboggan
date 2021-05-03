@@ -10,7 +10,7 @@ const getSingleUser = (id) => new Promise((resolve, reject) => {
 });
 
 const checkIfUserExistsInDB = (user) => {
-  axios.get(`${userDataUrl}/${user?.uid}`).then((response) => {
+  axios.get(`${userDataUrl}/${user.Id}`).then((response) => {
     if (Object.values(response.data).length === 0) {
       axios.post(`${userDataUrl}`, user);
       console.warn('user posted');
@@ -25,10 +25,12 @@ const setCurrentUser = (userObj) => {
     Id: userObj.uid,
   };
 
-  const loggedIn = window.sessionStorage.getItem('token');
-  if (!loggedIn) {
-    checkIfUserExistsInDB(user);
-  }
+  console.warn(userObj);
+  // const loggedIn = window.sessionStorage.getItem('token');
+  // if (loggedIn) {
+  //   console.warn('hit this point');
+  checkIfUserExistsInDB(user);
+  // }
   return user;
 };
 
