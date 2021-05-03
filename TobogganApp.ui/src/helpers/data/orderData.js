@@ -44,10 +44,19 @@ const fetchtotalSalesByDate = (id) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
+const fetchOrdersToBeShipped = (id) => new Promise((resolve, reject) => {
+  axios.get(`${orderDataUrl}/SellerOrderToBeShipped/${id}`, {
+    params: { userId: id },
+  }).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
 export default {
   fetchOrderData,
   fetchOrdersWithLineItemData,
   fetchOrdersForAllSales,
   fetchTotalAllSalesAvgById,
   fetchtotalSalesByDate,
+  fetchOrdersToBeShipped,
 };

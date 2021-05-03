@@ -52,6 +52,21 @@ namespace Toboggan.Controllers
             return Ok(orders);
         }
 
+        [HttpGet("SellerOrderToBeShipped/{id}")]
+        public IActionResult GetOrdersToBeShippedByUserId(int id)
+        {
+            var resultList = _repo.SellerOrdersById(id);
+
+            var orders = resultList.Where(o => !o.Completed);
+
+            if (orders == null)
+            {
+                return NotFound("This order does not exist.");
+            }
+
+            return Ok(orders);
+        }
+
         /* Gives total by id of the seller */
         [HttpGet("SellerTotalandAvgPrice/{id}")]
         public IActionResult totalSalesAvgperSeller(int id)
