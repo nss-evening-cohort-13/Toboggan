@@ -121,7 +121,7 @@ function OrderRow(row) {
   );
 }
 
-export default function OrderHistoryTable(props) {
+export default function OrdersToBeShipped(props) {
   const { orderData } = props;
   return (
     <TableContainer component={Paper}>

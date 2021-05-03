@@ -15,5 +15,11 @@ const GetCategoryProducts = () => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
+const GetCategoryData = (id) => new Promise((resolve, reject) => {
+  axios.get(`${categoryUrl}/SellerTotalCategoryInventory/${id}`).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
 // eslint-disable-next-line
-export default { GetAllCategories, GetCategoryProducts };
+export default { GetAllCategories, GetCategoryProducts, GetCategoryData };

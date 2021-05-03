@@ -29,6 +29,20 @@ namespace Toboggan.Controllers
             return Ok(_repo.GetAll());
         }
 
+        [HttpGet("singleShop/{shopId}")]
+        [AllowAnonymous]
+        public IActionResult GetProductsOfAShop(int shopId)
+        {
+            var productList = _repo.GetProductsOfAShop(shopId);
+
+            if (productList == null)
+            {
+                return NotFound("This product does not exist");
+            }
+
+            return Ok(productList);
+        }
+
         [HttpGet("{id}")]
         public IActionResult GetProductById(int id)
         {

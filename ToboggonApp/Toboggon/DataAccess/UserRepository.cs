@@ -16,15 +16,21 @@ namespace Toboggan.DataAccess
         {
             using var connection = new SqlConnection(ConnectionString);
 
-            var sql = @"select *
-                        from [User]";
+            var userSql = "select * from [User]";
+            //var shopSql = "select * from [Shop] where UserId is not null";
 
-            var results = connection.Query<User>(sql).ToList();
+            var users = connection.Query<User>(userSql).ToList();
+            //var shops = db.Query<Shop>(shopSql);
 
-            return results;
+            //foreach (var user in users)
+            //{
+            //    user.Shops = shops.Where(s => s.UserId == user.Id).ToList();
+            //}
+
+            return (List<User>)users;
         }
 
-        public User GetSingleUser(int id)
+        public User GetSingleUser(string id)
         {
             var sql = @"select *
                         from [User]
@@ -35,6 +41,7 @@ namespace Toboggan.DataAccess
             var user = db.QueryFirstOrDefault<User>(sql, new { Id = id });
 
             return user;
+
         }
 
         public List<dynamic> GetSellers()
@@ -53,11 +60,10 @@ namespace Toboggan.DataAccess
         {
             using var db = new SqlConnection(ConnectionString);
 
-            var sql = @"INSERT INTO [dbo].[User]([FirstName],[LastName],[Email],[ImageUrl],[TotalSales])
-                        OUTPUT inserted.Id
-                        VALUES(@FirstName,@LastName,@Email,@ImageUrl,@TotalSales)";
+            var sql = @"INSERT INTO [dbo].[User]([Id],[FirstName],[LastName],[Email],[ImageUrl],[TotalSales])
+                        VALUES(@Id, @FirstName,@LastName,@Email,@ImageUrl,@TotalSales)";
 
-            var id = db.ExecuteScalar<int>(sql, user);
+            var id = db.ExecuteScalar<string>(sql, user);
 
             user.Id = id;
         }
@@ -78,7 +84,7 @@ namespace Toboggan.DataAccess
             db.Execute(sql, user);
         }
 
-        public void DeleteUser(int id)
+        public void DeleteUser(string id)
         {
             using var db = new SqlConnection(ConnectionString);
 

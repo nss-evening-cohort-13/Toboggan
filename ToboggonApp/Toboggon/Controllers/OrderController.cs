@@ -52,6 +52,39 @@ namespace Toboggan.Controllers
             return Ok(orders);
         }
 
+        [HttpGet("SellerOrderToBeShipped/{id}")]
+        public IActionResult GetOrdersToBeShippedByUserId(int id)
+        {
+            var resultList = _repo.SellerOrdersById(id);
+
+            var orders = resultList.Where(o => !o.Completed);
+
+            if (orders == null)
+            {
+                return NotFound("This order does not exist.");
+            }
+
+            return Ok(orders);
+        }
+
+        /* Gives total by id of the seller */
+        [HttpGet("SellerTotalandAvgPrice/{id}")]
+        public IActionResult totalSalesAvgperSeller(int id)
+        {
+            var sales = _repo.totalSalesAvgperSeller(id);
+
+            return Ok(sales);
+        }
+
+        // Gives Total Sales By Data
+
+        [HttpGet("totalSalesByDate/{id}")]
+            public IActionResult totalSalesByDate(int id)
+        {
+            var sales = _repo.totalSalesByDate(id);
+            return Ok(sales);
+        }
+
         [HttpGet("orderLineItems/{id}")]
         public IActionResult GetOrderAndLineItemsByUserId(int id)
         {

@@ -3,7 +3,7 @@ import { baseUrl } from './config.json';
 
 const userDataUrl = `${baseUrl}/Users`;
 
-const fetchUserData = (id) => new Promise((resolve, reject) => {
+const getSingleUser = (id) => new Promise((resolve, reject) => {
   axios.get(`${userDataUrl}/${id}`).then((response) => {
     resolve(response.data);
   }).catch((error) => reject(error));
@@ -21,4 +21,4 @@ const fetchSellerData = () => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-export default { fetchUserData, fetchSellerData };
+export default { fetchSellerData, getSingleUser };

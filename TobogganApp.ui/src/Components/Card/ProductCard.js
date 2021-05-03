@@ -22,7 +22,7 @@ export default function MediaCard({ productData }) {
   const classes = useStyles();
 
   return (
-    <Card className={`${classes.root} m-1 d-flex flex-column`}>
+    <Card className={`${classes.root} m-1 d-flex flex-column grow`}>
       <CardActionArea>
         <CardMedia
           className={classes.media}

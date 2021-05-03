@@ -1,21 +1,43 @@
 import React, { Component } from 'react';
 import firebase from 'firebase/app';
-import 'firebase/auth';
+import AuthData from '../../helpers/data/authData';
 
 export default class Auth extends Component {
-  loginClickEvent = (e) => {
-    e.preventDefault();
-    const provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider);
+  state = {
+    user: null,
   };
 
+  componentDidMount() {
+    this.removeListener = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ user });
+      } else {
+        this.setState({ user: false });
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    this.removeListener();
+  }
+
   render() {
+    const { user } = this.state;
+
     return (
-      <div className='Auth d-flex justify-content-center'>
-        <button className='btn btn-primary' onClick={this.loginClickEvent}>
-          Google Sign in
-        </button>
+      <>
+      { !user ? <button className='nav-link btn btn-primary' onClick={(e) => AuthData.loginClickEvent(e)}>Login</button>
+        : <>
+      <img className="userInfo" src={user?.photoURL} alt={user?.displayName} />
+      <div
+        className='nav-link btn btn-danger'
+        onClick={(e) => AuthData.logoutClickEvent(e)}
+      >
+        Logout
       </div>
+      </>
+      }
+      </>
     );
   }
 }

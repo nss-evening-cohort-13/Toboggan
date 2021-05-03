@@ -67,7 +67,8 @@ export default class ProductDetailsView extends Component {
             </button>
             <Link
               to={{
-                pathname: 'shopPage',
+                pathname: '/singleShopPage',
+                state: singleProduct.shopId,
               }}
             >
               <button className='btn btn-outline-primary m-1'>
