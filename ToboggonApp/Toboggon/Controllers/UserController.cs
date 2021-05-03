@@ -27,7 +27,7 @@ namespace Toboggan.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetSingleUserById(int id)
+        public IActionResult GetSingleUserById(string id)
         {
             var user = _repo.GetSingleUser(id);
 
@@ -55,7 +55,7 @@ namespace Toboggan.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteUser(int id)
+        public IActionResult DeleteUser(string id)
         {
             _repo.DeleteUser(id);
 
