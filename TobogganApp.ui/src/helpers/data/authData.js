@@ -1,6 +1,9 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import UserData from './userData';
+import axios from 'axios';
+import { baseUrl } from './config.json';
+
+const userDataUrl = `${baseUrl}/Users`;
 
 const getUid = () => firebase.auth().onAuthStateChanged((user) => {
   if (user) {
@@ -15,7 +18,16 @@ const loginClickEvent = (e) => {
 
   const provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider).then((cred) => {
-    console.warn(cred);
+    const user = cred.additionalUserInfo.profile;
+    if (cred.additionalUserInfo.isNewUser) {
+      const userObj = {
+        Id: cred.user.uid,
+        FirstName: user.given_name,
+        LastName: user.family_name,
+        Email: user.email,
+      };
+      axios.post(`${userDataUrl}`, userObj);
+    }
   });
 };
 
