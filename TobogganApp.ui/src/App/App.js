@@ -21,7 +21,7 @@ class App extends React.Component {
           .then((token) => sessionStorage.setItem('token', token));
 
         this.setState({ user });
-        console.warn('test', user);
+        // console.warn('test', user);
       } else {
         this.setState({ user: false });
       }

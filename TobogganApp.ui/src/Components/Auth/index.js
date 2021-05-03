@@ -26,7 +26,7 @@ export default class Auth extends Component {
 
     return (
       <>
-      { !user ? <button className='nav-link btn btn-primary' onClick={AuthData.loginClickEvent}>Login</button>
+      { !user ? <button className='nav-link btn btn-primary' onClick={(e) => AuthData.loginClickEvent(e)}>Login</button>
         : <>
       <img className="userInfo" src={user?.photoURL} alt={user?.displayName} />
       <div

@@ -14,11 +14,7 @@ const loginClickEvent = (e) => {
   e.preventDefault();
 
   const provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider).then(() => {
-    const user = UserData.getSingleUser(getUid());
-    console.warn(user.uid, 'set current user');
-    UserData.setCurrentUser(user);
-  });
+  firebase.auth().signInWithPopup(provider);
 };
 
 const logoutClickEvent = (e) => {

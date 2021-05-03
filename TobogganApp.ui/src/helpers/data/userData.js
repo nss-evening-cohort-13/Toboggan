@@ -10,22 +10,19 @@ const getSingleUser = (id) => new Promise((resolve, reject) => {
 });
 
 const checkIfUserExistsInDB = (user) => {
-  getSingleUser(user.uid).then((response) => {
+  axios.get(`${userDataUrl}/${user?.uid}`).then((response) => {
     if (Object.values(response.data).length === 0) {
       axios.post(`${userDataUrl}`, user);
       console.warn('user posted');
     } else {
       console.warn('User already exists.');
     }
-  }).catch((error) => console.error(error));
+  }).catch((error) => console.warn(error));
 };
 
 const setCurrentUser = (userObj) => {
   const user = {
-    FirstName: userObj.uid,
-    // ImageUrl: userObj.photoURL,
-    // FirebaseKey: userObj.uid,
-    // Email: userObj.email,
+    Id: userObj.uid,
   };
 
   const loggedIn = window.sessionStorage.getItem('token');
