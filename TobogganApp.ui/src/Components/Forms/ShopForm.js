@@ -32,7 +32,6 @@ export default class ShopForm extends Component {
         UserId: this.state.userId,
         Description: this.state.description,
       };
-      console.warn(shopObject);
       shopData.createShop(shopObject).then(() => {
         this.props.onUpdate?.();
         this.setState({ success: true });
