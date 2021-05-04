@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/storage';
 import getUser from '../../helpers/data/authData';
-import { createBoard, updateBoard } from '../../helpers/data/boardData';
+import { createShop, updateShop } from '../../helpers/data/shopData';
 
 export default class ShopForm extends Component {
   state = {
@@ -18,9 +18,9 @@ export default class ShopForm extends Component {
   }
 
   handleChange = (e) => {
-      this.setState({
-        [e.target.name]: e.target.value,
-      });
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
   };
 
   handleSubmit = (e) => {
