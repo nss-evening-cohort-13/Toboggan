@@ -8,7 +8,8 @@ import UserCard from '../Components/Card/SellerCard';
 export default class SearchProductResults extends Component {
   state = {
     loading: true,
-    results: [],
+    productResults: [],
+    sellerResults: [],
     sellers: [],
     searchInput: '',
   };
@@ -20,24 +21,11 @@ export default class SearchProductResults extends Component {
 
   getSellers = () => {
     userData.getSellerData().then((response) => {
-      console.warn('seller data resp', response);
       this.setState({
         sellers: response,
       }, this.setLoading);
     });
   }
-
-  // showSellers = () => {
-  //   const { sellers } = this.state;
-  //   const sellersArray = sellers.map((user) => userData.getSingleUser(user.UserId).then((resp) => {
-  //     sellers.push(resp);
-  //   }));
-  //   this.setState({
-  //     sellers: sellersArray,
-  //   });
-  //   console.warn('update state', sellers);
-  //   return sellersArray;
-  // }
 
   setLoading = () => {
     this.timer = setInterval(() => {
@@ -56,22 +44,41 @@ export default class SearchProductResults extends Component {
       .getFilteredProducts(searchInput.toLowerCase())
       .then((response) => {
         this.setState({
-          results: response,
+          productResults: response,
           searchInput,
         });
       });
   };
 
+  showSellerResults = () => {
+    const searchInput = this.props.match.params.term;
+    const { sellers } = this.state;
+    const sellerResults = [];
+
+    const firstNameFilter = sellers.filter((seller) => seller.firstName.toLowerCase().includes(searchInput.toLowerCase()));
+    const lastNameFilter = sellers.filter((seller) => seller.lastName.toLowerCase().includes(searchInput.toLowerCase()));
+
+    sellerResults.push(firstNameFilter);
+    sellerResults.push(lastNameFilter);
+
+    // this.setState({
+    //   sellerResults,
+    // });
+
+    console.warn('seller state', sellerResults);
+  }
+
   componentDidUpdate(prevState) {
     if (prevState.match.params.term !== this.props.match.params.term) {
       this.showResults();
+      this.showSellerResults();
     }
   }
 
   render() {
-    const { results, loading, sellers } = this.state;
-    const renderSellers = () => sellers.map((seller) => <UserCard key={seller.id} userData={seller} />);
-    const showResults = () => results.map((product) => (
+    const { productResults, loading, sellerResults } = this.state;
+    const renderSellers = () => sellerResults.map((seller) => <UserCard key={seller.id} userData={seller} />);
+    const showResults = () => productResults.map((product) => (
         <ProductCard key={product.id} productData={product} />
     ));
 
@@ -86,6 +93,7 @@ export default class SearchProductResults extends Component {
         ) : (
           <div>
             {renderSellers()}
+            {this.showSellerResults()}
           </div>
         )}
       </>
