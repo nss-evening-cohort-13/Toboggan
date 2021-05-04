@@ -23,21 +23,20 @@ export default class SearchProductResults extends Component {
       this.setState({
         sellers: response,
       }, this.setLoading);
-      this.showSellers();
     });
   }
 
-  showSellers = () => {
-    const { sellers } = this.state;
-    const sellersArray = sellers.map((user) => userData.getSingleUser(user.UserId).then((resp) => {
-      sellers.push(resp);
-    }));
-    this.setState({
-      sellers: sellersArray,
-    });
-    console.warn('update state', sellers);
-    return sellersArray;
-  }
+  // showSellers = () => {
+  //   const { sellers } = this.state;
+  //   const sellersArray = sellers.map((user) => userData.getSingleUser(user.UserId).then((resp) => {
+  //     sellers.push(resp);
+  //   }));
+  //   this.setState({
+  //     sellers: sellersArray,
+  //   });
+  //   console.warn('update state', sellers);
+  //   return sellersArray;
+  // }
 
   setLoading = () => {
     this.timer = setInterval(() => {
@@ -70,7 +69,7 @@ export default class SearchProductResults extends Component {
 
   render() {
     const { results, loading, sellers } = this.state;
-    const renderSellers = () => sellers.map((seller) => <h1 key={seller.id}>{seller.UserId}</h1>);
+    const renderSellers = () => sellers.map((seller) => <h1 key={seller.id}>{seller.id}</h1>);
     const showResults = () => results.map((product) => (
         <ProductCard key={product.id} productData={product} />
     ));
@@ -85,7 +84,6 @@ export default class SearchProductResults extends Component {
           <h1>Loading</h1>
         ) : (
           <div>
-            <h1>working</h1>
             {renderSellers()}
           </div>
         )}
