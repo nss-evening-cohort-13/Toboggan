@@ -3,13 +3,14 @@ import ProductCard from '../Components/Card/ProductCard';
 import productData from '../helpers/data/productData';
 import SearchBar from '../Components/SearchBar';
 import userData from '../helpers/data/userData';
+import UserCard from '../Components/Card/SellerCard';
 
 export default class SearchProductResults extends Component {
   state = {
     loading: true,
     results: [],
-    searchInput: '',
     sellers: [],
+    searchInput: '',
   };
 
   componentWillMount() {
@@ -69,7 +70,7 @@ export default class SearchProductResults extends Component {
 
   render() {
     const { results, loading, sellers } = this.state;
-    const renderSellers = () => sellers.map((seller) => <h1 key={seller.id}>{seller.id}</h1>);
+    const renderSellers = () => sellers.map((seller) => <UserCard key={seller.id} userData={seller} />);
     const showResults = () => results.map((product) => (
         <ProductCard key={product.id} productData={product} />
     ));
