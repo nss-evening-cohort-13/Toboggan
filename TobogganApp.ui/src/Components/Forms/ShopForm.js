@@ -14,7 +14,7 @@ export default class ShopForm extends Component {
   };
 
   componentDidMount() {
-    this.setState({ userId: this.props.user.uid });
+    this.setState({ userId: this.props.user?.uid });
   }
 
   handleChange = (e) => {
@@ -32,6 +32,7 @@ export default class ShopForm extends Component {
         UserId: this.state.userId,
         Description: this.state.description,
       };
+      console.warn(shopObject);
       shopData.createShop(shopObject).then(() => {
         this.props.onUpdate?.();
         this.setState({ success: true });
@@ -78,7 +79,7 @@ export default class ShopForm extends Component {
           </div>
           <div>
             <input
-              type='url'
+              type='text'
               name='shopImage'
               value={this.state.shopImage}
               onChange={this.handleChange}
