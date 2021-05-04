@@ -33,9 +33,9 @@ namespace Toboggan.DataAccess
         {
             using var db = new SqlConnection(ConnectionString);
 
-            var sql = @"INSERT INTO [dbo].[Shop]([Name],[UserId],[ShopImage])
+            var sql = @"INSERT INTO [dbo].[Shop]([Name],[UserId],[ShopImage],[Description])
                         OUTPUT inserted.Id
-                        VALUES(@Name,@UserId,@ShopImage)";
+                        VALUES(@Name,@UserId,@ShopImage, @Description)";
 
             var id = db.ExecuteScalar<int>(sql, shop);
 
