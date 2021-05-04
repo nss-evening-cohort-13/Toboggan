@@ -27,4 +27,9 @@ const updateShop = (shopData) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-export default { getAllShops, getSingleShop };
+export default {
+  getAllShops,
+  getSingleShop,
+  createShop,
+  updateShop,
+};

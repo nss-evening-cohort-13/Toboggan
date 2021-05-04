@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/storage';
 import getUser from '../../helpers/data/authData';
-import { createShop, updateShop } from '../../helpers/data/shopData';
+import shopData from '../../helpers/data/shopData';
 
 export default class ShopForm extends Component {
   state = {
+    id: this.props.shop?.id || '',
     name: this.props.shop?.name || '',
     shopImage: this.props.shop?.imageUrl || '',
     userId: this.props.shop?.userId || '',
@@ -13,8 +14,7 @@ export default class ShopForm extends Component {
   };
 
   componentDidMount() {
-    const userId = getUser();
-    this.setState({ userId });
+    this.setState({ userId: this.props.user.uid });
   }
 
   handleChange = (e) => {
@@ -25,14 +25,19 @@ export default class ShopForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.btn.setAttribute('disabled', 'disabled');
-    if (this.state.firebaseKey === '') {
-      createBoard(this.state).then(() => {
+    if (this.state.id === '') {
+      const shopObject = {
+        Name: this.state.name,
+        ShopImage: this.state.shopImage,
+        UserId: this.state.userId,
+        Description: this.state.description,
+      };
+      shopData.createShop(shopObject).then(() => {
         this.props.onUpdate?.();
         this.setState({ success: true });
       });
     } else {
-      updateBoard(this.state).then(() => {
+      shopData.updateShop(this.state).then(() => {
         this.props.onUpdate?.(this.props.shop.id);
         this.setState({ success: true });
       });
@@ -49,7 +54,6 @@ export default class ShopForm extends Component {
           </div>
         )}
         <form onSubmit={this.handleSubmit}>
-          <label>Shop Name</label>
           <div>
             <input
               type='text'
@@ -61,26 +65,24 @@ export default class ShopForm extends Component {
               required
             />
           </div>
-          <label>Shop Description</label>
           <div>
             <input
               type='text'
               name='description'
               value={this.state.description}
               onChange={this.handleChange}
-              placeholder='Board Description'
+              placeholder='Shop Description'
               className='form-control form-control-lg m-1'
               required
             />
           </div>
-          <label>Add an Image</label>
           <div>
             <input
               type='url'
-              name='imageUrl'
-              value={this.state.imageUrl}
+              name='shopImage'
+              value={this.state.shopImage}
               onChange={this.handleChange}
-              placeholder='Enter an Image URL or Upload a File'
+              placeholder='Enter an Image URL'
               className='form-control form-control-lg m-1'
               required
             />
