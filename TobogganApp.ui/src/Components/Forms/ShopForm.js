@@ -47,7 +47,7 @@ export default class ShopForm extends Component {
   render() {
     const { success } = this.state;
     return (
-      <>
+      <div className="shopForm mr-auto ml-auto mt-5">
         {success && (
           <div className='alert alert-success' role='alert'>
             Your Shop was Updated/Created
@@ -61,7 +61,7 @@ export default class ShopForm extends Component {
               value={this.state.name}
               onChange={this.handleChange}
               placeholder='Shop Name'
-              className='form-control form-control-lg m-1'
+              className='form-control form-control-lg m-2'
               required
             />
           </div>
@@ -72,7 +72,7 @@ export default class ShopForm extends Component {
               value={this.state.description}
               onChange={this.handleChange}
               placeholder='Shop Description'
-              className='form-control form-control-lg m-1'
+              className='form-control form-control-lg m-2'
               required
             />
           </div>
@@ -83,7 +83,7 @@ export default class ShopForm extends Component {
               value={this.state.shopImage}
               onChange={this.handleChange}
               placeholder='Enter an Image URL'
-              className='form-control form-control-lg m-1'
+              className='form-control form-control-lg m-2'
               required
             />
           </div>
@@ -96,7 +96,7 @@ export default class ShopForm extends Component {
             Submit
           </button>
         </form>
-      </>
+      </div>
     );
   }
 }

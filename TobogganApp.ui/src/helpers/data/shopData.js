@@ -28,9 +28,16 @@ const updateShop = (shopData) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
+const deleteShop = (shopId) => new Promise((resolve, reject) => {
+  axios.delete(`${shopUrl}/${shopId}`).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
 export default {
   getAllShops,
   getSingleShop,
   createShop,
   updateShop,
+  deleteShop,
 };
