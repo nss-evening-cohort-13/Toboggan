@@ -18,4 +18,14 @@ const getSellerData = () => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-export default { getSellerData, getSingleUser };
+const getFilteredSellers = (searchInput) => new Promise((resolve, reject) => {
+  axios.get(userDataUrl).then((response) => {
+    console.warn('seller filter axios resp', response);
+    const filteredList = response.data.filter((seller) => seller.firstName.toLowerCase().includes(searchInput) || seller.lastName.toLowerCase().includes(searchInput));
+    console.warn('filtered list', filteredList);
+    resolve(filteredList);
+  })
+    .catch((error) => reject(error));
+});
+
+export default { getSellerData, getSingleUser, getFilteredSellers };

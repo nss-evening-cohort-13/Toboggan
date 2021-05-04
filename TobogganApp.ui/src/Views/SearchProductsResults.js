@@ -15,15 +15,16 @@ export default class SearchProductResults extends Component {
   };
 
   componentWillMount() {
-    this.showResults();
     this.getSellers();
+    this.showResults();
   }
 
   getSellers = () => {
     userData.getSellerData().then((response) => {
+      console.warn('user resp', response);
       this.setState({
         sellers: response,
-      }, this.setLoading);
+      });
     });
   }
 
@@ -43,27 +44,41 @@ export default class SearchProductResults extends Component {
     productData
       .getFilteredProducts(searchInput.toLowerCase())
       .then((response) => {
+        console.warn('product resp', response);
         this.setState({
           productResults: response,
           searchInput,
+        });
+      });
+
+    userData
+      .getFilteredSellers(searchInput.toLowerCase())
+      .then((response) => {
+        console.warn('seller in show results resp', response);
+        this.setState({
+          sellerResults: response,
         });
       });
   };
 
   showSellerResults = () => {
     const searchInput = this.props.match.params.term;
+    console.warn('search input', searchInput);
+
     const { sellers } = this.state;
+
+    console.warn('sellers state', sellers);
     const sellerResults = [];
 
     const firstNameFilter = sellers.filter((seller) => seller.firstName.toLowerCase().includes(searchInput.toLowerCase()));
-    const lastNameFilter = sellers.filter((seller) => seller.lastName.toLowerCase().includes(searchInput.toLowerCase()));
+    // const lastNameFilter = sellers.filter((seller) => seller.lastName.toLowerCase().includes(searchInput.toLowerCase()));
 
     sellerResults.push(firstNameFilter);
-    sellerResults.push(lastNameFilter);
+    // sellerResults.push(lastNameFilter);
 
-    // this.setState({
-    //   sellerResults,
-    // });
+    this.setState({
+      sellerResults: firstNameFilter,
+    }, this.setLoading);
 
     console.warn('seller state', sellerResults);
   }
@@ -87,15 +102,15 @@ export default class SearchProductResults extends Component {
         <SearchBar />
         <div className='d-flex flex-wrap justify-content-center'>
           {showResults()}
+          {renderSellers()}
         </div>
-        {loading ? (
+        {/* {loading ? (
           <h1>Loading</h1>
         ) : (
           <div>
             {renderSellers()}
-            {this.showSellerResults()}
           </div>
-        )}
+        )} */}
       </>
     );
   }
