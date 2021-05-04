@@ -33,12 +33,10 @@ export default class ShopForm extends Component {
         Description: this.state.description,
       };
       shopData.createShop(shopObject).then(() => {
-        this.props.onUpdate?.();
         this.setState({ success: true });
       });
     } else {
       shopData.updateShop(this.state).then(() => {
-        this.props.onUpdate?.(this.props.shop.id);
         this.setState({ success: true });
       });
     }
