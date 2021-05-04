@@ -6,11 +6,11 @@ import shopData from '../../helpers/data/shopData';
 
 export default class ShopForm extends Component {
   state = {
-    id: this.props.shop?.id || '',
-    name: this.props.shop?.name || '',
-    shopImage: this.props.shop?.imageUrl || '',
-    userId: this.props.shop?.userId || '',
-    description: this.props.shop?.description || '',
+    id: this.props.location.state?.id || '',
+    name: this.props.location.state?.name || '',
+    shopImage: this.props.location.state?.shopImage || '',
+    userId: this.props.location.state?.userId || '',
+    description: this.props.location.state?.description || '',
   };
 
   componentDidMount() {

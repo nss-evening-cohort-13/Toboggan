@@ -32,9 +32,16 @@ export default class SingleShopView extends Component {
         {shop !== null && (
         <div className="d-flex justify-content-center m-2">
           <div className='d-flex flex-column m-4 shopDetailsSection'>
-            <h1 className="shopTitle m-3">{shop[1]}</h1>
-            <img src={shop[4]} alt='shop' className="singleShopImg" />
-            <p className="shopDescription m-3">{shop[5]}</p>
+            <h1 className="shopTitle m-3">{shop.title}</h1>
+            <img src={shop.shopImage} alt='shop' className="singleShopImg" />
+            <p className="shopDescription m-3">{shop.description}</p>
+            <Link
+            to={{
+              pathname: '/shopForm',
+              state: shop,
+            }}>
+            <button className="btn btn-primary">Edit Shop</button>
+            </Link>
           </div>
           <div className='d-flex flex-wrap justify-content-center'>
               {shopsProducts.map((product) => <ProductCard key={product.id} productData={product}/>)}

@@ -20,7 +20,7 @@ export default function Routes({ user }) {
       <Route exact path='/search/:term' component={(props) => <SearchProductResults {...props}/>} />
       <Route exact path='/categories' component={Categories} />
       <Route exact path='/singleShopPage' component={SingleShopView} />
-      <Route exact path='/shopForm' component={() => <ShopForm user={user}/>}/>
+      <Route exact path='/shopForm' component={(props) => <ShopForm {...props} user={user}/>}/>
       <Route exact path="/user-profile/history/:id" component= { UserProfileHistory } />
       <Route exact path="/user-profile/dashboard/:id" component= { UserProfileDashboard } />
       <Route exact path="/user-profile/editshoppage/:id" component= { UserProfileEditShopPage } />
