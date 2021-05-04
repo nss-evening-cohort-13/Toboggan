@@ -18,7 +18,7 @@ export default class SearchProductResults extends Component {
   }
 
   getSellers = () => {
-    userData.fetchSellerData().then((response) => {
+    userData.getSellerData().then((response) => {
       console.warn('seller data resp', response);
       this.setState({
         sellers: response,
@@ -29,7 +29,7 @@ export default class SearchProductResults extends Component {
 
   showSellers = () => {
     const { sellers } = this.state;
-    const sellersArray = sellers.map((user) => userData.fetchUserData(user.UserId).then((resp) => {
+    const sellersArray = sellers.map((user) => userData.getSingleUser(user.UserId).then((resp) => {
       sellers.push(resp);
     }));
     this.setState({
