@@ -71,6 +71,7 @@ export default class SearchProductResults extends Component {
           </div>
         ) : ''
         }
+        {!sellerResults.length && !productResults.length ? <h1>No Results Founds</h1> : ''}
       </>
     );
   }
