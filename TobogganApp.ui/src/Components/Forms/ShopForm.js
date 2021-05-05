@@ -9,13 +9,9 @@ export default class ShopForm extends Component {
     id: this.props.location.state?.id || '',
     name: this.props.location.state?.name || '',
     shopImage: this.props.location.state?.shopImage || '',
-    userId: this.props.location.state?.userId || '',
+    userId: this.props.location.state?.userId || this.props?.userId,
     description: this.props.location.state?.description || '',
   };
-
-  componentDidMount() {
-    this.setState({ userId: this.props?.userId });
-  }
 
   handleChange = (e) => {
     this.setState({

@@ -7,7 +7,7 @@ import FavoriteData from '../helpers/data/favoriteShopData';
 
 class SingleShopView extends Component {
   state = {
-    shopId: this.props.location.state,
+    shopId: this.props.location.state || this.props.shopId,
     shopsProducts: [],
     shop: null,
     authed: this.props.authed || false,
