@@ -10,6 +10,7 @@ class SingleShopView extends Component {
     shopId: this.props.location.state,
     shopsProducts: [],
     shop: null,
+    authed: this.props.authed || false,
   };
 
   componentDidMount() {
@@ -34,7 +35,12 @@ class SingleShopView extends Component {
   }
 
   render() {
-    const { shopsProducts, shop, shopId } = this.state;
+    const {
+      shopsProducts,
+      shop,
+      shopId,
+      authed,
+    } = this.state;
 
     return (
       <>
@@ -44,6 +50,8 @@ class SingleShopView extends Component {
             <h1 className="shopTitle m-3">{shop.name}</h1>
             <img src={shop.shopImage} alt='shop' className="singleShopImg" />
             <p className="shopDescription m-3">{shop.description}</p>
+            {authed
+            && <>
             <Link
             to={{
               pathname: '/shopForm',
@@ -52,6 +60,9 @@ class SingleShopView extends Component {
             <button className="btn btn-primary">Edit Shop</button>
             </Link>
             <button className="btn btn-danger" onClick={() => this.deleteShop(shopId)}>Delete Shop</button>
+            </>
+            }
+
           </div>
           <div className='d-flex flex-wrap justify-content-center'>
               {shopsProducts.map((product) => <ProductCard key={product.id} productData={product}/>)}

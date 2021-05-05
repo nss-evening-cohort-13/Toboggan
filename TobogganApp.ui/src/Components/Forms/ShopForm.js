@@ -14,7 +14,7 @@ export default class ShopForm extends Component {
   };
 
   componentDidMount() {
-    this.setState({ userId: this.props.user?.uid });
+    this.setState({ userId: this.props?.userId });
   }
 
   handleChange = (e) => {

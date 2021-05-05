@@ -15,6 +15,12 @@ const getSingleShop = (id) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
+const getSingleShopByUserId = (userId) => new Promise((resolve, reject) => {
+  axios.get(`${shopUrl}/getByUserId/${userId}`).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
 const createShop = (shopData) => new Promise((resolve, reject) => {
   axios.post(`${shopUrl}`, shopData).then((response) => {
     console.warn(shopData);
@@ -40,4 +46,5 @@ export default {
   createShop,
   updateShop,
   deleteShop,
+  getSingleShopByUserId,
 };

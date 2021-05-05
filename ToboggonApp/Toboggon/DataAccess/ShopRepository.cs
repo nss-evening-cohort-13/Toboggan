@@ -29,6 +29,14 @@ namespace Toboggan.DataAccess
             return shop;
         }
 
+        public Shop GetSingleShopByUserId(string userId)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = "SELECT * FROM Shop WHERE UserId = @userId";
+            var shop = db.QueryFirstOrDefault<Shop>(sql, new { UserId = userId });
+            return shop;
+        }
+
         public void AddAShop(Shop shop)
         {
             using var db = new SqlConnection(ConnectionString);
