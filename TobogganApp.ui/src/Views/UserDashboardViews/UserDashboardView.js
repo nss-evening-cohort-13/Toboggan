@@ -1,18 +1,49 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
+import { Link } from 'react-router-dom';
 
 export default class UserDashboardView extends Component {
   render() {
     return (
-      <div style={{ width: '20%' }}>
-      <Box display="flex" flexDirection="column" p={1} m={1} bgcolor="background.paper">
-        <Button variant="contained">Account Info</Button>
-        <Button variant="contained">Purchase History</Button>
-        <Button variant="contained">My Shop</Button>
-        <Button variant="contained">Shop Dashboard</Button>
-        <Button variant="contained">Shop Orders</Button>
-      </Box>
+      <div>
+        <Box
+          display='flex'
+          flexDirection='column'
+          p={1}
+          m={1}
+          bgcolor='background.paper'>
+          <Link
+            to={{
+              pathname: 'user-dashboard/account-info',
+            }}>
+            <button className='btn btn-dark my-2'>Account Info</button>
+          </Link>
+          <Link
+            to={{
+              pathname: 'user-dashboard/purchase-history',
+            }}>
+            <button className='btn btn-dark my-2'>Purchase History</button>
+          </Link>
+          <Link
+            to={{
+              pathname: 'user-dashboard/my-shop',
+            }}>
+            <button className='btn btn-dark my-2'>My Shop</button>
+          </Link>
+          <Link
+            to={{
+              pathname: 'user-dashboard/shop-dashboard',
+            }}>
+            <button className='btn btn-dark my-2'>Shop Dashboard</button>
+          </Link>
+          <Link
+            to={{
+              pathname: 'user-dashboard/shop-orders',
+            }}>
+            <button className='btn btn-dark my-2'>Shop Orders</button>
+          </Link>
+        </Box>
       </div>
     );
   }
