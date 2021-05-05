@@ -29,7 +29,7 @@ class SingleShopView extends Component {
   deleteShop = (shopId) => {
     FavoriteData.deleteFavoritesOfASpecificShop(shopId).then(() => {
       shopData.deleteShop(shopId).then(() => {
-        this.props.history.push('/shops');
+        this.props.history.push('/user-dashboard/my-shop');
       });
     });
   }

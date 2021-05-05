@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import firebase from 'firebase/app';
 import 'firebase/storage';
 import getUser from '../../helpers/data/authData';
 import shopData from '../../helpers/data/shopData';
 
-export default class ShopForm extends Component {
+class ShopForm extends Component {
   state = {
     id: this.props.location.state?.id || '',
     name: this.props.location.state?.name || '',
@@ -30,10 +31,16 @@ export default class ShopForm extends Component {
       };
       shopData.createShop(shopObject).then(() => {
         this.setState({ success: true });
+        setTimeout(() => {
+          this.props.history.push('/user-dashboard/my-shop');
+        }, 3000);
       });
     } else {
       shopData.updateShop(this.state).then(() => {
         this.setState({ success: true });
+        setTimeout(() => {
+          this.props.history.push('/user-dashboard/my-shop');
+        }, 3000);
       });
     }
   };
@@ -94,3 +101,5 @@ export default class ShopForm extends Component {
     );
   }
 }
+
+export default withRouter(ShopForm);
