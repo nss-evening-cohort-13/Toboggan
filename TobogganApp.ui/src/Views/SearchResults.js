@@ -5,7 +5,7 @@ import SearchBar from '../Components/SearchBar';
 import userData from '../helpers/data/userData';
 import UserCard from '../Components/Card/SellerCard';
 
-export default class SearchProductResults extends Component {
+export default class SearchResults extends Component {
   state = {
     productResults: [],
     sellerResults: [],
@@ -54,7 +54,7 @@ export default class SearchProductResults extends Component {
       <>
         <SearchBar />
         {productResults.length ? (
-          <div className='product-results-container'>
+          <div className='product-results-container mt-5'>
             <h1>Products</h1>
             <div className='d-flex flex-wrap justify-content-center'>
               {showResults()}
@@ -63,7 +63,7 @@ export default class SearchProductResults extends Component {
         ) : ''
         }
         {sellerResults.length ? (
-          <div className='seller-results-container'>
+          <div className='seller-results-container mt-5'>
             <h1>Sellers</h1>
             <div className='d-flex flex-wrap justify-content-center'>
               {renderSellers()}
