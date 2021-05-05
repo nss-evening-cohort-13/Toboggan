@@ -57,6 +57,7 @@ namespace Toboggan.DataAccess
                         SET [Name] = @Name,
                             [UserId] = @UserId,
                             [ShopImage] = @ShopImage
+                            [Description] = @Description
                         WHERE Id = @id";
             db.Execute(sql, shop);
         }
