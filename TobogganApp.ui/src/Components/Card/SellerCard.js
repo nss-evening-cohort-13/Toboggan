@@ -9,7 +9,6 @@ const useStyles = makeStyles({
   },
   media: {
     height: 250,
-    width: 250,
   },
 });
 
@@ -20,7 +19,7 @@ export default function SellerCard({ userData }) {
     <Card className={`${classes.root} m-1 d-flex flex-column grow`}>
         <CardMedia
             className={classes.media}
-            image={userData.ImageUrl}
+            image={userData.imageUrl}
             title="UserCards"
           />
           <h1>{userData.firstName} {userData.lastName}</h1>
