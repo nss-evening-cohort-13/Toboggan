@@ -20,7 +20,7 @@ export default function Nav() {
         </div>
       </nav>
       <div className='user-icon-container'>
-        <Link to="/user-profile" className="user-icon">
+        <Link to="/user-dashboard" className="user-icon">
           <FontAwesomeIcon icon={faUserCircle} />
         </Link>
       </div>
