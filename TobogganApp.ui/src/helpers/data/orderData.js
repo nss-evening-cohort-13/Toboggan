@@ -15,7 +15,6 @@ const fetchOrdersWithLineItemData = (id) => new Promise((resolve, reject) => {
   axios.get(`${orderDataUrl}/orderLineItems/${id}`, {
     params: { userId: id },
   }).then((response) => {
-    console.warn(response);
     resolve(response.data);
   }).catch((error) => reject(error));
 });
