@@ -5,7 +5,7 @@ import userData from '../../helpers/data/userData';
 export default class PurchaseHistoryView extends Component {
   state = {
     purchaseHistory: [],
-    userId: this.props.user?.uid,
+    userId: 12,
   };
 
   componentDidMount() {
@@ -19,8 +19,8 @@ export default class PurchaseHistoryView extends Component {
   render() {
     const { purchaseHistory } = this.state;
     return (
-      <div>
-        <h2>Purchase History</h2>
+      <div className="m-4">
+        <h1>Purchase History</h1>
         <PurchaseHistoryTable orderData={purchaseHistory} />
       </div>
     );

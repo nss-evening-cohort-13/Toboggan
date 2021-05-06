@@ -29,17 +29,18 @@ const createRows = (orderData) => orderData.map((order) => {
   if (!myRows.includes(order.orderTableId)) {
     myRows.push(order.orderTableId);
     rows.push(createData(orderData, order.orderTableId, order.saleDate,
-      order.shopId, order.shopName, order.totalCost));
+      order.shopName, order.totalCost));
   }
 });
 
-const createData = (orderData, orderTableId, saleDate, shopId, shopName, totalCost) => {
+const createData = (orderData, orderTableId, saleDate, shopName, totalCost) => {
   const itemsAttached = orderData.filter((x) => (orderTableId === x.orderTableId));
   const lineItems = [];
   itemsAttached.forEach((item) => {
+    console.warn(item);
     lineItems.push({
       orderTableId: item.orderTableId,
-      category: item.name,
+      category: item.categoryName,
       name: item.title,
       quantity: item.quantityBought,
       price: item.price,
@@ -48,7 +49,6 @@ const createData = (orderData, orderTableId, saleDate, shopId, shopName, totalCo
   return {
     orderTableId,
     saleDate,
-    shopId,
     shopName,
     totalCost,
     lineItems,
@@ -81,8 +81,7 @@ function OrderRow(row) {
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">{row.order.saleDate}</TableCell>
-        <TableCell component="right" scope="row">{row.order.orderTableId}</TableCell>
-        <TableCell align="right">{row.order.shopId}</TableCell>
+        <TableCell scope="row">{row.order.orderTableId}</TableCell>
         <TableCell align="right">{row.order.shopName}</TableCell>
         <TableCell align="right">{row.order.totalCost}</TableCell>
       </TableRow>
@@ -127,14 +126,13 @@ export default function PurchaseHistoryTable(props) {
             <TableCell />
             <TableCell>Order Invoiced date</TableCell>
             <TableCell>Order Id</TableCell>
-            <TableCell align="right">ShopId</TableCell>
             <TableCell align="right">ShopName</TableCell>
             <TableCell align="right">Total Cost</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           { createRows(orderData) }
-          { rows.map((row) => (<OrderRow key={row.id} order={row} />)) }
+          { rows.map((row) => (<OrderRow key={row.orderTableId} order={row} />)) }
         </TableBody>
       </Table>
     </TableContainer>
