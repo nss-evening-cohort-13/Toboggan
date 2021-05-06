@@ -44,8 +44,8 @@ export default class SearchResults extends Component {
   }
 
   render() {
-    const { productResults, loading, sellerResults } = this.state;
-    const renderSellers = () => sellerResults.map((seller) => <UserCard key={seller.id} userData={seller} />);
+    const { productResults, sellerResults } = this.state;
+    const renderSellers = () => sellerResults.map((seller) => <UserCard key={seller.Id} userData={seller} />);
     const showResults = () => productResults.map((product) => (
         <ProductCard key={product.id} productData={product} />
     ));

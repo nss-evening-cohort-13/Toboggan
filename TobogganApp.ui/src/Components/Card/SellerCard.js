@@ -19,10 +19,10 @@ export default function SellerCard({ userData }) {
     <Card className={`${classes.root} m-1 d-flex flex-column grow`}>
         <CardMedia
             className={classes.media}
-            image={userData.imageUrl}
+            image={userData.ImageUrl}
             title="UserCards"
           />
-          <h1>{userData.firstName} {userData.lastName}</h1>
+          <h1>{userData.FirstName} {userData.LastName}</h1>
     </Card>
     </>
   );
