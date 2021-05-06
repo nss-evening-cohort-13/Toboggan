@@ -32,7 +32,7 @@ class Shops extends React.Component {
 
   render() {
     const { shops, loading } = this.state;
-    const renderShops = () => shops.map((shop) => (<ShopCard key={shop.Id} shopData={shop} />));
+    const renderShops = () => shops.map((shop) => (<ShopCard key={shop.id} shopData={shop} />));
 
     return (
       <>
