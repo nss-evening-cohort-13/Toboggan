@@ -93,7 +93,7 @@ namespace Toboggan.DataAccess
         {
             using var db = new SqlConnection(ConnectionString);
 
-            var sql = @"select s.Id as ShopId, s.Name as ShopName, o.Id as OrderTableId, o.SaleDate, o.TotalCost, c.Name, p.Title, 
+            var sql = @"select s.Id as ShopId, s.Name as ShopName, o.Id as OrderTableId, c.Name as CategoryName, o.SaleDate, o.TotalCost, c.Name, p.Title, 
                           p.Description, p.Price, oli.Quantity as QuantityBought
                           from [Order] o
                           JOIN [OrderLineItem] oli on oli.OrderId = o.Id 
