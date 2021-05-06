@@ -14,12 +14,12 @@ namespace Toboggan.DataAccess
 
         public List<User> GetAll()
         {
-            using var db = new SqlConnection(ConnectionString);
+            using var connection = new SqlConnection(ConnectionString);
 
             var userSql = "select * from [User]";
             //var shopSql = "select * from [Shop] where UserId is not null";
 
-            var users = db.Query<User>(userSql).ToList();
+            var users = connection.Query<User>(userSql).ToList();
             //var shops = db.Query<Shop>(shopSql);
 
             //foreach (var user in users)
@@ -42,6 +42,18 @@ namespace Toboggan.DataAccess
 
             return user;
 
+        }
+
+        public List<dynamic> GetSellers()
+        {
+            using var db = new SqlConnection(ConnectionString);
+
+            var sql = @"select DISTINCT u.Id, u.FirstName, u.LastName, u.Email, u.ImageUrl, u.CreatedDate from Shop s
+		                       LEFT JOIN [User] u on u.Id = s.UserId";
+
+            var sellers = db.Query(sql).ToList();
+
+            return sellers;
         }
 
         public void AddAUser(User user)
