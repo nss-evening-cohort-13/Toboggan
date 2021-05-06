@@ -9,4 +9,10 @@ const getSingleUser = (id) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-export default { getSingleUser };
+const getPurchaseHistory = (id) => new Promise((resolve, reject) => {
+  axios.get(`${userDataUrl}/getPurchaseHistory/${id}`).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
+export default { getSingleUser, getPurchaseHistory };
