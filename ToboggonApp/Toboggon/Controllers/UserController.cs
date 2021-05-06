@@ -39,6 +39,14 @@ namespace Toboggan.Controllers
             return Ok(user);
         }
 
+        [HttpGet("seller-search")]
+        public IActionResult GetSellers()
+        {
+            return Ok(_repo.GetSellers());
+
+
+        }
+
         [HttpPost]
         public IActionResult AddAUser(User user)
         {
