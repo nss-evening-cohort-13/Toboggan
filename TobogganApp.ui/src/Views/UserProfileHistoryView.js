@@ -12,7 +12,7 @@ export default function UserProfileView(props) {
   const { id } = props.match.params;
 
   useEffect(() => {
-    userData.fetchUserData(id)
+    userData.getSingleUser(id)
       .then((data) => {
         setUserInfo(data);
       });
