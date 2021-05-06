@@ -48,8 +48,8 @@ namespace Toboggan.DataAccess
         {
             using var db = new SqlConnection(ConnectionString);
 
-            var sql = @"select DISTINCT UserId 
-                                from Shop";
+            var sql = @"select DISTINCT u.Id, u.FirstName, u.LastName, u.Email, u.ImageUrl, u.CreatedDate from Shop s
+		                       LEFT JOIN [User] u on u.Id = s.UserId";
 
             var sellers = db.Query(sql).ToList();
 
