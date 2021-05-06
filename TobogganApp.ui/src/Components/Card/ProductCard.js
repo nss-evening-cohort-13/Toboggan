@@ -22,7 +22,11 @@ export default function MediaCard({ productData }) {
   const classes = useStyles();
 
   return (
-    <Card className={`${classes.root} m-1 d-flex flex-column grow`}>
+    <Link to={{
+      pathname: '/productDetails',
+      state: productData,
+    }}>
+    <Card className={`${classes.root} m-1 d-flex flex-column grow productCard`}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
@@ -39,13 +43,8 @@ export default function MediaCard({ productData }) {
         </CardContent>
       </CardActionArea>
       <CardActions className='d-flex mt-auto justify-content-center'>
-          <Link to={{
-            pathname: '/productDetails',
-            state: productData,
-          }}>
-          <button className="btn btn-success">Product Details</button>
-          </Link>
       </CardActions>
     </Card>
+    </Link>
   );
 }

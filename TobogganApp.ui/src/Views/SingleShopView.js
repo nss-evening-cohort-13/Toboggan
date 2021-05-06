@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Route, withRouter } from 'react-router-dom';
 import shopData from '../helpers/data/shopData';
 import productData from '../helpers/data/productData';
 import ProductCard from '../Components/Card/ProductCard';
+import FavoriteData from '../helpers/data/favoriteShopData';
 
-export default class SingleShopView extends Component {
+class SingleShopView extends Component {
   state = {
-    shopId: this.props.location.state,
+    shopId: this.props.location.state || this.props.shopId,
     shopsProducts: [],
     shop: null,
+    authed: this.props.authed || false,
   };
 
   componentDidMount() {
@@ -24,17 +26,43 @@ export default class SingleShopView extends Component {
     });
   }
 
+  deleteShop = (shopId) => {
+    FavoriteData.deleteFavoritesOfASpecificShop(shopId).then(() => {
+      shopData.deleteShop(shopId).then(() => {
+        this.props.history.push('/user-dashboard/my-shop');
+      });
+    });
+  }
+
   render() {
-    const { shopsProducts, shop } = this.state;
+    const {
+      shopsProducts,
+      shop,
+      shopId,
+      authed,
+    } = this.state;
 
     return (
       <>
         {shop !== null && (
         <div className="d-flex justify-content-center m-2">
           <div className='d-flex flex-column m-4 shopDetailsSection'>
-            <h1 className="shopTitle m-3">{shop[1]}</h1>
-            <img src={shop[4]} alt='shop' className="singleShopImg" />
-            <p className="shopDescription m-3">{shop[5]}</p>
+            <h1 className="shopTitle m-3">{shop.name}</h1>
+            <img src={shop.shopImage} alt='shop' className="singleShopImg" />
+            <p className="shopDescription m-3">{shop.description}</p>
+            {authed
+            && <>
+            <Link
+            to={{
+              pathname: '/shopForm',
+              state: shop,
+            }}>
+            <button className="btn btn-primary">Edit Shop</button>
+            </Link>
+            <button className="btn btn-danger" onClick={() => this.deleteShop(shopId)}>Delete Shop</button>
+            </>
+            }
+
           </div>
           <div className='d-flex flex-wrap justify-content-center'>
               {shopsProducts.map((product) => <ProductCard key={product.id} productData={product}/>)}
@@ -45,3 +73,5 @@ export default class SingleShopView extends Component {
     );
   }
 }
+
+export default withRouter(SingleShopView);

@@ -59,5 +59,12 @@ namespace Toboggan.Controllers
             return Ok();
         }
 
+        [HttpDelete("byShopId/{shopId}")]
+        public IActionResult DeleteFavoriteShopByShopId(int shopId)
+        {
+            _repo.DeleteFavoriteShopByShopId(shopId);
+            return Ok();
+        }
+
     }
 }

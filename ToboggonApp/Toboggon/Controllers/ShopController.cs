@@ -38,6 +38,17 @@ namespace Toboggan.Controllers
             return Ok(shop);
         }
 
+        [HttpGet("getByUserId/{userId}")]
+        public IActionResult GetShopbyUserId(string userId)
+        {
+            var shop = _repo.GetSingleShopByUserId(userId);
+            if (shop == null)
+            {
+                return NotFound("This shop does not exist");
+            }
+            return Ok(shop);
+        }
+
         [HttpPost]
         public IActionResult AddNewShop(Shop shop)
         {
