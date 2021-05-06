@@ -37,7 +37,7 @@ export default function Routes({ user }) {
       <Route exact path='/user-dashboard/purchase-history' component={() => <PurchaseHistoryView user={user}/>} />
       <Route exact path='/user-dashboard/my-shop' component={(props) => <MyShopView {...props} user={user}/> } />
       <Route exact path='/user-dashboard/shop-dashboard' component={ShopDashboardView} />
-      <Route exact path='/user-dashboard/shop-orders' component={ShopOrdersView} />
+      <Route exact path='/user-dashboard/shop-orders' component={(props) => <ShopOrdersView {...props} user={user}/>} />
     </Switch>
   );
 }

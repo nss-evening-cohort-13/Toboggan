@@ -25,7 +25,7 @@ export default function UserProfileView(props) {
 
   return (
     <>
-    <h2>Your Order History</h2>
+    <h2>Order History</h2>
     <div className='d-flex User-Profile'>
       <BioCard userData={ userInfo }/>
       <OrderHistoryTable orderData={ orderInfo } />
