@@ -11,7 +11,7 @@ const getAllShops = () => new Promise((resolve, reject) => {
 
 const getSingleShop = (id) => new Promise((resolve, reject) => {
   axios.get(`${shopUrl}/${id}`).then((response) => {
-    resolve(Object.values(response.data));
+    resolve(response.data);
   }).catch((error) => reject(error));
 });
 

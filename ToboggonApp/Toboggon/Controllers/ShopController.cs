@@ -28,7 +28,7 @@ namespace Toboggan.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetShop(int id)
+        public IActionResult GetShop(string id)
         {
             var shop = _repo.GetSingleShop(id);
             if (shop == null)

@@ -43,6 +43,7 @@ namespace Toboggan.Controllers
             return Ok(productList);
         }
 
+
         [HttpGet("{id}")]
         public IActionResult GetProductById(int id)
         {

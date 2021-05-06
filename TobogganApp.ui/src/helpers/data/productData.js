@@ -38,9 +38,18 @@ const getProductsOfAShop = (shopId) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
+const updateProduct = (productObj) => new Promise((resolve, reject) => {
+  axios
+    .patch(`${productsUrl}/editProduct/${productObj.Id}`, productObj)
+    .then((response) => {
+      resolve(response.data);
+    });
+});
+
 export default {
   getAllProducts,
   getSingleProduct,
   getFilteredProducts,
   getProductsOfAShop,
+  updateProduct,
 };

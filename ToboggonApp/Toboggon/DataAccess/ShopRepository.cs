@@ -20,15 +20,6 @@ namespace Toboggan.DataAccess
                                  ORDER BY UserId ASC";
             return db.Query<Shop>(sql).ToList();
         }
-
-        public Shop GetSingleShop(int id)
-        {
-            using var db = new SqlConnection(ConnectionString);
-            var sql = "SELECT * FROM Shop WHERE Id = @id";
-            var shop = db.QueryFirstOrDefault<Shop>(sql, new { id = id });
-            return shop;
-        }
-
         public void AddAShop(Shop shop)
         {
             using var db = new SqlConnection(ConnectionString);

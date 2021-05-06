@@ -9,13 +9,15 @@ import HomeView from '../Views/HomeView';
 import ProductDetailsView from '../Views/ProductDetailsView';
 import SearchProductResults from '../Views/SearchProductsResults';
 import SingleShopView from '../Views/SingleShopView';
+import ProductsForm from '../Components/Forms/ProductsForm';
 
-export default function Routes() {
+export default function Routes({ user }) {
   return (
     <Switch>
       <Route exact path='/' component={HomeView} />
       <Route exact path='/shops' component={Shops} />
       <Route exact path='/productDetails' component={ProductDetailsView} />
+      <Route exact path='/productsForm' component={(props) => <ProductsForm {...props} user={user}/>}/>
       <Route exact path='/search/:term' component={(props) => <SearchProductResults {...props}/>} />
       <Route exact path='/categories' component={Categories} />
       <Route exact path='/singleShopPage' component={SingleShopView} />
