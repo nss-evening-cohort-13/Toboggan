@@ -5,25 +5,23 @@ import Auth from '../Auth';
 
 export default function Nav() {
   return (
-    <div className="navbar-container">
-      <header className="brand-container mt-2">
-        <Link to="/" className='brand'>Toboggan</Link>
-      </header>
+    <div className="navbar-container d-flex justify-content-center">
       <nav className="navbar">
         <div className="navbar-items">
+          <Link to="/" className='brand navbar-item'>
+            Toboggan
+          </Link>
           <Link to="/shops" className="navbar-item">
-            shops
+            Shops
           </Link>
           <Link to="/categories" className="navbar-item">
-            categories
+            Categories
           </Link>
+          <Link to="/user-dashboard" className="navbar-item">
+            <FontAwesomeIcon className="user-icon" icon={faUserCircle} />
+        </Link>
         </div>
       </nav>
-      <div className='user-icon-container'>
-        <Link to="/user-dashboard" className="user-icon">
-          <FontAwesomeIcon icon={faUserCircle} />
-        </Link>
-      </div>
       <div className='user-icon-container'>
         <Auth />
       </div>
