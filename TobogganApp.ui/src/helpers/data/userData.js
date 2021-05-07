@@ -9,6 +9,12 @@ const getSingleUser = (id) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
+const getPurchaseHistory = (id) => new Promise((resolve, reject) => {
+  axios.get(`${userDataUrl}/getPurchaseHistory/${id}`).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
 const getFilteredSellers = (searchInput) => new Promise((resolve, reject) => {
   axios.get(`${userDataUrl}/seller-search`).then((response) => {
     const filteredSellers = response.data.filter((seller) => seller.FirstName.toLowerCase().includes(searchInput) || seller.LastName.toLowerCase().includes(searchInput));
@@ -17,4 +23,4 @@ const getFilteredSellers = (searchInput) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export default { getSingleUser, getFilteredSellers };
+export default { getSingleUser, getFilteredSellers, getPurchaseHistory };

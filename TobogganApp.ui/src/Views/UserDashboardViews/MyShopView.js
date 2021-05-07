@@ -17,7 +17,6 @@ class MyShopView extends Component {
         myShop: response,
         userHasAShop: true,
       });
-      console.warn(response);
     });
   }
 
