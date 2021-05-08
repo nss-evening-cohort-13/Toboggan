@@ -5,7 +5,7 @@ import orderData from '../../helpers/data/orderData';
 import catData from '../../helpers/data/categoryData';
 import Dashboard from '../../Components/Card/Dashboard';
 
-export default class Shop extends Component {
+export default class ShopDashboardView extends Component {
   state = {
     userInfo: '',
     totalInfo: '',
@@ -58,7 +58,6 @@ export default class Shop extends Component {
 
   render() {
     const {
-      userInfo,
       totalInfo,
       categoryData,
       toBeShipped,
