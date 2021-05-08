@@ -66,8 +66,7 @@ export default class Shop extends Component {
     return (
       <div>
       <h2 className="m-3">Shop Dashboard</h2>
-      <div className='d-flex justify-content-center m-3 User-Profile'>
-        <BioCard userData={ userInfo }/>
+      <div className='d-flex justify-content-center m-3'>
         <Dashboard totalInfo={ totalInfo } salesThisMonth={this.salesThisMonth} categoryData={categoryData} toBeShipped={toBeShipped} />
       </div>
       </div>
