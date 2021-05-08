@@ -37,19 +37,17 @@ export default class Auth extends Component {
       <>
       { !user ? <button className='nav-link btn btn-primary' onClick={(e) => AuthData.loginClickEvent(e)}>Login</button>
         : <>
-      {/* <img className="userInfo" src={user?.photoURL} alt={user?.displayName} /> */}
-      <div className='user-icon-container'>
-        <Link to="/user-dashboard" className="user-icon">
-          <FontAwesomeIcon icon={faUserCircle} />
-        </Link>
-      </div>
-      <img className="userInfo" src={user?.photoURL} alt={user?.displayName} />
-              <UncontrolledDropdown>
-              <DropdownToggle nav caret>
-              </DropdownToggle>
+      <div className='row'>
+        <div className='user-icon-container'>
+          <p>Hi {user?.displayName}</p>
+        </div>
+          <UncontrolledDropdown>
+            <DropdownToggle nav caret></DropdownToggle>
             <DropdownMenu right>
-            <DropdownItem>
-              {user?.displayName}
+              <DropdownItem>
+                <Link to="/user-dashboard" >
+                  <p>Dashboard</p>
+                </Link>
               </DropdownItem>
               <DropdownItem>
                 <div
@@ -61,6 +59,7 @@ export default class Auth extends Component {
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
+        </div>
       </>
       }
       </>
