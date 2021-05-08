@@ -38,9 +38,31 @@ const getProductsOfAShop = (shopId) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
+const updateProduct = (productObj) => new Promise((resolve, reject) => {
+  console.warn('product update', productObj);
+  axios.patch(productsUrl, productObj).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
+const createProduct = (productObj) => new Promise((resolve, reject) => {
+  axios.post(`${productsUrl}`, productObj).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
+const deleteProduct = (productId) => new Promise((resolve, reject) => {
+  axios.delete(`${productsUrl}/${productId}`).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
 export default {
   getAllProducts,
   getSingleProduct,
   getFilteredProducts,
   getProductsOfAShop,
+  updateProduct,
+  createProduct,
+  deleteProduct,
 };

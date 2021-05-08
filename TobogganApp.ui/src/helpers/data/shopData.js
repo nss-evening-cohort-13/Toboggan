@@ -23,7 +23,6 @@ const getSingleShopByUserId = (userId) => new Promise((resolve, reject) => {
 
 const createShop = (shopData) => new Promise((resolve, reject) => {
   axios.post(`${shopUrl}`, shopData).then((response) => {
-    console.warn(shopData);
     resolve(response.data);
   }).catch((error) => reject(error));
 });

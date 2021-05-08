@@ -5,6 +5,7 @@ import Auth from '../Auth';
 
 export default function Nav() {
   return (
+    <>
     <div className="navbar-container">
       <header className="brand-container mt-2">
         <Link to="/" className='brand'>Toboggan</Link>
@@ -19,7 +20,7 @@ export default function Nav() {
           </Link>
         </div>
       </nav>
-      <div className='user-icon-container'>
+      <div>
         <Link to="/user-dashboard" className="user-icon">
           <FontAwesomeIcon icon={faUserCircle} />
         </Link>
@@ -28,5 +29,6 @@ export default function Nav() {
         <Auth />
       </div>
     </div>
+  </>
   );
 }

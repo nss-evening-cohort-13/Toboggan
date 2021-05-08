@@ -9,6 +9,7 @@ import HomeView from '../Views/HomeView';
 import ProductDetailsView from '../Views/ProductDetailsView';
 import SearchResults from '../Views/SearchResults';
 import SingleShopView from '../Views/SingleShopView';
+import ProductsForm from '../Components/Forms/ProductsForm';
 import ShopForm from '../Components/Forms/ShopForm';
 import UserDashboardView from '../Views/UserDashboardViews/UserDashboardView';
 import AccountInfoView from '../Views/UserDashboardViews/AccountInfoView';
@@ -17,13 +18,15 @@ import MyShopView from '../Views/UserDashboardViews/MyShopView';
 import ShopDashboardView from '../Views/UserDashboardViews/ShopDashboardView';
 import ShopOrdersView from '../Views/UserDashboardViews/ShopOrdersView';
 
-export default function Routes({ user }) {
+export default function Routes({ user, authed }) {
+  console.warn('hello', authed);
   return (
     <Switch>
       <Route exact path='/' component={HomeView} />
       <Route exact path='/shops' component={Shops} />
-      <Route exact path='/productDetails' component={ProductDetailsView} />
-      <Route exact path='/search/:term' component={(props) => <SearchResults {...props}/>} />
+      <Route exact path='/productDetails' component={(props) => <ProductDetailsView {...props} authed={authed} user={user} />} />
+      <Route exact path='/productsForm' component={(props) => <ProductsForm {...props} user={user}/>}/>
+      <Route exact path='/search/:term' component={(props) => <SearchProductResults {...props}/>} />
       <Route exact path='/categories' component={Categories} />
       <Route exact path='/singleShopPage' component={SingleShopView} />
       <Route exact path='/shopForm' component={(props) => <ShopForm {...props} user={user}/>}/>

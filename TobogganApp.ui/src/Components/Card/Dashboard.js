@@ -13,7 +13,6 @@ export default function Dashboard(props) {
     <div className='flex-column'>
     <h2>Total sales:</h2>
     <div>${ totalInfo && totalInfo.length > 0 ? totalInfo[0].total : ''}</div>
-    {console.warn(salesThisMonth)}
     <h2>Total sales for { salesThisMonth && salesThisMonth.length ? `${salesThisMonth[0].month}/${salesThisMonth[0].year}` : ''}:</h2>
     <div>{ salesThisMonth && salesThisMonth.length ? salesThisMonth[0].total : ''}</div>
     <h2>Average Per Item</h2>
