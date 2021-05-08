@@ -9,7 +9,7 @@ export default class PurchaseHistoryView extends Component {
   };
 
   componentDidMount() {
-    userData.getPurchaseHistory(this.state.userId).then((response) => {
+    userData.getPurchaseHistory('14').then((response) => {
       this.setState({
         purchaseHistory: response,
       });

@@ -41,6 +41,7 @@ const createData = (orderData, orderTableId, saleDate, shopName, totalCost) => {
     lineItems.push({
       orderTableId: item.orderTableId,
       category: item.categoryName,
+      productId: item.productId,
       name: item.title,
       quantity: item.quantityBought,
       price: item.price,
@@ -64,6 +65,7 @@ function OrderLineItems(odl) {
           <TableCell align="left">{odl.orderLineItem.name}</TableCell>
           <TableCell align="left">{odl.orderLineItem.quantity}</TableCell>
           <TableCell align="left">{odl.orderLineItem.price}</TableCell>
+          <TableCell align="left">HEY</TableCell>
         </TableRow>
       </React.Fragment>
   );
@@ -71,6 +73,7 @@ function OrderLineItems(odl) {
 
 function OrderRow(row) {
   const [open, setOpen] = React.useState(false);
+  const [openProduct, setOpenProduct] = React.useState(false);
   const classes = useRowStyles();
   return (
     <React.Fragment>
@@ -95,6 +98,8 @@ function OrderRow(row) {
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
+                    <TableCell>
+                    </TableCell>
                     <TableCell align="left">Order Number</TableCell>
                     <TableCell align="left">Category</TableCell>
                     <TableCell align="left">Item Name</TableCell>
@@ -103,6 +108,9 @@ function OrderRow(row) {
                   </TableRow>
                 </TableHead>
                 <TableBody>
+                  <IconButton aria-label="expand row" size="small" onClick={() => setOpenProduct(!open)}>
+                    {openProduct ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                  </IconButton>
                 {row.order.lineItems.map((oli) => (
                 <OrderLineItems key={oli} orderLineItem={oli} />
                 ))}
@@ -111,6 +119,29 @@ function OrderRow(row) {
             </Box>
           </Collapse>
         </TableCell>
+        <TableRow>
+          <TableCell>
+          <Collapse in={openProduct} timeout="auto" unmountOnExit>
+              <Box margin={1}>
+                <Typography variant="h6" gutterBottom component="div">
+                  Product Details:
+                </Typography>
+                <Table size="small" aria-label="purchases">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>
+                      </TableCell>
+                      <TableCell align="left">Description</TableCell>
+                      <TableCell align="left">Image</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody></TableBody>
+                </Table>
+              </Box>
+            </Collapse>
+          </TableCell>
+
+        </TableRow>
       </TableRow>
     </React.Fragment>
   );
@@ -126,7 +157,7 @@ export default function PurchaseHistoryTable(props) {
             <TableCell />
             <TableCell>Order Invoiced date</TableCell>
             <TableCell>Order Id</TableCell>
-            <TableCell align="right">ShopName</TableCell>
+            <TableCell align="right">Shop Name</TableCell>
             <TableCell align="right">Total Cost</TableCell>
           </TableRow>
         </TableHead>
