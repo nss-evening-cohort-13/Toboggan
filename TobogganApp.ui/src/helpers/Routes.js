@@ -7,7 +7,7 @@ import UserProfileDashboard from '../Views/UserProfileDashboardView';
 import UserProfileEditShopPage from '../Views/UserProfileEditShopView';
 import HomeView from '../Views/HomeView';
 import ProductDetailsView from '../Views/ProductDetailsView';
-import SearchProductResults from '../Views/SearchProductsResults';
+import SearchResults from '../Views/SearchResults';
 import SingleShopView from '../Views/SingleShopView';
 import ProductsForm from '../Components/Forms/ProductsForm';
 import ShopForm from '../Components/Forms/ShopForm';
@@ -37,10 +37,10 @@ export default function Routes({ user, authed }) {
       {/* User Dashboard Views */}
       <Route exact path='/user-dashboard' component={UserDashboardView} />
       <Route exact path='/user-dashboard/account-info' component={AccountInfoView} />
-      <Route exact path='/user-dashboard/purchase-history' component={PurchaseHistoryView} />
+      <Route exact path='/user-dashboard/purchase-history' component={() => <PurchaseHistoryView user={user}/>} />
       <Route exact path='/user-dashboard/my-shop' component={(props) => <MyShopView {...props} user={user}/> } />
       <Route exact path='/user-dashboard/shop-dashboard' component={ShopDashboardView} />
-      <Route exact path='/user-dashboard/shop-orders' component={ShopOrdersView} />
+      <Route exact path='/user-dashboard/shop-orders' component={(props) => <ShopOrdersView {...props} user={user}/>} />
     </Switch>
   );
 }

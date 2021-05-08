@@ -27,7 +27,7 @@ namespace Toboggan.Controllers
         }
 
         [HttpGet("User/{id}")]
-        public IActionResult GetSingleOrderById(int id)
+        public IActionResult GetSingleOrderById(string id)
         {
             var order = _repo.GetOrderByUserId(id);
 
@@ -40,7 +40,7 @@ namespace Toboggan.Controllers
         }
 
         [HttpGet("SellerOrder/{id}")]
-        public IActionResult GetOrderByUserId(int id)
+        public IActionResult GetOrderByUserId(string id)
         {
             var orders = _repo.SellerOrdersById(id);
 
@@ -53,7 +53,7 @@ namespace Toboggan.Controllers
         }
 
         [HttpGet("SellerOrderToBeShipped/{id}")]
-        public IActionResult GetOrdersToBeShippedByUserId(int id)
+        public IActionResult GetOrdersToBeShippedByUserId(string id)
         {
             var resultList = _repo.SellerOrdersById(id);
 
@@ -69,7 +69,7 @@ namespace Toboggan.Controllers
 
         /* Gives total by id of the seller */
         [HttpGet("SellerTotalandAvgPrice/{id}")]
-        public IActionResult totalSalesAvgperSeller(int id)
+        public IActionResult totalSalesAvgperSeller(string id)
         {
             var sales = _repo.totalSalesAvgperSeller(id);
 
@@ -79,14 +79,14 @@ namespace Toboggan.Controllers
         // Gives Total Sales By Data
 
         [HttpGet("totalSalesByDate/{id}")]
-            public IActionResult totalSalesByDate(int id)
+            public IActionResult totalSalesByDate(string id)
         {
             var sales = _repo.totalSalesByDate(id);
             return Ok(sales);
         }
 
         [HttpGet("orderLineItems/{id}")]
-        public IActionResult GetOrderAndLineItemsByUserId(int id)
+        public IActionResult GetOrderAndLineItemsByUserId(string id)
         {
             var orders = _repo.GetOrderAndLineItemsByUserId(id);
 

@@ -14,12 +14,12 @@ namespace Toboggan.DataAccess
 
         public List<User> GetAll()
         {
-            using var db = new SqlConnection(ConnectionString);
+            using var connection = new SqlConnection(ConnectionString);
 
             var userSql = "select * from [User]";
             //var shopSql = "select * from [Shop] where UserId is not null";
 
-            var users = db.Query<User>(userSql).ToList();
+            var users = connection.Query<User>(userSql).ToList();
             //var shops = db.Query<Shop>(shopSql);
 
             //foreach (var user in users)
@@ -42,6 +42,18 @@ namespace Toboggan.DataAccess
 
             return user;
 
+        }
+
+        public List<dynamic> GetSellers()
+        {
+            using var db = new SqlConnection(ConnectionString);
+
+            var sql = @"select DISTINCT u.Id, u.FirstName, u.LastName, u.Email, u.ImageUrl, u.CreatedDate from Shop s
+		                       LEFT JOIN [User] u on u.Id = s.UserId";
+
+            var sellers = db.Query(sql).ToList();
+
+            return sellers;
         }
 
         public void AddAUser(User user)
@@ -87,6 +99,27 @@ namespace Toboggan.DataAccess
                              WHERE Id = @id";
 
             db.Execute(sql, user);
+        }
+
+        public List<PurchaseHistory> GetPurchaseHistoryOfUser(string id)
+        {
+            using var db = new SqlConnection(ConnectionString);
+
+            var sql = @"select s.Id as ShopId, s.Name as ShopName, o.Id as OrderTableId, c.Name as CategoryName, o.SaleDate, o.TotalCost, c.Name, p.Title, 
+                          p.Description, p.Price, oli.Quantity as QuantityBought
+                          from [Order] o
+                          JOIN [OrderLineItem] oli on oli.OrderId = o.Id 
+                          JOIN [Product] p ON p.Id = oli.Id
+                          JOIN [Category] c ON c.Id = P.CategoryId
+                          JOIN [Shop] s ON s.Id = p.ShopId
+                          JOIN [User] u ON u.Id = s.UserId
+						  JOIN [USER] buyer ON buyer.Id = o.UserId
+                          WHERE buyer.Id = @id
+                          ORDER BY s.Id ASC, o.SaleDate DESC;";
+
+            var sellerOrders = db.Query<PurchaseHistory>(sql, new { Id = id }).ToList();
+
+            return sellerOrders;
         }
 
     }

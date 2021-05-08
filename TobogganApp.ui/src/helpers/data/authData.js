@@ -7,7 +7,6 @@ const userDataUrl = `${baseUrl}/Users`;
 
 const getUid = () => firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    console.warn(user.uid, 'user');
     return user.uid;
   }
   return console.warn('no user logged in.');

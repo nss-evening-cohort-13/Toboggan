@@ -38,7 +38,7 @@ namespace Toboggan.DataAccess
             return order;
         }
 
-        public Order GetOrderByUserId(int id)
+        public Order GetOrderByUserId(string id)
         {
             var sql = @"select *
                         from [Order]
@@ -51,7 +51,7 @@ namespace Toboggan.DataAccess
             return order;
         }
 
-        public List<Order> GetOrderAndLineItemsByUserId(int id)
+        public List<Order> GetOrderAndLineItemsByUserId(string id)
         {
             var orderSql = @"select * from [Order] where userId = @Id";
 
@@ -70,7 +70,7 @@ namespace Toboggan.DataAccess
             return orders;
         }
 
-        public List<SalesByDate> totalSalesByDate(int id)
+        public List<SalesByDate> totalSalesByDate(string id)
         {
             using var db = new SqlConnection(ConnectionString);
             var sql = @"SELECT sum(oli.Quantity* p.Price) AS total,
@@ -93,7 +93,7 @@ namespace Toboggan.DataAccess
 
             return totalSalesByDate;
         }
-        public List<SellerDashboard> totalSalesAvgperSeller(int id)
+        public List<SellerDashboard> totalSalesAvgperSeller(string id)
         {
             using var db = new SqlConnection(ConnectionString);
 
@@ -108,7 +108,7 @@ namespace Toboggan.DataAccess
             return dashboard;
         }
         
-        public List<SellerOrders> SellerOrdersById(int id)
+        public List<SellerOrders> SellerOrdersById(string id)
         {
             using var db = new SqlConnection(ConnectionString);
 

@@ -39,6 +39,27 @@ namespace Toboggan.Controllers
             return Ok(user);
         }
 
+        [HttpGet("seller-search")]
+        public IActionResult GetSellers()
+        {
+            return Ok(_repo.GetSellers());
+
+
+        }
+
+        [HttpGet("getPurchaseHistory/{id}")]
+        public IActionResult GetPurchaseHistoryByUserId(string id)
+        {
+            var user = _repo.GetPurchaseHistoryOfUser(id);
+
+            if (user == null)
+            {
+                return NotFound("This user does not exist.");
+            }
+
+            return Ok(user);
+        }
+
         [HttpPost]
         public IActionResult AddAUser(User user)
         {
