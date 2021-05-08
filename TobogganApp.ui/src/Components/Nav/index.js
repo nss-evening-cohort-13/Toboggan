@@ -3,7 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import Auth from '../Auth';
 
-export default function Nav() {
+export default function Nav(props) {
+  const { user } = props;
   return (
     <div className="navbar-container">
       <header className="brand-container mt-2">
@@ -19,11 +20,11 @@ export default function Nav() {
           </Link>
         </div>
       </nav>
-      <div className='user-icon-container'>
+      {/* <div className='user-icon-container'>
         <Link to="/user-dashboard" className="user-icon">
           <FontAwesomeIcon icon={faUserCircle} />
         </Link>
-      </div>
+      </div> */}
       <div className='user-icon-container'>
         <Auth />
       </div>
