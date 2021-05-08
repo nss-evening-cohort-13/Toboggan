@@ -15,4 +15,35 @@ const getSingleShop = (id) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-export default { getAllShops, getSingleShop };
+const getSingleShopByUserId = (userId) => new Promise((resolve, reject) => {
+  axios.get(`${shopUrl}/getByUserId/${userId}`).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
+const createShop = (shopData) => new Promise((resolve, reject) => {
+  axios.post(`${shopUrl}`, shopData).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
+const updateShop = (shopData) => new Promise((resolve, reject) => {
+  axios.patch(shopUrl, shopData).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
+const deleteShop = (shopId) => new Promise((resolve, reject) => {
+  axios.delete(`${shopUrl}/${shopId}`).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
+export default {
+  getAllShops,
+  getSingleShop,
+  createShop,
+  updateShop,
+  deleteShop,
+  getSingleShopByUserId,
+};

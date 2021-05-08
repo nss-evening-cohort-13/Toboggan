@@ -10,20 +10,37 @@ import ProductDetailsView from '../Views/ProductDetailsView';
 import SearchProductResults from '../Views/SearchProductsResults';
 import SingleShopView from '../Views/SingleShopView';
 import ProductsForm from '../Components/Forms/ProductsForm';
+import ShopForm from '../Components/Forms/ShopForm';
+import UserDashboardView from '../Views/UserDashboardViews/UserDashboardView';
+import AccountInfoView from '../Views/UserDashboardViews/AccountInfoView';
+import PurchaseHistoryView from '../Views/UserDashboardViews/PurchaseHistoryView';
+import MyShopView from '../Views/UserDashboardViews/MyShopView';
+import ShopDashboardView from '../Views/UserDashboardViews/ShopDashboardView';
+import ShopOrdersView from '../Views/UserDashboardViews/ShopOrdersView';
 
-export default function Routes({ user }) {
+export default function Routes({ user, authed }) {
+  console.warn('hello', authed);
   return (
     <Switch>
       <Route exact path='/' component={HomeView} />
       <Route exact path='/shops' component={Shops} />
-      <Route exact path='/productDetails' component={ProductDetailsView} />
+      <Route exact path='/productDetails' component={(props) => <ProductDetailsView {...props} authed={authed} user={user} />} />
       <Route exact path='/productsForm' component={(props) => <ProductsForm {...props} user={user}/>}/>
       <Route exact path='/search/:term' component={(props) => <SearchProductResults {...props}/>} />
       <Route exact path='/categories' component={Categories} />
       <Route exact path='/singleShopPage' component={SingleShopView} />
+      <Route exact path='/shopForm' component={(props) => <ShopForm {...props} user={user}/>}/>
       <Route exact path="/user-profile/history/:id" component= { UserProfileHistory } />
       <Route exact path="/user-profile/dashboard/:id" component= { UserProfileDashboard } />
       <Route exact path="/user-profile/editshoppage/:id" component= { UserProfileEditShopPage } />
+
+      {/* User Dashboard Views */}
+      <Route exact path='/user-dashboard' component={UserDashboardView} />
+      <Route exact path='/user-dashboard/account-info' component={AccountInfoView} />
+      <Route exact path='/user-dashboard/purchase-history' component={PurchaseHistoryView} />
+      <Route exact path='/user-dashboard/my-shop' component={(props) => <MyShopView {...props} user={user}/> } />
+      <Route exact path='/user-dashboard/shop-dashboard' component={ShopDashboardView} />
+      <Route exact path='/user-dashboard/shop-orders' component={ShopOrdersView} />
     </Switch>
   );
 }

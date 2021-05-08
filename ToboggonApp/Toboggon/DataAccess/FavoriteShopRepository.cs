@@ -57,5 +57,12 @@ namespace Toboggan.DataAccess
             var sql = "DELETE FROM FavoriteShop WHERE Id = @id";
             db.Execute(sql, new { id = id });
         }
+
+        public void DeleteFavoriteShopByShopId(int shopId)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = "DELETE FROM FavoriteShop WHERE ShopId = @shopId";
+            db.Execute(sql, new { ShopId = shopId });
+        }
     }
 }

@@ -57,6 +57,7 @@ namespace Toboggan.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult AddAProduct(Product product)
         {
             _repo.AddAProduct(product);
@@ -64,6 +65,7 @@ namespace Toboggan.Controllers
         }
 
         [HttpPatch]
+        [AllowAnonymous]
         public IActionResult UpdateProduct(Product product)
         {
             _repo.UpdateProduct(product);

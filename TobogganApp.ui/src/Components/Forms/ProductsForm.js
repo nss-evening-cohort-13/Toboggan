@@ -10,21 +10,25 @@ export default class ProductsForm extends Component {
     state = {
       id: this.props.location.state?.id || '',
       title: this.props.location.state?.title || '',
-      description: this.props.location?.description || '',
-      price: this.props.location?.price || '',
-      quantity: this.props.location?.quantity || '',
-      shopId: this.props.location?.shopId || '',
-      categoryId: this.props.location?.categoryId || '',
-      productImage: this.props.location?.productImage,
+      description: this.props.location.state?.description || '',
+      price: this.props.location.state?.price || '',
+      quantity: this.props.location.state?.quantity || '',
+      shopId: this.props.location.state?.shop || '',
+      CategoryId: this.props.location.state?.categoryId || '',
+      productImage: this.props.location.state?.productImage,
+      userId: this.props.location.state?.userId || this.props?.userId,
       allCategories: [],
     }
 
-    componentDidMount() {
-      this.setState({ userId: this.props.user?.uid });
+    async componentDidMount() {
+      await this.setState({ userId: this.props.user?.uid });
       categoryData.GetAllCategories().then((categories) => {
         this.setState({ allCategories: categories });
       });
-      console.warn(this.state.userId);
+      await shopData.getSingleShopByUserId(this.state.userId)
+        .then((shopId) => {
+          this.setState({ shopId: shopId.id });
+        });
     }
 
     handleChange = (e) => {
@@ -35,29 +39,50 @@ export default class ProductsForm extends Component {
 
     handleSubmit = (e) => {
       e.preventDefault();
+      const CategoryId = Number(this.state.CategoryId);
+      const priceNum = Number(this.state.price);
+      const quantityNum = Number(this.state.quantity);
+      const shopIdNum = Number(this.state.shopId);
+      console.warn('what is the cat id', CategoryId);
       if (this.state.id === '') {
         const productObject = {
           Title: this.state.title,
           Description: this.state.description,
-          Price: this.state.price,
-          Quantity: this.state.quantity,
-          ShopId: this.state.shopId,
-          CategoryId: this.state.CategoryId,
+          Price: priceNum,
+          Quantity: quantityNum,
+          ShopId: shopIdNum,
+          CategoryId,
           ProductImage: this.state.productImage,
         };
+        console.warn(productObject);
         productData.createProduct(productObject).then(() => {
           this.setState({ success: true });
+          setTimeout(() => {
+            this.props.history.push('/user-dashboard/my-shop');
+          }, 3000);
         });
       } else {
-        productData.updateProduct(this.state).then(() => {
+        const productObjectUpdate = {
+          Id: this.state.id,
+          Title: this.state.title,
+          Description: this.state.description,
+          Price: priceNum,
+          Quantity: quantityNum,
+          ShopId: shopIdNum,
+          CategoryId,
+          ProductImage: this.state.productImage,
+        };
+        productData.updateProduct(productObjectUpdate).then(() => {
           this.setState({ success: true });
+          setTimeout(() => {
+            this.props.history.push('/user-dashboard/my-shop');
+          }, 3000);
         });
       }
     };
 
     render() {
       const { success } = this.state;
-
       return (
             <div className="shopForm mr-auto ml-auto mt-5">
         {success && (
@@ -66,6 +91,7 @@ export default class ProductsForm extends Component {
           </div>
         )}
         <form onSubmit={this.handleSubmit}>
+        {this.state.title}
           <div>
             <input
               type='text'
@@ -102,7 +128,18 @@ export default class ProductsForm extends Component {
           <div>
             <input
               type='text'
-              name='shopId'
+              name='quantity'
+              value={this.state.quantity}
+              onChange={this.handleChange}
+              placeholder='Enter a Quanity'
+              className='form-control form-control-lg m-2'
+              required
+            />
+          </div>
+          <div>
+            <input
+              type='text'
+              name='productImage'
               value={this.state.productImage}
               onChange={this.handleChange}
               placeholder='Enter an Image URL'
@@ -111,7 +148,7 @@ export default class ProductsForm extends Component {
             />
           </div>
           <div>
-              <select name='category' value={this.state.type} onChange={this.handleChange} >
+              <select name='CategoryId' onChange={this.handleChange} >
               {this.state.allCategories.map((category) => (<option value={category.id}>{category.name}</option>))}
               </select>
           </div>

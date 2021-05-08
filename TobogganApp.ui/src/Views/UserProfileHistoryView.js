@@ -14,7 +14,6 @@ export default function UserProfileView(props) {
   useEffect(() => {
     userData.getSingleUser(id)
       .then((data) => {
-        console.warn(data);
         setUserInfo(data);
       });
     orderData.fetchOrdersForAllSales(id)

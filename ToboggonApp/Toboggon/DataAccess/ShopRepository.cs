@@ -20,13 +20,30 @@ namespace Toboggan.DataAccess
                                  ORDER BY UserId ASC";
             return db.Query<Shop>(sql).ToList();
         }
+
+        public Shop GetSingleShop(int id)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = "SELECT * FROM Shop WHERE Id = @id";
+            var shop = db.QueryFirstOrDefault<Shop>(sql, new { id = id });
+            return shop;
+        }
+
+        public Shop GetSingleShopByUserId(string userId)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = "SELECT * FROM Shop WHERE UserId = @userId";
+            var shop = db.QueryFirstOrDefault<Shop>(sql, new { UserId = userId });
+            return shop;
+        }
+
         public void AddAShop(Shop shop)
         {
             using var db = new SqlConnection(ConnectionString);
 
-            var sql = @"INSERT INTO [dbo].[Shop]([Name],[UserId],[ShopImage])
+            var sql = @"INSERT INTO [dbo].[Shop]([Name],[UserId],[ShopImage],[Description])
                         OUTPUT inserted.Id
-                        VALUES(@Name,@UserId,@ShopImage)";
+                        VALUES(@Name,@UserId,@ShopImage, @Description)";
 
             var id = db.ExecuteScalar<int>(sql, shop);
 
@@ -39,7 +56,8 @@ namespace Toboggan.DataAccess
             var sql = @"UPDATE [dbo].[Shop]
                         SET [Name] = @Name,
                             [UserId] = @UserId,
-                            [ShopImage] = @ShopImage
+                            [ShopImage] = @ShopImage,
+                            [Description] = @Description
                         WHERE Id = @id";
             db.Execute(sql, shop);
         }

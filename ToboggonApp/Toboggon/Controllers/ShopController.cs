@@ -28,9 +28,20 @@ namespace Toboggan.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetShop(string id)
+        public IActionResult GetShop(int id)
         {
             var shop = _repo.GetSingleShop(id);
+            if (shop == null)
+            {
+                return NotFound("This shop does not exist");
+            }
+            return Ok(shop);
+        }
+
+        [HttpGet("getByUserId/{userId}")]
+        public IActionResult GetShopbyUserId(string userId)
+        {
+            var shop = _repo.GetSingleShopByUserId(userId);
             if (shop == null)
             {
                 return NotFound("This shop does not exist");
