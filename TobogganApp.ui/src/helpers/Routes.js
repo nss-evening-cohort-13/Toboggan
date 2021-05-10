@@ -19,7 +19,6 @@ import ShopDashboardView from '../Views/UserDashboardViews/ShopDashboardView';
 import ShopOrdersView from '../Views/UserDashboardViews/ShopOrdersView';
 
 export default function Routes({ user, authed }) {
-  console.warn('hello', authed);
   return (
     <Switch>
       <Route exact path='/' component={HomeView} />
