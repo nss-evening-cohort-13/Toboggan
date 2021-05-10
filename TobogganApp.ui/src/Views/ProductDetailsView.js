@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import QuantityAlert from '../Components/Alerts/QuantityAlert';
 import AddedToCartAlert from '../Components/Alerts/AddedToCartAlert';
+import NoQuantitySelected from '../Components/Alerts/NoQuantitySelectedAlert';
+import CartData from '../helpers/data/cartData';
 
 export default class ProductDetailsView extends Component {
   state = {
     singleProduct: this.props.location.state,
     quantity: 0,
     addedToCart: false,
+    clicked: false,
   };
 
   handleChange = (e) => {
@@ -17,9 +20,14 @@ export default class ProductDetailsView extends Component {
     });
   };
 
-  handleSubmit = (e) => {
+  addToCart = (e) => {
+    this.setState({
+      clicked: true,
+    });
+    const { singleProduct, quantity } = this.state;
     e.preventDefault();
-    if (this.state.quantity >= 1) {
+    if (quantity >= 1) {
+      CartData.setCart(`{id: ${singleProduct.id},shop: ${singleProduct.shopId}, price: ${singleProduct.price},quantity: ${quantity}}`);
       this.setState({
         addedToCart: true,
       });
@@ -32,7 +40,12 @@ export default class ProductDetailsView extends Component {
   };
 
   render() {
-    const { singleProduct, quantity, addedToCart } = this.state;
+    const {
+      singleProduct,
+      quantity,
+      addedToCart,
+      clicked,
+    } = this.state;
 
     return (
       <>
@@ -49,6 +62,9 @@ export default class ProductDetailsView extends Component {
             {quantity > singleProduct.quantity && (
               <QuantityAlert productData={singleProduct} />
             )}
+             {clicked && quantity == 0 && (
+              <NoQuantitySelected productData={singleProduct} />
+             )}
             {addedToCart && <AddedToCartAlert productData={singleProduct} />}
             <input
               type='text'
@@ -60,7 +76,7 @@ export default class ProductDetailsView extends Component {
               required
             />
             <button
-              onClick={this.handleSubmit}
+              onClick={this.addToCart}
               className='btn btn-outline-success m-1'
             >
               Add to cart
