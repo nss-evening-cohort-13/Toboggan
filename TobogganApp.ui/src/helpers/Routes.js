@@ -26,7 +26,7 @@ export default function Routes({ user, authed }) {
       <Route exact path='/shops' component={Shops} />
       <Route exact path='/productDetails' component={(props) => <ProductDetailsView {...props} authed={authed} user={user} />} />
       <Route exact path='/productsForm' component={(props) => <ProductsForm {...props} user={user}/>}/>
-      <Route exact path='/search/:term' component={(props) => <SearchProductResults {...props}/>} />
+      <Route exact path='/search/:term' component={(props) => <SearchResults {...props}/>} />
       <Route exact path='/categories' component={Categories} />
       <Route exact path='/singleShopPage' component={SingleShopView} />
       <Route exact path='/shopForm' component={(props) => <ShopForm {...props} user={user}/>}/>
