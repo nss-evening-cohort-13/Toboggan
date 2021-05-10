@@ -11,6 +11,7 @@ fbConnection();
 class App extends React.Component {
   state = {
     user: null,
+    authed: null,
   };
 
   componentDidMount() {
@@ -20,6 +21,7 @@ class App extends React.Component {
           .getIdToken()
           .then((token) => sessionStorage.setItem('token', token));
         this.setState({ user });
+        this.setState({ authed: true });
       } else {
         this.setState({ user: false });
       }
@@ -31,11 +33,12 @@ class App extends React.Component {
   }
 
   render() {
+    console.warn('in appjs', this.state.authed);
     return (
       <div className='App'>
         <Router>
           <Nav user={this.state.user} />
-          <Routes user={this.state.user} />
+          <Routes authed={this.state.authed} user={this.state.user} />
         </Router>
       </div>
     );

@@ -41,7 +41,7 @@ class SingleShopView extends Component {
       shopId,
       authed,
     } = this.state;
-
+    console.warn('this is inside the single shop', authed);
     return (
       <>
         {shop !== null && (
@@ -60,12 +60,19 @@ class SingleShopView extends Component {
             <button className="btn btn-primary">Edit Shop</button>
             </Link>
             <button className="btn btn-danger" onClick={() => this.deleteShop(shopId)}>Delete Shop</button>
-            </>
+             <Link
+             to={{
+               pathname: '/productsForm',
+               state: shop.id,
+             }}>
+             <button className="btn btn-primary">Add Product</button>
+             </Link>
+             </>
             }
 
           </div>
           <div className='d-flex flex-wrap justify-content-center'>
-              {shopsProducts.map((product) => <ProductCard key={product.id} productData={product}/>)}
+              {shopsProducts.map((product) => <ProductCard key={product.id} authed={authed} productData={product}/>)}
           </div>
         </div>
         )}

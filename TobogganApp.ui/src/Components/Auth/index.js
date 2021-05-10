@@ -12,6 +12,7 @@ import AuthData from '../../helpers/data/authData';
 export default class Auth extends Component {
   state = {
     user: null,
+    authed: null,
   };
 
   componentDidMount() {

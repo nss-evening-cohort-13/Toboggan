@@ -101,5 +101,26 @@ namespace Toboggan.DataAccess
             db.Execute(sql, user);
         }
 
+        public List<PurchaseHistory> GetPurchaseHistoryOfUser(string id)
+        {
+            using var db = new SqlConnection(ConnectionString);
+
+            var sql = @"select s.Id as ShopId, s.Name as ShopName, o.Id as OrderTableId, c.Name as CategoryName, o.SaleDate, o.TotalCost, c.Name, p.Title, 
+                          p.Description, p.Price, oli.Quantity as QuantityBought
+                          from [Order] o
+                          JOIN [OrderLineItem] oli on oli.OrderId = o.Id 
+                          JOIN [Product] p ON p.Id = oli.Id
+                          JOIN [Category] c ON c.Id = P.CategoryId
+                          JOIN [Shop] s ON s.Id = p.ShopId
+                          JOIN [User] u ON u.Id = s.UserId
+						  JOIN [USER] buyer ON buyer.Id = o.UserId
+                          WHERE buyer.Id = @id
+                          ORDER BY s.Id ASC, o.SaleDate DESC;";
+
+            var sellerOrders = db.Query<PurchaseHistory>(sql, new { Id = id }).ToList();
+
+            return sellerOrders;
+        }
+
     }
 }
