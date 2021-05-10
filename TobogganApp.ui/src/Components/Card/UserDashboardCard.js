@@ -21,7 +21,7 @@ export default function UserDashboardCard(props) {
   const classes = useStyles();
   return (
     <Link to={{ pathname: `${props.pathname}` }}>
-      <Card className={`${classes.root} m-1 d-flex flex-column grow`} variant="outlined" >
+      <Card className={classes.root} variant="outlined" >
         <CardContent>
           <Typography className={classes.title}>
             {props.title}

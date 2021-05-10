@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import UserDashboardCard from '../../Components/Card/UserDashboardCard';
+import shopData from '../../helpers/data/shopData';
 
 const useStyles = makeStyles({
   root: {
@@ -10,12 +11,21 @@ const useStyles = makeStyles({
   },
 });
 
-export default function UserDashboardView() {
+export default function UserDashboardView(props) {
+  const [user, setUser] = useState([props.user]);
   const classes = useStyles();
+  console.warn(user);
+
+  // useEffect(() => {
+  //   shopData.getSingleShopByUserId(user?.uid)
+  //     .then((response) => {
+  //       setUser(response);
+  //     });
+  // });
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={5}>
+      <Grid className='d-flex justify-content-center' container spacing={5}>
         <Grid item>
           <UserDashboardCard title="Account Info" pathname="user-dashboard/account-info"/>
         </Grid>
