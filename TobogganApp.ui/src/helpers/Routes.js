@@ -17,6 +17,7 @@ import PurchaseHistoryView from '../Views/UserDashboardViews/PurchaseHistoryView
 import MyShopView from '../Views/UserDashboardViews/MyShopView';
 import ShopDashboardView from '../Views/UserDashboardViews/ShopDashboardView';
 import ShopOrdersView from '../Views/UserDashboardViews/ShopOrdersView';
+import CreateShopView from '../Views/UserDashboardViews/CreateShopView';
 
 export default function Routes({ user, authed }) {
   console.warn('hello', authed);
@@ -40,6 +41,7 @@ export default function Routes({ user, authed }) {
       <Route exact path='/user-dashboard/purchase-history' component={() => <PurchaseHistoryView user={user}/>} />
       <Route exact path='/user-dashboard/my-shop' component={(props) => <MyShopView {...props} user={user}/> } />
       <Route exact path='/user-dashboard/shop-dashboard' component={ShopDashboardView} />
+      <Route exact path='/user-dashboard/create-shop' component={CreateShopView} />
       <Route exact path='/user-dashboard/shop-orders' component={(props) => <ShopOrdersView {...props} user={user}/>} />
     </Switch>
   );
