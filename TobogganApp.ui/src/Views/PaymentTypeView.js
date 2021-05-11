@@ -5,10 +5,11 @@ import paymentData from '../helpers/data/paymentTypeData';
 export default class PaymentTypeView extends Component {
   state = {
     paymentTypes: [],
+    user: this.props.location.state,
   };
 
   componentDidMount() {
-    paymentData.getUsersPaymentTypes(this.props.location.id).then((response) => {
+    paymentData.getUsersPaymentTypes(this.state.user.id).then((response) => {
       this.setState({
         paymentTypes: response,
       });
