@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import OrderHistoryTable from '../../Components/Card/OrderCard';
-// import orderData from '../../helpers/data/orderData';
 import userData from '../../helpers/data/userData';
+import PurchaseHistoryCard from '../../Components/Card/PurchaseHistoryCard';
 
 export default class PurchaseHistoryView extends Component {
   state = {
@@ -26,9 +25,11 @@ export default class PurchaseHistoryView extends Component {
 
   render() {
     const { orders } = this.state;
+    const renderOrders = orders.map((order) => <PurchaseHistoryCard key={order.Id} orderData={order} />);
     return (
       <div className="m-4">
         <h2>Purchase History</h2>
+        {renderOrders}
       </div>
     );
   }
