@@ -10,8 +10,8 @@ const getUsersPaymentTypes = (userId) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const createPaymentType = (paymentObj) => new Promise((resolve, reject) => {
-  axios.post(`${paymentUrl}`, paymentObj).then((response) => {
+const createPayment = (paymentObj) => new Promise((resolve, reject) => {
+  axios.post(paymentUrl, paymentObj).then((response) => {
     resolve(response.data);
   }).catch((error) => reject(error));
 });
@@ -30,7 +30,7 @@ const deletePayment = (paymentId) => new Promise((resolve, reject) => {
 
 export default {
   getUsersPaymentTypes,
-  createPaymentType,
+  createPayment,
   updatePayment,
   deletePayment,
 };

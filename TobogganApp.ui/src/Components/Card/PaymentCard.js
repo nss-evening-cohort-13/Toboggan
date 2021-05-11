@@ -1,7 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
+import AppModal from '../AppModal';
+import PaymentForm from '../Forms/PaymentForm';
 
 const useStyles = makeStyles({
   root: {
@@ -31,11 +32,20 @@ export default function PaymentCard({ paymentData }) {
     }
     return 'Type Not Found';
   };
+
   return (
     <>
     <Card className={`${classes.root} m-4 p-3 d-flex flex-column grow`}>
-          <h1>{typeName(paymentData.typeName)}</h1>
+          <h2>{typeName(paymentData.typeName)}</h2>
           <h4>{paymentData.accountNumber}</h4>
+        <AppModal
+          btnColor={'outline-info'}
+          title='Update Payment'
+          buttonLabel={'Update'}
+          className2={'btn btn-md'}
+        >
+          <PaymentForm paymentData={paymentData}/>
+        </AppModal>
     </Card>
     </>
   );
