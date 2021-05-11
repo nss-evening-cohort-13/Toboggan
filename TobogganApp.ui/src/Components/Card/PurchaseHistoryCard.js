@@ -37,7 +37,6 @@ const createData = (orderData, orderTableId, saleDate, shopName, totalCost) => {
   const itemsAttached = orderData.filter((x) => (orderTableId === x.orderTableId));
   const lineItems = [];
   itemsAttached.forEach((item) => {
-    console.warn(item);
     lineItems.push({
       orderTableId: item.orderTableId,
       category: item.categoryName,

@@ -14,10 +14,10 @@ export default function Nav(props) {
       <nav className="navbar">
         <div className="navbar-items">
           <Link to="/shops" className="navbar-item">
-            shops
+            Shops
           </Link>
           <Link to="/categories" className="navbar-item">
-            categories
+            Categories
           </Link>
         </div>
       </nav>

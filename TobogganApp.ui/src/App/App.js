@@ -33,7 +33,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.warn('in appjs', this.state.authed);
     return (
       <div className='App'>
         <Router>

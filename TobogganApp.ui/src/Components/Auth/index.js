@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
+// import Avatar from '@material-ui/core/Avatar';
 import firebase from 'firebase/app';
 import {
   UncontrolledDropdown,
