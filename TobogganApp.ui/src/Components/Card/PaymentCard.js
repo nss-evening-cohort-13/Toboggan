@@ -33,7 +33,7 @@ export default function PaymentCard({ paymentData }) {
   };
   return (
     <>
-    <Card className={`${classes.root} m-1 d-flex flex-column grow`}>
+    <Card className={`${classes.root} m-4 p-3 d-flex flex-column grow`}>
           <h1>{typeName(paymentData.typeName)}</h1>
           <h4>{paymentData.accountNumber}</h4>
     </Card>
