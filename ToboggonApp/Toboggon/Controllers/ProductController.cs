@@ -72,13 +72,5 @@ namespace Toboggan.Controllers
             return NoContent();
         }
 
-        [HttpPatch("delete")]
-        [AllowAnonymous]
-        public IActionResult DeleteProduct(Product product)
-        {
-            _repo.DeleteProduct(product);
-            return NoContent();
-        }
-
     }
 }

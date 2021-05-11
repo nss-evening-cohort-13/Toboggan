@@ -52,8 +52,8 @@ export default class ProductsForm extends Component {
           ShopId: shopIdNum,
           CategoryId,
           ProductImage: this.state.productImage,
-          Active: true,
         };
+        console.warn(productObject);
         productData.createProduct(productObject).then(() => {
           this.setState({ success: true });
           setTimeout(() => {
