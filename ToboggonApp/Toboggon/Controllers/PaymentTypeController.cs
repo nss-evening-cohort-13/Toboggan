@@ -38,6 +38,19 @@ namespace Toboggan.Controllers
             return Ok(paymentType);
         }
 
+        [HttpGet("/getbyUserId/{id}")]
+        public IActionResult GetByUserId(string userId)
+        {
+            var paymentType = _repo.GetByUserId(userId);
+
+            if (paymentType == null)
+            {
+                return NotFound("This PaymentType id does not exist");
+            }
+
+            return Ok(paymentType);
+        }
+
         [HttpPost]
         public IActionResult AddPaymentType(PaymentType pt)
         {
