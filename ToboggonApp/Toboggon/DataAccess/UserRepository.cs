@@ -101,7 +101,7 @@ namespace Toboggan.DataAccess
             db.Execute(sql, user);
         }
 
-        public List<PurchaseHistory> GetPurchaseHistoryOfUser(string id)
+        public List<ShopOrderHistory> GetShopOrderHistoryOfUser(string id)
         {
             using var db = new SqlConnection(ConnectionString);
 
@@ -117,9 +117,25 @@ namespace Toboggan.DataAccess
                           WHERE buyer.Id = @id
                           ORDER BY s.Id ASC, o.SaleDate DESC;";
 
-            var sellerOrders = db.Query<PurchaseHistory>(sql, new { Id = id }).ToList();
+            var sellerOrders = db.Query<ShopOrderHistory>(sql, new { Id = id }).ToList();
 
             return sellerOrders;
+        }
+
+        public List<dynamic> GetPurchaseHistory(string id)
+        {
+            using var db = new SqlConnection(ConnectionString);
+
+            var sql = @"select p.Title, p.Description, p.Price, p.ProductImage, p.ShopId,oli.Quantity, o.SaleDate from [OrderLineItem] oli
+				        JOIN [Order] o on o.Id = oli.OrderId
+				        JOIN [Product] p on p.Id = oli.ProductId
+				        WHERE o.UserId = @id
+				        ORDER BY o.SaleDate DESC";
+
+            var purchaseHistory = db.Query(sql).ToList();
+
+            return purchaseHistory;
+
         }
 
     }

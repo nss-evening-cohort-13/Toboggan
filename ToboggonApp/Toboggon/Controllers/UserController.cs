@@ -47,10 +47,23 @@ namespace Toboggan.Controllers
 
         }
 
+        [HttpGet("getShopOrderHistory/{id}")]
+        public IActionResult GetShopOrderHistoryByUserId(string id)
+        {
+            var user = _repo.GetShopOrderHistoryOfUser(id);
+
+            if (user == null)
+            {
+                return NotFound("This user does not exist.");
+            }
+
+            return Ok(user);
+        }
+
         [HttpGet("getPurchaseHistory/{id}")]
         public IActionResult GetPurchaseHistoryByUserId(string id)
         {
-            var user = _repo.GetPurchaseHistoryOfUser(id);
+            var user = _repo.GetPurchaseHistory(id);
 
             if (user == null)
             {
