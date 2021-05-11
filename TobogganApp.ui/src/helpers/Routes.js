@@ -17,6 +17,7 @@ import PurchaseHistoryView from '../Views/UserDashboardViews/PurchaseHistoryView
 import MyShopView from '../Views/UserDashboardViews/MyShopView';
 import ShopDashboardView from '../Views/UserDashboardViews/ShopDashboardView';
 import ShopOrdersView from '../Views/UserDashboardViews/ShopOrdersView';
+import PaymentTypeView from '../Views/PaymentTypeView';
 
 export default function Routes({ user, authed }) {
   return (
@@ -32,6 +33,7 @@ export default function Routes({ user, authed }) {
       <Route exact path="/user-profile/history/:id" component= { UserProfileHistory } />
       <Route exact path="/user-profile/dashboard/:id" component= { UserProfileDashboard } />
       <Route exact path="/user-profile/editshoppage/:id" component= { UserProfileEditShopPage } />
+      <Route exact path='/paymentType' component={PaymentTypeView} />
 
       {/* User Dashboard Views */}
       <Route exact path='/user-dashboard' component={UserDashboardView} />
