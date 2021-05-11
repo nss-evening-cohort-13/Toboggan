@@ -22,8 +22,7 @@ export default class PurchaseHistoryView extends Component {
     const { orders } = this.state;
     return (
       <div className="m-4">
-        <h2>Shop Orders</h2>
-        <h3>hello</h3>
+        <h2>Purchase History</h2>
         <OrderHistoryTable orderData={orders}/>
       </div>
     );
