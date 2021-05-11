@@ -8,7 +8,7 @@ export default class PaymentTypeView extends Component {
   };
 
   componentDidMount() {
-    paymentData.getUsersPaymentTypes(this.props.location.user.id).then((response) => {
+    paymentData.getUsersPaymentTypes(this.props.location.id).then((response) => {
       this.setState({
         paymentTypes: response,
       });
@@ -21,7 +21,6 @@ export default class PaymentTypeView extends Component {
 
     return (
         <>
-        <SearchBar/>
           <h1 className="m-2">Payments</h1>
           <div className="d-flex flex-wrap justify-content-center">
           {renderPayments()}

@@ -3,7 +3,7 @@ import { baseUrl } from './config.json';
 
 const paymentUrl = `${baseUrl}/PaymentType`;
 
-const getUsersPaymentTypes = (user) => new Promise((resolve, reject) => {
+const getUsersPaymentTypes = (userId) => new Promise((resolve, reject) => {
   axios.get(`${paymentUrl}/getbyUserId/${userId}`).then((response) => {
     resolve(response.data);
   })
