@@ -66,6 +66,7 @@ namespace Toboggan.DataAccess
             var sql = @"UPDATE [dbo].[PaymentType]
                         SET [AccountNumber] = @AccountNumber
                             ,[TypeName] = @Name
+                            ,[UserId] = @UserId
                              WHERE Id = @id";
 
             db.Execute(sql, pt);

@@ -38,7 +38,7 @@ namespace Toboggan.Controllers
             return Ok(paymentType);
         }
 
-        [HttpGet("/getbyUserId/{id}")]
+        [HttpGet("getbyUserId/{userId}")]
         public IActionResult GetByUserId(string userId)
         {
             var paymentType = _repo.GetByUserId(userId);
