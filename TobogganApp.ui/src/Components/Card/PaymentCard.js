@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function PaymentCard({ paymentData }) {
+export default function PaymentCard({ paymentData, onUpdate }) {
   const classes = useStyles();
   const typeName = (type) => {
     switch (type) {
@@ -44,7 +44,7 @@ export default function PaymentCard({ paymentData }) {
           buttonLabel={'Update'}
           className2={'btn btn-md'}
         >
-          <PaymentForm paymentData={paymentData}/>
+          <PaymentForm paymentData={paymentData} onUpdate={onUpdate}/>
         </AppModal>
     </Card>
     </>

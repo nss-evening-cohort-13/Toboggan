@@ -4,8 +4,8 @@ import paymentData from '../../helpers/data/paymentTypeData';
 class PaymentForm extends Component {
   state = {
     id: this.props.paymentData?.id || '',
-    accountNumber: parseInt(this.props.paymentData?.accountNumber, 10) || '',
-    typeName: parseInt(this.props.paymentData?.typeName, 10) || '',
+    accountNumber: this.props.paymentData?.accountNumber || '',
+    typeName: this.props.paymentData?.typeName || '',
     userId: this.props.paymentData?.userId || this.props?.userId,
   };
 
@@ -27,13 +27,21 @@ class PaymentForm extends Component {
       paymentData.createPayment(paymentObject).then(() => {
         this.setState({ success: true });
         setTimeout(() => {
+          this.props.onUpdate?.(this.state.userId);
           this.props.toggle();
         }, 3000);
       });
     } else {
-      paymentData.updatePayment(this.state).then(() => {
+      const updatePaymentObject = {
+        Id: this.state.id,
+        AccountNumber: parseInt(this.state.accountNumber, 10),
+        TypeName: parseInt(this.state.typeName, 10),
+        UserId: this.state.userId,
+      };
+      paymentData.updatePayment(updatePaymentObject).then(() => {
         this.setState({ success: true });
         setTimeout(() => {
+          this.props.onUpdate?.(this.state.userId);
           this.props.toggle();
         }, 3000);
       });
@@ -68,6 +76,7 @@ class PaymentForm extends Component {
             className='form-control form-control-lg m-1'
             value={this.state.typeName}
             onChange={this.handleChange}
+            defaultValue={this.state?.typeName}
             required
             >
             <option>Choose Payment Type</option>

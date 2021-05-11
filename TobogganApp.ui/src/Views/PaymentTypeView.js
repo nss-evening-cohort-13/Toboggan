@@ -11,7 +11,11 @@ export default class PaymentTypeView extends Component {
   };
 
   componentDidMount() {
-    paymentData.getUsersPaymentTypes(this.state.user.id).then((response) => {
+    this.loadThePayments(this.state.user.id);
+  }
+
+  loadThePayments = (userId) => {
+    paymentData.getUsersPaymentTypes(userId).then((response) => {
       this.setState({
         paymentTypes: response,
       });
@@ -20,7 +24,7 @@ export default class PaymentTypeView extends Component {
 
   render() {
     const { paymentTypes, user } = this.state;
-    const renderPayments = () => paymentTypes.map((payment) => (<PaymentCard key={payment.id} paymentData={payment} />));
+    const renderPayments = () => paymentTypes.map((payment) => (<PaymentCard key={payment.id} paymentData={payment} onUpdate={this.loadThePayments} />));
 
     return (
         <>
@@ -31,7 +35,7 @@ export default class PaymentTypeView extends Component {
           buttonLabel={'Add A Payment'}
           className2={'btn btn-md'}
         >
-          <PaymentForm userId={user.id}/>
+          <PaymentForm userId={user.id} onUpdate={() => this.loadThePayments()}/>
         </AppModal>
           <div className="d-flex flex-wrap justify-content-center">
           {renderPayments()}
