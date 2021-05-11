@@ -43,7 +43,6 @@ export default class ProductsForm extends Component {
       const priceNum = Number(this.state.price);
       const quantityNum = Number(this.state.quantity);
       const shopIdNum = Number(this.state.shopId);
-      console.warn('what is the cat id', CategoryId);
       if (this.state.id === '') {
         const productObject = {
           Title: this.state.title,
@@ -54,7 +53,6 @@ export default class ProductsForm extends Component {
           CategoryId,
           ProductImage: this.state.productImage,
         };
-        console.warn(productObject);
         productData.createProduct(productObject).then(() => {
           this.setState({ success: true });
           setTimeout(() => {

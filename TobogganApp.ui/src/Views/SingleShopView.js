@@ -41,7 +41,7 @@ class SingleShopView extends Component {
       shopId,
       authed,
     } = this.state;
-    console.warn('this is inside the single shop', authed);
+
     return (
       <>
         {shop !== null && (

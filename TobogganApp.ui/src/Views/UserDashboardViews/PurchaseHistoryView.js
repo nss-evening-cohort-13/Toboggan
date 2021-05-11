@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import OrderHistoryTable from '../../Components/Card/OrderCard';
-import orderData from '../../helpers/data/orderData';
+// import orderData from '../../helpers/data/orderData';
+import userData from '../../helpers/data/userData';
 
 export default class PurchaseHistoryView extends Component {
   state = {
@@ -9,12 +10,17 @@ export default class PurchaseHistoryView extends Component {
   }
 
   componentDidMount() {
-    orderData.fetchOrdersForAllSales(this.state.userId)
+    this.getPurchaseOrderHistory();
+  }
+
+  getPurchaseOrderHistory = () => {
+    const { userId } = this.state;
+
+    userData.getPurchaseHistory(userId)
       .then((response) => {
         this.setState({
           orders: response,
         });
-        console.warn(response);
       });
   }
 
@@ -23,7 +29,6 @@ export default class PurchaseHistoryView extends Component {
     return (
       <div className="m-4">
         <h2>Purchase History</h2>
-        <OrderHistoryTable orderData={orders}/>
       </div>
     );
   }
