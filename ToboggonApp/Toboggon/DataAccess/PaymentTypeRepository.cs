@@ -53,7 +53,7 @@ namespace Toboggan.DataAccess
         {
             var sql = @"INSERT INTO [PaymentType] ([AccountNumber], [TypeName], [UserId])
                         OUTPUT inserted.Id
-                        VALUES(@AccountNumber, @Name, @UserId)";
+                        VALUES(@AccountNumber, @TypeName, @UserId)";
 
             using var db = new SqlConnection(ConnectionString);
             var id = db.ExecuteScalar<int>(sql, pt);
@@ -65,7 +65,7 @@ namespace Toboggan.DataAccess
 
             var sql = @"UPDATE [dbo].[PaymentType]
                         SET [AccountNumber] = @AccountNumber
-                            ,[TypeName] = @Name
+                            ,[TypeName] = @TypeName
                             ,[UserId] = @UserId
                              WHERE Id = @id";
 
