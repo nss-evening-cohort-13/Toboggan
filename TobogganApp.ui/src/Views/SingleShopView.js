@@ -27,6 +27,30 @@ class SingleShopView extends Component {
     });
   }
 
+  deleteProd = (product) => {
+    const productObjectUpdate = {
+      Id: product.id,
+      Title: product.title,
+      Description: product.description,
+      Price: product.price,
+      Quantity: product.quantity,
+      ShopId: product.shopId,
+      CategoryId: product.categoryId,
+      ProductImage: product.productImage,
+      Active: 0,
+    };
+    productData.updateProduct(productObjectUpdate).then(() => {
+      this.setState({ success: true });
+      const productsActive = this.state.shopsProducts.filter((x) => x.id !== product.id);
+      this.setState({
+        shopsProducts: productsActive,
+      });
+      setTimeout(() => {
+        this.props.history.push('/user-dashboard/my-shop');
+      }, 3000);
+    });
+  };
+
   deleteShop = (shopId) => {
     FavoriteData.deleteFavoritesOfASpecificShop(shopId).then(() => {
       shopData.deleteShop(shopId).then(() => {
@@ -72,7 +96,7 @@ class SingleShopView extends Component {
 
           </div>
           <div className='d-flex flex-wrap justify-content-center'>
-              {shopsProducts.map((product) => <ProductCard key={product.id} authed={authed} productData={product}/>)}
+              {shopsProducts && shopsProducts.map((product) => <ProductCard key={product.id} authed={authed} deleteProd={this.deleteProd} productData={product}/>)}
           </div>
         </div>
         )}

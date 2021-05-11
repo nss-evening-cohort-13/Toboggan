@@ -19,13 +19,8 @@ const useStyles = makeStyles({
   },
 });
 
-export default function MediaCard({ productData, authed }) {
+export default function MediaCard({ productData, authed, deleteProd }) {
   const classes = useStyles();
-  const deleteProduct = (productId) => {
-    Product.deleteProduct(productId).then(() => {
-      this.props.history.push('/user-dashboard/my-shop');
-    });
-  };
   return (
     <Link className="spaceIt" to={{
       pathname: '/productDetails',
@@ -66,7 +61,7 @@ export default function MediaCard({ productData, authed }) {
               pathname: '/user-dashboard/my-shop',
               state: productData,
             }}>
-            <button className="btn btn-danger productButtons" onClick={() => deleteProduct(productData.id)}>Delete Product</button>
+            <button className="btn btn-danger productButtons" onClick={() => deleteProd(productData)}>Delete Product</button>
             </Link>
              </>
 }

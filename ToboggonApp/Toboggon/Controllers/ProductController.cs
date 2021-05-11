@@ -72,7 +72,7 @@ namespace Toboggan.Controllers
             return NoContent();
         }
 
-        [HttpPatch]
+        [HttpPatch("delete")]
         [AllowAnonymous]
         public IActionResult DeleteProduct(Product product)
         {
