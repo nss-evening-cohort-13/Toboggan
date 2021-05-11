@@ -38,7 +38,7 @@ export default function Routes({ user, authed }) {
       <Route exact path='/user-dashboard/account-info' component={AccountInfoView} />
       <Route exact path='/user-dashboard/purchase-history' component={() => <PurchaseHistoryView user={user}/>} />
       <Route exact path='/user-dashboard/my-shop' component={(props) => <MyShopView {...props} user={user}/> } />
-      <Route exact path='/user-dashboard/shop-dashboard' component={ShopDashboardView} />
+      <Route exact path='/user-dashboard/shop-dashboard' component={() => <ShopDashboardView user={user}/>} />
       <Route exact path='/user-dashboard/shop-orders' component={(props) => <ShopOrdersView {...props} user={user}/>} />
     </Switch>
   );

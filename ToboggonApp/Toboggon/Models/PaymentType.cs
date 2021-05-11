@@ -11,6 +11,7 @@ namespace Toboggan.Models
         public int Id { get; set; }
         public int AccountNumber { get; set; }
         public PaymentTypeName Name { get; set; }
+        public string UserId { get; set; }
     }
 
     public enum PaymentTypeName

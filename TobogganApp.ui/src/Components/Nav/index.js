@@ -13,18 +13,16 @@ export default function Nav() {
       <nav className="navbar">
         <div className="navbar-items">
           <Link to="/shops" className="navbar-item">
-            shops
+            Shops
           </Link>
           <Link to="/categories" className="navbar-item">
-            categories
+            Categories
+          </Link>
+          <Link to="/user-dashboard" className="user-icon m-2">
+            <FontAwesomeIcon icon={faUserCircle} />
           </Link>
         </div>
       </nav>
-      <div>
-        <Link to="/user-dashboard" className="user-icon">
-          <FontAwesomeIcon icon={faUserCircle} />
-        </Link>
-      </div>
       <div className='user-icon-container'>
         <Auth />
       </div>

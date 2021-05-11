@@ -35,7 +35,7 @@ const fetchTotalAllSalesAvgById = (id) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-const fetchtotalSalesByDate = (id) => new Promise((resolve, reject) => {
+const fetchTotalSalesByDate = (id) => new Promise((resolve, reject) => {
   axios.get(`${orderDataUrl}/totalSalesByDate/${id}`, {
     params: { userId: id },
   }).then((response) => {
@@ -56,6 +56,6 @@ export default {
   fetchOrdersWithLineItemData,
   fetchOrdersForAllSales,
   fetchTotalAllSalesAvgById,
-  fetchtotalSalesByDate,
+  fetchTotalSalesByDate,
   fetchOrdersToBeShipped,
 };

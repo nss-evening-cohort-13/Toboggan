@@ -32,12 +32,12 @@ export default class Auth extends Component {
         : <>
       <div className="d-flex">
       <Avatar className="userInfo" alt={user?.displayName} src={user?.photoURL} />
-         <div
+         <button
            className='nav-link btn btn-danger'
            onClick={(e) => AuthData.logoutClickEvent(e)}
          >
            Logout
-         </div>
+         </button>
       </div>
       </>
       }
