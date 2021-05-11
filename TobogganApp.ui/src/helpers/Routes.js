@@ -2,9 +2,6 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Shops from '../Views/ShopView';
 import Categories from '../Views/ProductCategoryView';
-import UserProfileHistory from '../Views/UserProfileHistoryView';
-import UserProfileDashboard from '../Views/UserProfileDashboardView';
-import UserProfileEditShopPage from '../Views/UserProfileEditShopView';
 import HomeView from '../Views/HomeView';
 import ProductDetailsView from '../Views/ProductDetailsView';
 import SearchResults from '../Views/SearchResults';
@@ -30,9 +27,9 @@ export default function Routes({ user, authed }) {
       <Route exact path='/categories' component={Categories} />
       <Route exact path='/singleShopPage' component={SingleShopView} />
       <Route exact path='/shopForm' component={(props) => <ShopForm {...props} user={user}/>}/>
-      <Route exact path="/user-profile/history/:id" component= { UserProfileHistory } />
+      {/* <Route exact path="/user-profile/history/:id" component= { UserProfileHistory } />
       <Route exact path="/user-profile/dashboard/:id" component= { UserProfileDashboard } />
-      <Route exact path="/user-profile/editshoppage/:id" component= { UserProfileEditShopPage } />
+      <Route exact path="/user-profile/editshoppage/:id" component= { UserProfileEditShopPage } /> */}
 
       {/* User Dashboard Views */}
       <Route exact path='/user-dashboard' component={(props) => <UserDashboardView {...props} user={user}/> } />

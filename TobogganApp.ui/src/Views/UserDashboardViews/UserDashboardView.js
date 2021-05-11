@@ -26,6 +26,8 @@ export default function UserDashboardView(props) {
         console.warn('response', response);
         if (response) {
           setUserHasAShop(true);
+        } else {
+          setUserHasAShop(false);
         }
       });
     // return () => source.cancel();
