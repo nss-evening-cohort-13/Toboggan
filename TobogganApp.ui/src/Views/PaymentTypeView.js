@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PaymentCard from '../Components/Card/PaymentCard';
+import paymentData from '../helpers/data/paymentTypeData';
 
 export default class PaymentTypeView extends Component {
   state = {
@@ -7,7 +8,7 @@ export default class PaymentTypeView extends Component {
   };
 
   componentDidMount() {
-    paymentData.getAllPaymentss().then((response) => {
+    paymentData.getUsersPaymentTypes(this.props.location.user.id).then((response) => {
       this.setState({
         paymentTypes: response,
       });
