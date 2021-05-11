@@ -38,15 +38,17 @@ export default function PaymentCard({ paymentData, onUpdate, deletePayment }) {
     <Card className={`${classes.root} m-4 p-3 d-flex flex-column grow`}>
           <h2>{typeName(paymentData.typeName)}</h2>
           <h4>{paymentData.accountNumber}</h4>
+        <div className='buttonContainer m-2 d-flex '>
         <AppModal
           btnColor={'outline-info'}
           title='Update Payment'
           buttonLabel={'Update'}
-          className2={'btn btn-md'}
+          className2={'btn btn-md m-2'}
         >
           <PaymentForm paymentData={paymentData} onUpdate={onUpdate}/>
         </AppModal>
-        <button onClick={() => deletePayment(paymentData.id)} className='btn btn-outline-danger'>Delete Payment</button>
+        <button onClick={() => deletePayment(paymentData.id)} className='btn btn-outline-danger m-2'>Delete Payment</button>
+        </div>
     </Card>
     </>
   );
