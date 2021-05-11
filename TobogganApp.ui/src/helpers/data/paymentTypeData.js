@@ -29,8 +29,8 @@ const deletePayment = (paymentId) => new Promise((resolve, reject) => {
 });
 
 export default {
-    getUsersPaymentTypes,
-    createPaymentType,
-    updatePayment,
-    deletePayment,
+  getUsersPaymentTypes,
+  createPaymentType,
+  updatePayment,
+  deletePayment,
 };
