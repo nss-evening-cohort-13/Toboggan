@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function PaymentCard({ paymentData, onUpdate }) {
+export default function PaymentCard({ paymentData, onUpdate, deletePayment }) {
   const classes = useStyles();
   const typeName = (type) => {
     switch (type) {
@@ -46,6 +46,7 @@ export default function PaymentCard({ paymentData, onUpdate }) {
         >
           <PaymentForm paymentData={paymentData} onUpdate={onUpdate}/>
         </AppModal>
+        <button onClick={() => deletePayment(paymentData.id)} className='btn btn-outline-danger'>Delete Payment</button>
     </Card>
     </>
   );

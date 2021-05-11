@@ -22,9 +22,15 @@ export default class PaymentTypeView extends Component {
     });
   }
 
+  deletePayment = (id) => {
+    paymentData.deletePayment(id).then(() => {
+      this.loadThePayments(this.state.user.id);
+    });
+  }
+
   render() {
     const { paymentTypes, user } = this.state;
-    const renderPayments = () => paymentTypes.map((payment) => (<PaymentCard key={payment.id} paymentData={payment} onUpdate={this.loadThePayments} />));
+    const renderPayments = () => paymentTypes.map((payment) => (<PaymentCard key={payment.id} deletePayment={this.deletePayment} paymentData={payment} onUpdate={this.loadThePayments} />));
 
     return (
         <>
