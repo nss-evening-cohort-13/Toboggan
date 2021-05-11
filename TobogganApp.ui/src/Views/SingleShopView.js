@@ -20,8 +20,9 @@ class SingleShopView extends Component {
       });
     });
     productData.getProductsOfAShop(this.state.shopId).then((response) => {
+      const productsActive = response.filter((product) => product.active == 1);
       this.setState({
-        shopsProducts: response,
+        shopsProducts: productsActive,
       });
     });
   }

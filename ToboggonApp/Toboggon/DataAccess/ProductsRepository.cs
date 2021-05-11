@@ -57,12 +57,14 @@ namespace Toboggan.DataAccess
             db.Execute(sql, product);
         }
 
-        public void DeleteProduct(int id)
+        public void DeleteProduct(Product product)
         {
             using var db = new SqlConnection(ConnectionString);
-            var sql = @"DELETE FROM Product WHERE Id= @id";
+            var sql = @$"UPDATE Product SET 
+                        Active=0
+                       WHERE Id= @id";
 
-            db.Execute(sql, new { id });
+            db.Execute(sql, product);
         }
 
         public List<Product> GetProductsOfAShop(int shopId)

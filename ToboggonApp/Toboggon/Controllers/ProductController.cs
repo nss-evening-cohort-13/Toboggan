@@ -72,11 +72,12 @@ namespace Toboggan.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult DeleteProduct(int id)
+        [HttpPatch]
+        [AllowAnonymous]
+        public IActionResult DeleteProduct(Product product)
         {
-            _repo.DeleteProduct(id);
-            return Ok();
+            _repo.DeleteProduct(product);
+            return NoContent();
         }
 
     }
