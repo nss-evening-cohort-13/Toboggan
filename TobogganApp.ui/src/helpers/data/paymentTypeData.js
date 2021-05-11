@@ -11,7 +11,7 @@ const getUsersPaymentTypes = (userId) => new Promise((resolve, reject) => {
 });
 
 const createPayment = (paymentObj) => new Promise((resolve, reject) => {
-  axios.post(paymentUrl, paymentObj).then((response) => {
+  axios.post(`${paymentUrl}`, paymentObj).then((response) => {
     resolve(response.data);
   }).catch((error) => reject(error));
 });

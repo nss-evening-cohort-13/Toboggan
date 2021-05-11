@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import paymentData from '../../helpers/data/paymentTypeData';
 
 class PaymentForm extends Component {
   state = {
     id: this.props.paymentData?.id || '',
-    accountNumber: this.props.paymentData?.accountNumber || '',
-    typeName: this.props.paymentData?.typeName || '',
+    accountNumber: parseInt(this.props.paymentData?.accountNumber, 10) || '',
+    typeName: parseInt(this.props.paymentData?.typeName, 10) || '',
     userId: this.props.paymentData?.userId || this.props?.userId,
   };
 
@@ -20,8 +19,8 @@ class PaymentForm extends Component {
     e.preventDefault();
     if (this.state.id === '') {
       const paymentObject = {
-        AccountNumber: this.state.accountNumber,
-        TypeName: this.state.typeName,
+        AccountNumber: parseInt(this.state.accountNumber, 10),
+        TypeName: parseInt(this.state.typeName, 10),
         UserId: this.state.userId,
       };
       console.warn(paymentObject);
@@ -92,4 +91,4 @@ class PaymentForm extends Component {
   }
 }
 
-export default withRouter(PaymentForm);
+export default PaymentForm;
