@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import UserDashboardCard from '../../Components/Card/UserDashboardCard';
@@ -12,16 +13,24 @@ const useStyles = makeStyles({
 });
 
 export default function UserDashboardView(props) {
-  const [user, setUser] = useState([props.user]);
+  console.warn('user', props.user);
+  const [userHasAShop, setUserHasAShop] = useState([false]);
+  const [userId, setUserId] = useState([props.user?.uid]);
   const classes = useStyles();
-  console.warn(user);
 
-  // useEffect(() => {
-  //   shopData.getSingleShopByUserId(user?.uid)
-  //     .then((response) => {
-  //       setUser(response);
-  //     });
-  // });
+  useEffect(() => {
+    const source = axios.CancelToken.source();
+    shopData.getSingleShopByUserId(userId, source)
+      .then((response) => {
+        setUserId(userId);
+        if (response !== null) {
+          setUserHasAShop(true);
+        } else {
+          setUserHasAShop(false);
+        }
+      });
+    return () => source.cancel();
+  });
 
   return (
     <div className={classes.root}>
@@ -32,22 +41,25 @@ export default function UserDashboardView(props) {
         <Grid item>
           <UserDashboardCard title="Purchase History" pathname="user-dashboard/purchase-history"/>
         </Grid>
-
         {/* If user doesn't have shop */}
-        <Grid item >
-          <UserDashboardCard title="Create Shop" pathname="user-dashboard/create-shop"/>
-        </Grid>
+        {!userHasAShop
+        && <Grid item >
+            <UserDashboardCard title="Create Shop" pathname="user-dashboard/create-shop"/>
+          </Grid>}
 
-        {/* If user has shop */}
-        <Grid item >
-          <UserDashboardCard title="My Shop" pathname="user-dashboard/my-shop"/>
-        </Grid>
-        <Grid item >
-          <UserDashboardCard title="Shop Dashboard" pathname="user-dashboard/shop-dashboard"/>
-        </Grid>
-        <Grid item >
-          <UserDashboardCard title="Shop Orders" pathname="user-dashboard/shop-orders"/>
-        </Grid>
+        {/* If user does have shop */}
+        {userHasAShop
+        && <>
+          <Grid item >
+            <UserDashboardCard title="My Shop" pathname="user-dashboard/my-shop"/>
+          </Grid>
+          <Grid item >
+            <UserDashboardCard title="Shop Dashboard" pathname="user-dashboard/shop-dashboard"/>
+          </Grid>
+          <Grid item >
+            <UserDashboardCard title="Shop Orders" pathname="user-dashboard/shop-orders"/>
+          </Grid>
+          </>}
       </Grid>
     </div>
   );

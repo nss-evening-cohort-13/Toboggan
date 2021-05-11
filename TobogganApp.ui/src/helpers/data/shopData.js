@@ -15,10 +15,12 @@ const getSingleShop = (id) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-const getSingleShopByUserId = (userId) => new Promise((resolve, reject) => {
-  axios.get(`${shopUrl}/getByUserId/${userId}`).then((response) => {
+const getSingleShopByUserId = (userId, source) => new Promise((resolve, reject) => {
+  axios.get(`${shopUrl}/getByUserId/${userId}`, { cancelToken: source.token }).then((response) => {
     resolve(response.data);
-  }).catch((error) => reject(error));
+  }).catch((error) => {
+    if (axios.isCancel(error));
+  });
 });
 
 const createShop = (shopData) => new Promise((resolve, reject) => {
