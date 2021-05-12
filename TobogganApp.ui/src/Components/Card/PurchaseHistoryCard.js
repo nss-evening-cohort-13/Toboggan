@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import ButtonBase from '@material-ui/core/ButtonBase';
+import { Box } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(5),
     margin: 'auto',
     maxWidth: 850,
+    minWidth: 750,
   },
   image: {
     width: 250,
@@ -36,9 +37,9 @@ export default function PurchaseHistoryCard({ orderData }) {
       <Paper className={classes.paper}>
         <Grid container spacing={2}>
           <Grid item>
-            <ButtonBase className={classes.image}>
+            <Box className={classes.image}>
               <img className={classes.img} alt="complex" src={orderData.ProductImage} />
-            </ButtonBase>
+            </Box>
           </Grid>
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
@@ -51,8 +52,8 @@ export default function PurchaseHistoryCard({ orderData }) {
                 </Typography>
               </Grid>
               <Grid item>
-                <Typography variant="h6" style={{ cursor: 'pointer' }}>
-                  Seller:
+                <Typography variant="h6">
+                  Seller: {orderData.FirstName} {orderData.LastName}
                 </Typography>
               </Grid>
             </Grid>
