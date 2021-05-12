@@ -36,11 +36,24 @@ namespace Toboggan.DataAccess
             return paymentType;
         }
 
+        public List<PaymentType> GetByUserId(string userId)
+        {
+            var sql = @"Select *
+                        From PaymentType
+                        Where userId = @userId";
+
+            using var db = new SqlConnection(ConnectionString);
+
+            var paymentType = db.Query<PaymentType>(sql, new { userId = userId }).ToList();
+
+            return paymentType;
+        }
+
         public void Add(PaymentType pt)
         {
-            var sql = @"INSERT INTO [PaymentType] ([AccountNumber], [TypeName])
+            var sql = @"INSERT INTO [PaymentType] ([AccountNumber], [TypeName], [UserId])
                         OUTPUT inserted.Id
-                        VALUES(@AccountNumber, @Name)";
+                        VALUES(@AccountNumber, @TypeName, @UserId)";
 
             using var db = new SqlConnection(ConnectionString);
             var id = db.ExecuteScalar<int>(sql, pt);
@@ -52,7 +65,8 @@ namespace Toboggan.DataAccess
 
             var sql = @"UPDATE [dbo].[PaymentType]
                         SET [AccountNumber] = @AccountNumber
-                            ,[TypeName] = @Name
+                            ,[TypeName] = @TypeName
+                            ,[UserId] = @UserId
                              WHERE Id = @id";
 
             db.Execute(sql, pt);

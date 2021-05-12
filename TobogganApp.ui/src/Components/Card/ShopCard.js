@@ -31,7 +31,7 @@ export default function ShopCard({ shopData }) {
             title="ShopCards"
           />
           <h1>{shopData.name}</h1>
-    </Card>
+        </Card>
     </Link>
 
     </>

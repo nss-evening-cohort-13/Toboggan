@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Shops from '../Views/ShopView';
 import Categories from '../Views/ProductCategoryView';
 import HomeView from '../Views/HomeView';
@@ -15,6 +15,8 @@ import MyShopView from '../Views/UserDashboardViews/MyShopView';
 import ShopDashboardView from '../Views/UserDashboardViews/ShopDashboardView';
 import ShopOrdersView from '../Views/UserDashboardViews/ShopOrdersView';
 import CreateShopView from '../Views/UserDashboardViews/CreateShopView';
+import PaymentTypeView from '../Views/PaymentTypeView';
+import PleaseLogin from '../Views/PleaseLogin';
 
 export default function Routes({ user, authed }) {
   return (
@@ -27,18 +29,25 @@ export default function Routes({ user, authed }) {
       <Route exact path='/categories' component={Categories} />
       <Route exact path='/singleShopPage' component={SingleShopView} />
       <Route exact path='/shopForm' component={(props) => <ShopForm {...props} user={user}/>}/>
-      {/* <Route exact path="/user-profile/history/:id" component= { UserProfileHistory } />
-      <Route exact path="/user-profile/dashboard/:id" component= { UserProfileDashboard } />
-      <Route exact path="/user-profile/editshoppage/:id" component= { UserProfileEditShopPage } /> */}
 
       {/* User Dashboard Views */}
-      <Route exact path='/user-dashboard' component={(props) => <UserDashboardView {...props} user={user}/> } />
-      <Route exact path='/user-dashboard/account-info' component={AccountInfoView} />
-      <Route exact path='/user-dashboard/purchase-history' component={() => <PurchaseHistoryView user={user}/>} />
-      <Route exact path='/user-dashboard/my-shop' component={(props) => <MyShopView {...props} user={user}/> } />
-      <Route exact path='/user-dashboard/create-shop' component={CreateShopView} />
-      <Route exact path='/user-dashboard/shop-dashboard' component={() => <ShopDashboardView user={user}/>} />
-      <Route exact path='/user-dashboard/shop-orders' component={(props) => <ShopOrdersView {...props} user={user}/>} />
+      <PrivateRoute exact path='/user-dashboard' component={(props) => <UserDashboardView {...props} user={user}/> } />
+      <PrivateRoute exact path='/user-dashboard/account-info' user={user} component={AccountInfoView} />
+      <PrivateRoute exact path='/user-dashboard/create-shop' component={CreateShopView} />
+      <PrivateRoute exact path='/user-dashboard/purchase-history' user={user} component={() => <PurchaseHistoryView user={user}/>} />
+      <PrivateRoute exact path='/user-dashboard/my-shop' user={user} component={(props) => <MyShopView {...props} user={user}/> } />
+      <PrivateRoute exact path='/user-dashboard/shop-dashboard' user={user} component={() => <ShopDashboardView user={user}/>} />
+      <PrivateRoute exact path='/user-dashboard/shop-orders' user={user} component={(props) => <ShopOrdersView {...props} user={user}/>} />
+      <Route exact path='/paymentType' component={PaymentTypeView} />
+      <Route exact path='/pleaseLogin' component={PleaseLogin}/>
     </Switch>
   );
 }
+
+const PrivateRoute = ({ component: Component, user, ...rest }) => {
+  const routeChecker = (taco) => (user
+    ? (<Component {...taco} user={user}/>)
+    : (<Redirect to={{ pathname: '/pleaseLogin', state: { from: taco.location } }} />));
+
+  return <Route {...rest} render={(props) => routeChecker(props)}/>;
+};
