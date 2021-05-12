@@ -20,11 +20,42 @@ class SingleShopView extends Component {
       });
     });
     productData.getProductsOfAShop(this.state.shopId).then((response) => {
+      const productsActive = response.filter((product) => product.active == 1);
       this.setState({
-        shopsProducts: response,
+        shopsProducts: productsActive,
       });
     });
   }
+
+  deleteProd = (productId) => {
+    async function Myfetch() {
+      const prod = productData.getSingleProduct(productId);
+      return prod;
+    }
+    Myfetch().then((prod) => {
+      const productObjectUpdate = {
+        Id: prod.id,
+        Title: prod.title,
+        Description: prod.description,
+        Price: prod.price,
+        Quantity: prod.quantity,
+        ShopId: prod.shopId,
+        CategoryId: prod.categoryId,
+        ProductImage: prod.productImage,
+        Active: 0,
+      };
+      productData.updateProduct(productObjectUpdate).then(() => {
+        this.setState({ success: true });
+        const productsActive = this.state.shopsProducts.filter((x) => x.id !== prod.id);
+        this.setState({
+          shopsProducts: productsActive,
+        });
+        setTimeout(() => {
+          this.props.history.push('/user-dashboard/my-shop');
+        }, 3000);
+      });
+    });
+  };
 
   deleteShop = (shopId) => {
     FavoriteData.deleteFavoritesOfASpecificShop(shopId).then(() => {
@@ -32,7 +63,7 @@ class SingleShopView extends Component {
         this.props.history.push('/user-dashboard/my-shop');
       });
     });
-  }
+  };
 
   render() {
     const {
@@ -72,7 +103,7 @@ class SingleShopView extends Component {
 
           </div>
           <div className='d-flex flex-wrap justify-content-center'>
-              {shopsProducts.map((product) => <ProductCard key={product.id} authed={authed} productData={product}/>)}
+              {shopsProducts && shopsProducts.map((product) => <ProductCard key={product.id} authed={authed} deleteProd={this.deleteProd} productData={product}/>)}
           </div>
         </div>
         )}
