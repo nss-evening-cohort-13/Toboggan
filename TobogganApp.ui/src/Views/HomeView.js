@@ -18,7 +18,9 @@ export default class HomePageView extends Component {
 
   render() {
     const { products } = this.state;
-    const renderProducts = () => products.slice(0, 20).map((product) => (<ProductCard key={product.id} productData={product} />));
+    const productsActive = products.filter((product) => product.active == 1);
+    const renderProducts = () => productsActive.slice(0, 20)
+      .map((product) => (<ProductCard key={product.id} productData={product} />));
 
     return (
         <>
