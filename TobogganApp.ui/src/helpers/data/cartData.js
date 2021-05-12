@@ -35,4 +35,5 @@ export default {
   setCart,
   getCart,
   emptyCart,
+  removeItems,
 };
