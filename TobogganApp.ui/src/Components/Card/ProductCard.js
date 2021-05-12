@@ -5,12 +5,11 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import Product from '../../helpers/data/productData';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 350,
   },
@@ -18,7 +17,7 @@ const useStyles = makeStyles({
     height: 350,
     width: 350,
   },
-});
+}));
 
 export default function MediaCard({ productData, authed }) {
   const classes = useStyles();
@@ -35,7 +34,7 @@ export default function MediaCard({ productData, authed }) {
     <Card className={`${classes.root} m-1 d-flex flex-column grow productCard shadow`}>
       <CardActionArea>
         <CardMedia
-          className={classes.media}
+          className={`${classes.media} product-card-image` }
           image={productData.productImage}
           title="ProductCars"
         />
