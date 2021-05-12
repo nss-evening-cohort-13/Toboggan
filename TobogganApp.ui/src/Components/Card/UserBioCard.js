@@ -32,8 +32,7 @@ export default function BioCard({ userData }) {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {userData.firstName}
-            {userData.lastName}
+            {`${userData.firstName} ${userData.lastName}`}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             <strong>Joined</strong> {date.getMonth()}/{date.getDay()}/{date.getFullYear()}

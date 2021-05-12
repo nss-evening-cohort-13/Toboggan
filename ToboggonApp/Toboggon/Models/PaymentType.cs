@@ -9,8 +9,9 @@ namespace Toboggan.Models
     public class PaymentType
     {
         public int Id { get; set; }
-        public int AccountNumber { get; set; }
-        public PaymentTypeName Name { get; set; }
+        public Int64 AccountNumber { get; set; }
+        public PaymentTypeName TypeName { get; set; }
+        public string UserId { get; set; }
     }
 
     public enum PaymentTypeName

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Avatar from '@material-ui/core/Avatar';
 import firebase from 'firebase/app';
 import AuthData from '../../helpers/data/authData';
 
@@ -29,12 +30,14 @@ export default class Auth extends Component {
       <>
       { !user ? <button className='nav-link btn btn-primary' onClick={(e) => AuthData.loginClickEvent(e)}>Login</button>
         : <>
-      <img className="userInfo" src={user?.photoURL} alt={user?.displayName} />
-      <div
-        className='nav-link btn btn-danger'
-        onClick={(e) => AuthData.logoutClickEvent(e)}
-      >
-        Logout
+      <div className="d-flex">
+      <Avatar className="userInfo" alt={user?.displayName} src={user?.photoURL} />
+         <button
+           className='nav-link btn btn-danger'
+           onClick={(e) => AuthData.logoutClickEvent(e)}
+         >
+           Logout
+         </button>
       </div>
       </>
       }
