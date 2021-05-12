@@ -29,17 +29,17 @@ export default function Routes({ user, authed }) {
       <Route exact path='/categories' component={Categories} />
       <Route exact path='/singleShopPage' component={SingleShopView} />
       <Route exact path='/shopForm' component={(props) => <ShopForm {...props} user={user}/>}/>
+      <Route exact path='/paymentType' component={PaymentTypeView} />
+      <Route exact path='/pleaseLogin' component={PleaseLogin}/>
 
       {/* User Dashboard Views */}
-      <PrivateRoute exact path='/user-dashboard' component={(props) => <UserDashboardView {...props} user={user}/> } />
+      <PrivateRoute exact path='/user-dashboard' user={user} component={UserDashboardView} />
       <PrivateRoute exact path='/user-dashboard/account-info' user={user} component={AccountInfoView} />
       <PrivateRoute exact path='/user-dashboard/create-shop' component={CreateShopView} />
       <PrivateRoute exact path='/user-dashboard/purchase-history' user={user} component={() => <PurchaseHistoryView user={user}/>} />
       <PrivateRoute exact path='/user-dashboard/my-shop' user={user} component={(props) => <MyShopView {...props} user={user}/> } />
       <PrivateRoute exact path='/user-dashboard/shop-dashboard' user={user} component={() => <ShopDashboardView user={user}/>} />
       <PrivateRoute exact path='/user-dashboard/shop-orders' user={user} component={(props) => <ShopOrdersView {...props} user={user}/>} />
-      <Route exact path='/paymentType' component={PaymentTypeView} />
-      <Route exact path='/pleaseLogin' component={PleaseLogin}/>
     </Switch>
   );
 }
