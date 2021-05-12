@@ -6,7 +6,7 @@ export default class CreateShopView extends Component {
     return (
       <div>
         <h2>Create Shop</h2>
-        <ShopForm />
+        <ShopForm userId={this.props.user.uid} />
       </div>
     );
   }
