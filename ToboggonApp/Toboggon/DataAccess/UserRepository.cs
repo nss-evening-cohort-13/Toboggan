@@ -126,13 +126,15 @@ namespace Toboggan.DataAccess
         {
             using var db = new SqlConnection(ConnectionString);
 
-            var sql = @"select p.Title, p.Description, p.Price, p.ProductImage, p.ShopId,oli.Quantity, o.SaleDate from [OrderLineItem] oli
+            var sql = @"select p.Title, p.Description, p.Price, p.ProductImage, p.ShopId,oli.Quantity, o.SaleDate, u.FirstName, u.LastName from [OrderLineItem] oli
 				        JOIN [Order] o on o.Id = oli.OrderId
 				        JOIN [Product] p on p.Id = oli.ProductId
+                        JOIN [Shop] s on s.Id = p.ShopId
+				        JOIN [User] u on u.Id = s.UserId
 				        WHERE o.UserId = @id
 				        ORDER BY o.SaleDate DESC";
 
-            var purchaseHistory = db.Query(sql).ToList();
+            var purchaseHistory = db.Query(sql, new { Id = id }).ToList();
 
             return purchaseHistory;
 

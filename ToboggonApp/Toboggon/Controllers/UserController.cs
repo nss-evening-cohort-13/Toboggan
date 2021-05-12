@@ -60,7 +60,7 @@ namespace Toboggan.Controllers
             return Ok(user);
         }
 
-        [HttpGet("getPurchaseHistory/{id}")]
+        [HttpGet("PurchaseHistory/{id}")]
         public IActionResult GetPurchaseHistoryByUserId(string id)
         {
             var user = _repo.GetPurchaseHistory(id);
