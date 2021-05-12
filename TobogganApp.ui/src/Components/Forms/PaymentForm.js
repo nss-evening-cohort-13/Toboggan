@@ -23,7 +23,6 @@ class PaymentForm extends Component {
         TypeName: parseInt(this.state.typeName, 10),
         UserId: this.state.userId,
       };
-      console.warn(paymentObject);
       paymentData.createPayment(paymentObject).then(() => {
         this.setState({ success: true });
         setTimeout(() => {

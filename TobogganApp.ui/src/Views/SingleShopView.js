@@ -41,6 +41,7 @@ class SingleShopView extends Component {
       shopId,
       authed,
     } = this.state;
+
     return (
       <>
         {shop !== null && (
