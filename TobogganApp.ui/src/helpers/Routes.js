@@ -13,10 +13,10 @@ import ProductsForm from '../Components/Forms/ProductsForm';
 import ShopForm from '../Components/Forms/ShopForm';
 import UserDashboardView from '../Views/UserDashboardViews/UserDashboardView';
 import AccountInfoView from '../Views/UserDashboardViews/AccountInfoView';
-import PurchaseHistoryView from '../Views/UserDashboardViews/PurchaseHistoryView';
+import ShopOrderView from '../Views/UserDashboardViews/ShopOrderView';
 import MyShopView from '../Views/UserDashboardViews/MyShopView';
 import ShopDashboardView from '../Views/UserDashboardViews/ShopDashboardView';
-import ShopOrdersView from '../Views/UserDashboardViews/ShopOrdersView';
+import PurchaseHistoryView from '../Views/UserDashboardViews/PurchaseHistoryView';
 import PaymentTypeView from '../Views/PaymentTypeView';
 import PleaseLogin from '../Views/PleaseLogin';
 
@@ -43,7 +43,7 @@ export default function Routes({ user, authed }) {
       <PrivateRoute exact path='/user-dashboard/purchase-history' user={user} component={() => <PurchaseHistoryView user={user}/>} />
       <PrivateRoute exact path='/user-dashboard/my-shop' user={user} component={(props) => <MyShopView {...props} user={user}/> } />
       <PrivateRoute exact path='/user-dashboard/shop-dashboard' user={user} component={() => <ShopDashboardView user={user}/>} />
-      <PrivateRoute exact path='/user-dashboard/shop-orders' user={user} component={(props) => <ShopOrdersView {...props} user={user}/>} />
+      <PrivateRoute exact path='/user-dashboard/shop-orders' user={user} component={(props) => <ShopOrderView {...props} user={user}/>} />
     </Switch>
   );
 }

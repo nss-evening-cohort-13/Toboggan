@@ -1,32 +1,35 @@
 import React, { Component } from 'react';
-import PurchaseHistoryTable from '../../Components/Card/PurchaseHistoryCard';
 import userData from '../../helpers/data/userData';
+import PurchaseHistoryCard from '../../Components/Card/PurchaseHistoryCard';
 
 export default class PurchaseHistoryView extends Component {
   state = {
-    purchaseHistory: [],
     userId: this.props.user?.uid,
-  };
+    orders: [],
+  }
 
   componentDidMount() {
-    userData.getPurchaseHistory(this.state.userId).then((response) => {
-      this.setState({
-        purchaseHistory: response,
+    this.getPurchaseOrderHistory();
+  }
+
+  getPurchaseOrderHistory = () => {
+    const { userId } = this.state;
+
+    userData.getPurchaseHistory(userId)
+      .then((response) => {
+        this.setState({
+          orders: response,
+        });
       });
-    });
   }
 
   render() {
-    const { purchaseHistory } = this.state;
+    const { orders } = this.state;
+    const renderOrders = orders.map((order) => <PurchaseHistoryCard key={order.Id} orderData={order} />);
     return (
       <div className="m-4">
-        {purchaseHistory.length
-          ? <>
-             <h1>Purchase History</h1>
-             <PurchaseHistoryTable orderData={purchaseHistory} />
-            </> : <h2>No Purchases yet. Head to the shops!</h2>
-        }
-
+        <h2>Purchase History</h2>
+        {renderOrders}
       </div>
     );
   }
