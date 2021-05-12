@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Toboggan.Models
 {
-    public class PurchaseHistory
+    public class ShopOrderHistory
     {
         public int OrderTableId { get; set; }
         public int ShopId { get; set; } 
