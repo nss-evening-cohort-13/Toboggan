@@ -12,10 +12,11 @@ import Product from '../../helpers/data/productData';
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    maxWidth: 350,
   },
   media: {
-    height: 250,
+    height: 350,
+    width: 350,
   },
 });
 
