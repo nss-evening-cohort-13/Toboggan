@@ -52,6 +52,7 @@ namespace Toboggan.DataAccess
                        ,ShopId=@ShopId
                        ,CategoryId=@CategoryId
                        ,ProductImage=@ProductImage
+                       ,Active=@Active
                        WHERE Id= @id";
 
             db.Execute(sql, product);

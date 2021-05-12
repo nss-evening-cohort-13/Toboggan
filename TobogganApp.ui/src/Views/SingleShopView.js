@@ -28,27 +28,32 @@ class SingleShopView extends Component {
   }
 
   deleteProd = (productId) => {
-    const prod = productData.getSingleProduct(productId);
-    const productObjectUpdate = {
-      Id: productId,
-      Title: prod.title,
-      Description: prod.description,
-      Price: prod.price,
-      Quantity: prod.quantity,
-      ShopId: prod.shopId,
-      CategoryId: prod.categoryId,
-      ProductImage: prod.productImage,
-      Active: 0,
-    };
-    productData.updateProduct(productObjectUpdate).then(() => {
-      this.setState({ success: true });
-      const productsActive = this.state.shopsProducts.filter((x) => x.id !== prod.id);
-      this.setState({
-        shopsProducts: productsActive,
+    async function Myfetch() {
+      const prod = productData.getSingleProduct(productId);
+      return prod;
+    }
+    Myfetch().then((prod) => {
+      const productObjectUpdate = {
+        Id: prod.id,
+        Title: prod.title,
+        Description: prod.description,
+        Price: prod.price,
+        Quantity: prod.quantity,
+        ShopId: prod.shopId,
+        CategoryId: prod.categoryId,
+        ProductImage: prod.productImage,
+        Active: 0,
+      };
+      productData.updateProduct(productObjectUpdate).then(() => {
+        this.setState({ success: true });
+        const productsActive = this.state.shopsProducts.filter((x) => x.id !== prod.id);
+        this.setState({
+          shopsProducts: productsActive,
+        });
+        setTimeout(() => {
+          this.props.history.push('/user-dashboard/my-shop');
+        }, 3000);
       });
-      setTimeout(() => {
-        this.props.history.push('/user-dashboard/my-shop');
-      }, 3000);
     });
   };
 
@@ -58,7 +63,7 @@ class SingleShopView extends Component {
         this.props.history.push('/user-dashboard/my-shop');
       });
     });
-  }
+  };
 
   render() {
     const {
@@ -97,7 +102,7 @@ class SingleShopView extends Component {
 
           </div>
           <div className='d-flex flex-wrap justify-content-center'>
-              {shopsProducts && shopsProducts.map((product) => <ProductCard key={product.id} authed={authed} deleteProd={this.deleteProd(product.id)} productData={product}/>)}
+              {shopsProducts && shopsProducts.map((product) => <ProductCard key={product.id} authed={authed} deleteProd={this.deleteProd} productData={product}/>)}
           </div>
         </div>
         )}

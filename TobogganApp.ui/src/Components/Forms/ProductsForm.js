@@ -71,6 +71,7 @@ export default class ProductsForm extends Component {
           CategoryId,
           ProductImage: this.state.productImage,
         };
+        console.warn(productObjectUpdate);
         productData.updateProduct(productObjectUpdate).then(() => {
           this.setState({ success: true });
           setTimeout(() => {

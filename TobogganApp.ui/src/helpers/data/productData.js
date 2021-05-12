@@ -39,6 +39,7 @@ const getProductsOfAShop = (shopId) => new Promise((resolve, reject) => {
 });
 
 const updateProduct = (productObj) => new Promise((resolve, reject) => {
+  console.warn(productObj);
   axios.patch(productsUrl, productObj).then((response) => {
     resolve(response.data);
   }).catch((error) => reject(error));

@@ -61,7 +61,7 @@ export default function MediaCard({ productData, authed, deleteProd }) {
               pathname: '/user-dashboard/my-shop',
               state: productData,
             }}>
-            <button className="btn btn-danger productButtons" onClick={() => deleteProd(productData)}>Delete Product</button>
+            <button className="btn btn-danger productButtons" onClick={() => deleteProd(productData.id)}>Delete Product</button>
             </Link>
              </>
 }
