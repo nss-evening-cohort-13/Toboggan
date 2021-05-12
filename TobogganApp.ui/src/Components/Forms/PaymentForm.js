@@ -83,7 +83,6 @@ class PaymentForm extends Component {
             defaultValue={this.state?.typeName}
             required
             >
-            <option>Choose Payment Type</option>
             <option value={0}>MasterCard</option>
             <option value={1}>Visa</option>
             <option value={2}>Paypal</option>

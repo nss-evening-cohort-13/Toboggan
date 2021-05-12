@@ -18,6 +18,7 @@ import MyShopView from '../Views/UserDashboardViews/MyShopView';
 import ShopDashboardView from '../Views/UserDashboardViews/ShopDashboardView';
 import ShopOrdersView from '../Views/UserDashboardViews/ShopOrdersView';
 import PaymentTypeView from '../Views/PaymentTypeView';
+import PleaseLogin from '../Views/PleaseLogin';
 
 export default function Routes({ user, authed }) {
   return (
@@ -34,6 +35,7 @@ export default function Routes({ user, authed }) {
       <Route exact path="/user-profile/dashboard/:id" component= { UserProfileDashboard } />
       <Route exact path="/user-profile/editshoppage/:id" component= { UserProfileEditShopPage } />
       <Route exact path='/paymentType' component={PaymentTypeView} />
+      <Route exact path='/pleaseLogin' component={PleaseLogin}/>
 
       {/* User Dashboard Views */}
       <PrivateRoute exact path='/user-dashboard' user={user} component={UserDashboardView} />
@@ -49,7 +51,7 @@ export default function Routes({ user, authed }) {
 const PrivateRoute = ({ component: Component, user, ...rest }) => {
   const routeChecker = (taco) => (user
     ? (<Component {...taco} user={user}/>)
-    : (<Redirect to={{ pathname: '/', state: { from: taco.location } }} />));
+    : (<Redirect to={{ pathname: '/pleaseLogin', state: { from: taco.location } }} />));
 
   return <Route {...rest} render={(props) => routeChecker(props)}/>;
 };
