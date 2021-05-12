@@ -13,24 +13,21 @@ const useStyles = makeStyles({
 });
 
 export default function UserDashboardView(props) {
-  // console.warn('user', props.user);
   const [userHasAShop, setUserHasAShop] = useState([false]);
   const [userId, setUserId] = useState([props.user?.uid]);
   const classes = useStyles();
 
   useEffect(() => {
-    // const source = axios.CancelToken.source();
     shopData.getSingleShopByUserId(userId)
       .then((response) => {
         setUserId(userId);
-        console.warn('response', response);
+        // console.warn('response', response);
         if (response) {
           setUserHasAShop(true);
         } else {
           setUserHasAShop(false);
         }
       });
-    // return () => source.cancel();
   });
 
   return (
