@@ -34,7 +34,7 @@ export default function AppModal(props) {
       <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>{title}</ModalHeader>
         <ModalBody>
-          {React.cloneElement(props.children, { toggle })}
+          {React.cloneElement(props.children, { toggle, modal })}
           </ModalBody>
         <ModalFooter>
           <Button className='board-buttons' color='secondary' onClick={toggle}>

@@ -28,8 +28,10 @@ class PaymentForm extends Component {
         this.setState({ success: true });
         setTimeout(() => {
           this.props.onUpdate?.(this.state.userId);
-          this.props.toggle();
-        }, 3000);
+          if (this.props.modal !== false) {
+            this.props.toggle();
+          }
+        }, 1800);
       });
     } else {
       const updatePaymentObject = {
@@ -42,8 +44,10 @@ class PaymentForm extends Component {
         this.setState({ success: true });
         setTimeout(() => {
           this.props.onUpdate?.(this.state.userId);
-          this.props.toggle();
-        }, 3000);
+          if (this.props.modal !== false) {
+            this.props.toggle();
+          }
+        }, 1800);
       });
     }
   };
