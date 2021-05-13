@@ -27,14 +27,13 @@ export default class CartView extends Component {
 
     let grandTotal = 0;
     if (products.length) {
-      grandTotal += products.reduce((totalCost, qP) => totalCost + parseInt(qP.price * qP.quantity, 10), 0);
+      grandTotal += products.reduce((totalCost, product) => totalCost + parseInt(product.price * product.quantity, 10), 0);
     }
 
     let renderProducts;
     if (products && Object.keys(products) !== 0) {
       renderProducts = () => products.map((product) => (
           <ShoppingCartCard productData={product}/>
-
       ));
     }
     return (
@@ -43,7 +42,9 @@ export default class CartView extends Component {
       <div className="d-flex flex-column justify-content-center">
         {renderProducts()}
       </div>
-      <h2>Your Total is : ${grandTotal}</h2>
+      <div className="d-flex justify-content-center">
+        <h2>Your Total is : ${grandTotal}</h2>
+      </div>
       </>
     );
   }
