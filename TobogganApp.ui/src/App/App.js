@@ -36,7 +36,7 @@ class App extends React.Component {
     return (
       <div className='App'>
         <Router>
-          <Nav />
+          <Nav user={this.state.user} />
           <Routes authed={this.state.authed} user={this.state.user} />
         </Router>
       </div>

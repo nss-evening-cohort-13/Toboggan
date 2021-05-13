@@ -44,7 +44,7 @@ namespace Toboggan.Controllers
             var shop = _repo.GetSingleShopByUserId(userId);
             if (shop == null)
             {
-                return NotFound("This shop does not exist");
+                return NoContent();
             }
             return Ok(shop);
         }
