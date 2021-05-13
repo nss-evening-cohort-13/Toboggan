@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { Box } from '@material-ui/core';
+import Data from '../../helpers/data/cartData';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,6 +33,9 @@ const useStyles = makeStyles((theme) => ({
 export default function ShoppingCartCard({ productData }) {
   const classes = useStyles();
 
+  const submitButton = () => {
+    console.log(Data.getCart());
+  };
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
@@ -66,6 +70,9 @@ export default function ShoppingCartCard({ productData }) {
               <Typography variant="h5" color="textSecondary">${productData.price}</Typography>
             </Grid>
           </Grid>
+          <Typography variant="body2" color="textSecondary" component="p">
+            <button className="btn btn-danger productButtons" onClick={() => submitButton()}>Submit Order</button>
+          </Typography>
         </Grid>
       </Paper>
     </div>
