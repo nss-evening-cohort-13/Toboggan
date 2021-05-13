@@ -17,6 +17,7 @@ import CreateShopView from '../Views/UserDashboardViews/CreateShopView';
 import PurchaseHistoryView from '../Views/UserDashboardViews/PurchaseHistoryView';
 import PaymentTypeView from '../Views/PaymentTypeView';
 import PleaseLogin from '../Views/PleaseLogin';
+import CartView from '../Views/CartView';
 
 export default function Routes({ user, authed }) {
   return (
@@ -31,6 +32,7 @@ export default function Routes({ user, authed }) {
       <Route exact path='/shopForm' component={(props) => <ShopForm {...props} user={user}/>}/>
       <Route exact path='/paymentType' component={PaymentTypeView} />
       <Route exact path='/pleaseLogin' component={PleaseLogin}/>
+      <Route exact path='/shopping-cart' component={CartView}/>
 
       {/* User Dashboard Views */}
       <PrivateRoute exact path='/user-dashboard' user={user} component={UserDashboardView} />

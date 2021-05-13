@@ -16,13 +16,13 @@ export default class ProductCategoryView extends Component {
   render() {
     const { categories } = this.state;
 
-    const renderProducts = (category) => category.products.slice(0, 3).map((product) => (<ProductCard key={product.Id} productData={product} />));
+    const renderProducts = (category) => category.products.slice(0, 3).map((product) => (<ProductCard key={product.id} productData={product} />));
 
     const renderCategories = () => categories.map((category) => (
     <>
-      <h3 key={category.id}>{category.name} - {category.quantity}</h3>
+      <h3>{category.name} - {category.quantity}</h3>
       {/* Show last 3 created products from each category */}
-      <div className="d-flex flex-wrap justify-content-center">
+      <div key={category.categoryId} className="d-flex flex-wrap justify-content-center">
         {renderProducts(category)}
       </div>
     </>
