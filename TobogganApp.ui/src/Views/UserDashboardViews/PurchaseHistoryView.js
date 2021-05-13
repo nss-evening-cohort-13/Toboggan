@@ -29,7 +29,7 @@ export default class PurchaseHistoryView extends Component {
     return (
       <div className="m-4">
         <h2>Purchase History</h2>
-        {renderOrders}
+        {orders.length ? renderOrders : <h4>You have not made any purchases yet. Click on one of the tabs to start browsing!</h4>}
       </div>
     );
   }

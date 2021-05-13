@@ -39,6 +39,7 @@ const getProductsOfAShop = (shopId) => new Promise((resolve, reject) => {
 });
 
 const updateProduct = (productObj) => new Promise((resolve, reject) => {
+  console.warn(productObj);
   axios.patch(productsUrl, productObj).then((response) => {
     resolve(response.data);
   }).catch((error) => reject(error));
@@ -50,8 +51,8 @@ const createProduct = (productObj) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-const deleteProduct = (productId) => new Promise((resolve, reject) => {
-  axios.delete(`${productsUrl}/${productId}`).then((response) => {
+const deleteProduct = (productObj) => new Promise((resolve, reject) => {
+  axios.patch(productsUrl, productObj).then((response) => {
     resolve(response.data);
   }).catch((error) => reject(error));
 });

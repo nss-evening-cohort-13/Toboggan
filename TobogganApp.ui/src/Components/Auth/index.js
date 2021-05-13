@@ -1,6 +1,13 @@
+import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
-import Avatar from '@material-ui/core/Avatar';
+// import Avatar from '@material-ui/core/Avatar';
 import firebase from 'firebase/app';
+import {
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from 'reactstrap';
 import AuthData from '../../helpers/data/authData';
 
 export default class Auth extends Component {
@@ -30,15 +37,29 @@ export default class Auth extends Component {
       <>
       { !user ? <button className='nav-link btn btn-primary' onClick={(e) => AuthData.loginClickEvent(e)}>Login</button>
         : <>
-      <div className="d-flex">
-      <Avatar className="userInfo" alt={user?.displayName} src={user?.photoURL} />
-         <button
-           className='nav-link btn btn-danger'
-           onClick={(e) => AuthData.logoutClickEvent(e)}
-         >
-           Logout
-         </button>
-      </div>
+      <div className='row'>
+        <div className='user-icon-container'>
+          <p>Hi {user?.displayName}</p>
+        </div>
+          <UncontrolledDropdown>
+            <DropdownToggle nav caret></DropdownToggle>
+            <DropdownMenu right>
+              <DropdownItem>
+                <Link to="/user-dashboard" >
+                  <p>Dashboard</p>
+                </Link>
+              </DropdownItem>
+              <DropdownItem>
+                <div
+                  className='nav-link btn btn-danger'
+                  onClick={(e) => AuthData.logoutClickEvent(e)}
+                >
+                  Logout
+                </div>
+              </DropdownItem>
+            </DropdownMenu>
+          </UncontrolledDropdown>
+        </div>
       </>
       }
       </>
