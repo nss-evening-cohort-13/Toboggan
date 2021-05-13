@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CartData from '../helpers/data/cartData';
-import ShoppingCartCard from '../Components/Card/SHoppingCartCard';
+import ShoppingCartCard from '../Components/Card/ShoppingCartCard';
 
 export default class CartView extends Component {
   state = {
