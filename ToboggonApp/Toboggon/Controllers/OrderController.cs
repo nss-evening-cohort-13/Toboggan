@@ -6,6 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Toboggan.DataAccess;
 using Toboggan.Models;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace Toboggan.Controllers
 {
@@ -98,9 +100,10 @@ namespace Toboggan.Controllers
             return Ok(orders);
         }
 
-       
+
 
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult AddAnOrder(Order order)
         {
             _repo.AddAnOrder(order);
@@ -108,7 +111,7 @@ namespace Toboggan.Controllers
         }
 
         [HttpPatch]
-        public IActionResult UpdateUser(Order order)
+        public IActionResult UpdateOrder(Order order)
         {
             _repo.UpdateOrder(order);
 
@@ -116,7 +119,7 @@ namespace Toboggan.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteUser(int id)
+        public IActionResult DeleteOrder(int id)
         {
             _repo.DeleteOrder(id);
 
