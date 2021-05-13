@@ -45,7 +45,7 @@ export default function ShoppingCartCard({ productData }) {
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
                 <Typography gutterBottom variant="h4">
-                  {productData.Title}
+                  {productData.title}
                 </Typography>
                 <Typography variant="h5" color="textSecondary" gutterBottom>
                   {productData.description}
