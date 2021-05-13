@@ -9,8 +9,8 @@ const useStyles = makeStyles({
     maxHeight: 250,
   },
   media: {
-    maxHeight: 250,
-    maxWidth: 250,
+    height: 250,
+    width: 250,
   },
 });
 
