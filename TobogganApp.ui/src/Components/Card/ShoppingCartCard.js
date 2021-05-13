@@ -63,7 +63,7 @@ export default function ShoppingCartCard({ productData }) {
               </Grid>
             </Grid>
             <Grid item>
-              <Typography variant="h5" color="textSecondary">${productData.price}</Typography>
+              <Typography variant="h5" color="textSecondary">${productData.price}/each</Typography>
             </Grid>
           </Grid>
         </Grid>

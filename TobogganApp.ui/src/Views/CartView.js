@@ -42,8 +42,8 @@ export default class CartView extends Component {
       <div className="d-flex flex-column justify-content-center">
         {renderProducts()}
       </div>
-      <div className="d-flex justify-content-center">
-        <h2>Your Total is : ${grandTotal}</h2>
+      <div className="d-flex justify-content-center m-2">
+        <h2>Your total is ${grandTotal}</h2>
       </div>
       </>
     );
