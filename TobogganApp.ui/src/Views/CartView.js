@@ -27,7 +27,7 @@ export default class CartView extends Component {
   }
 
   render() {
-    const { products, showPayMentBox } = this.state;
+    const { products } = this.state;
     let renderProducts;
     if (products && Object.keys(products) !== 0) {
       renderProducts = () => products.map((product) => (
@@ -48,7 +48,7 @@ export default class CartView extends Component {
         <Typography variant="body2" color="textSecondary" component="p">
         <button className="btn btn-danger productButtons" onClick={() => submitButton()}>Submit Order</button>
         </Typography>
-        {this.state.show && <PaymentSubmitForm userId={this.props.user.uid} />}
+        {this.state.show && <PaymentSubmitForm products={ products } userId={this.props.user.uid} />}
       </div>
       </>
     );

@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import paymentData from '../../helpers/data/paymentTypeData';
+import OrderData from '../../helpers/data/orderData';
+import OrderLineItems from '../../helpers/data/orderLineItemData';
+import cartStorage from '../../helpers/data/cartData';
 
 class PaymentForm extends Component {
   state = {
@@ -7,7 +10,41 @@ class PaymentForm extends Component {
     accountNumber: this.props.paymentData?.accountNumber || '',
     typeName: this.props.paymentData?.typeName || '',
     userId: this.props.paymentData?.userId || this.props?.userId,
+    grandTotal: 0,
   };
+
+createOrderWithLineItems = (order) => {
+  OrderData.createOrder(order).then((orderId) => {
+    this.createLineItems(orderId);
+  });
+}
+
+createLineItems = (order) => {
+  const cart = cartStorage.getCart();
+  cart.forEach((item) => {
+    let cartItem = {};
+    cartItem = {
+      ProductId: item.id,
+      Quantity: parseInt(item.quantity, 10),
+      OrderId: order.id,
+    };
+    OrderLineItems.createLineItem(cartItem);
+  });
+}
+
+MakeOrder = (grandTotal, paymentId) => {
+  const date = new Date();
+  const myOrder = {
+    UserId: this.props.userId,
+    TotalCost: grandTotal,
+    PaymentTypeId: paymentId,
+    SaleDate: date.toJSON(),
+    Completed: false,
+  };
+  this.createOrderWithLineItems(myOrder);
+}
+
+clearCart = () => cartStorage.emptyCart();
 
   handleChange = (e) => {
     this.setState({
@@ -17,6 +54,11 @@ class PaymentForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    let grandTotal = 0;
+    if (this.props.products.length) {
+      grandTotal += this.props.products.reduce((totalCost, product) => totalCost + parseInt(product.price * product.quantity, 10), 0);
+    }
+    this.setState({ grandTotal });
     if (this.state.id === '') {
       const paymentObject = {
         AccountNumber: parseInt(this.state.accountNumber, 10),
@@ -24,9 +66,11 @@ class PaymentForm extends Component {
         UserId: this.state.userId,
       };
       paymentData.createPayment(paymentObject).then((response) => {
-        console.warn(response);
-        this.setState({ success: true, id: response.id });
+        this.setState({ success: true });
+        this.setState({ id: response.id });
         this.props.onUpdate?.(this.state.userId);
+        this.MakeOrder(grandTotal, response.id);
+        this.clearCart();
       });
     } else {
       const updatePaymentObject = {
@@ -39,16 +83,9 @@ class PaymentForm extends Component {
         this.setState({ success: true });
         this.props.onUpdate?.(this.state.userId);
       });
+      this.MakeOrder(grandTotal, this.state.id);
+      this.clearCart();
     }
-    const date = new Date();
-    const myOrder = {
-      UserId: this.props.userId,
-      TotalCost: 100,
-      PaymentTypeId: this.state.id,
-      SaleDate: date,
-      Completed: 0,
-    };
-    console.warn(myOrder);
   };
 
   render() {
@@ -82,6 +119,7 @@ class PaymentForm extends Component {
             defaultValue={this.state?.typeName}
             required
             >
+            <option>Pick Payment Type</option>
             <option value={0}>MasterCard</option>
             <option value={1}>Visa</option>
             <option value={2}>Paypal</option>

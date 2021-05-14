@@ -8,7 +8,7 @@ namespace Toboggan.Models
     public class Order
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public double TotalCost { get; set; }
         public int PaymentTypeId { get; set; }
         public DateTime SaleDate { get; set; }

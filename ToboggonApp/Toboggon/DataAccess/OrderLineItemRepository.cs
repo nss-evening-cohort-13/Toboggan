@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Toboggan.Models;
 using Microsoft.Data.SqlClient;
 using Dapper;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Toboggan.DataAccess
 {
