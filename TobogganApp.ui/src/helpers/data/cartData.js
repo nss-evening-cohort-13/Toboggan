@@ -32,7 +32,13 @@ const emptyCart = () => {
 // };
 
 const removeItem = (product) => {
-  LocalStorage.removeItem(product.id);
+  console.warn('remove this product: ', product.id);
+  const tempCart = LocalStorage.getItem('cart');
+  console.warn('tempcart', tempCart);
+  // tempCart.filter((item) => item.id !== product.id);
+  // setCart(tempCart);
+  // LocalStorage.cart.filter((item) => item.id !== product.id);
+  // LocalStorage.removeItem(product.id);
 };
 
 export default {
