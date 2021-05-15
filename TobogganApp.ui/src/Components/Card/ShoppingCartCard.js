@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { Box } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ShoppingCartCard({ productData }) {
+export default function ShoppingCartCard({ productData, removeItem }) {
   const classes = useStyles();
 
   return (
@@ -50,6 +51,9 @@ export default function ShoppingCartCard({ productData }) {
                 <Typography variant="h5" color="textSecondary" gutterBottom>
                   {productData.description}
                 </Typography>
+              </Grid>
+              <Grid item>
+                <Button variant="outlined" onClick={removeItem}>Delete</Button>
               </Grid>
               <Grid item>
                 <Typography variant="h6">
