@@ -1,12 +1,11 @@
 // TO DO: fonts
 .shopDetailsSection {
     align-self: flex-start;
-    margin: 150px;
+    padding-left: 3rem;
 }
 
 .shopTitle {
-    font-size: 46px;
-    width: 400px;
+    font-size: 55px;
 }
 
 .singleShopImg {
@@ -16,7 +15,6 @@
 }
 
 p.shopDescription {
-    font-size: 26px;
-    width: 400px;
-    text-align: left;
+    font-size: 28px;
+    // text-align: left;
 }
