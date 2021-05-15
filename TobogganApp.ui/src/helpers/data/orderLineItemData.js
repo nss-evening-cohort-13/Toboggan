@@ -10,4 +10,13 @@ const fetchOrderLineData = (orderId) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-export default fetchOrderLineData;
+const createLineItem = (productObj) => new Promise((resolve, reject) => {
+  axios.post(`${orderLineItemDataUrl}`, productObj).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
+export default {
+  fetchOrderLineData,
+  createLineItem,
+};

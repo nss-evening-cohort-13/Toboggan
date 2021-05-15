@@ -132,9 +132,9 @@ namespace Toboggan.DataAccess
         {
             using var db = new SqlConnection(ConnectionString);
 
-            var sql = @"INSERT INTO [dbo].[Order]([UserId],[TotalCost],[PaymentTypeId],[SaleDate],[OrderLineItemId])
+            var sql = @"INSERT INTO [dbo].[Order]([UserId],[TotalCost],[PaymentTypeId],[SaleDate],[Completed])
                         OUTPUT inserted.Id
-                        VALUES(@UserId,@TotalCost,@PaymentTypeId,@SaleDate,@OrderLineItemId)";
+                        VALUES(@UserId,@TotalCost,@PaymentTypeId,@SaleDate,0)";
 
             var id = db.ExecuteScalar<int>(sql, order);
 

@@ -51,6 +51,12 @@ const fetchOrdersToBeShipped = (id) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
+const createOrder = (productObj) => new Promise((resolve, reject) => {
+  axios.post(`${orderDataUrl}`, productObj).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
 export default {
   fetchOrderData,
   fetchOrdersWithLineItemData,
@@ -58,4 +64,5 @@ export default {
   fetchTotalAllSalesAvgById,
   fetchTotalSalesByDate,
   fetchOrdersToBeShipped,
+  createOrder,
 };

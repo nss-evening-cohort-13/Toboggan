@@ -30,9 +30,9 @@ export default function Routes({ user, authed }) {
       <Route exact path='/categories' component={Categories} />
       <Route exact path='/singleShopPage' component={SingleShopView} />
       <Route exact path='/shopForm' component={(props) => <ShopForm {...props} user={user}/>}/>
-      <Route exact path='/paymentType' component={PaymentTypeView} />
+      <Route exact path='/paymentType' component={(props) => <PaymentTypeView {...props} user={user}/>} />
       <Route exact path='/pleaseLogin' component={PleaseLogin}/>
-      <Route exact path='/shopping-cart' component={CartView}/>
+      <Route exact path='/shopping-cart' component={(props) => <CartView {...props} user={user}/>}/>
 
       {/* User Dashboard Views */}
       <PrivateRoute exact path='/user-dashboard' user={user} component={UserDashboardView} />
