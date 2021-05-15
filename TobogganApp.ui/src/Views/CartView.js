@@ -3,6 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import PaymentSubmitForm from '../Components/Forms/PaymentSubmitForm';
 import CartData from '../helpers/data/cartData';
 import ShoppingCartCard from '../Components/Card/ShoppingCartCard';
+import LocalStorage from '../helpers/localStorage';
 
 export default class CartView extends Component {
   state = {
@@ -26,9 +27,18 @@ export default class CartView extends Component {
 
   getCartProducts = () => {
     this.setState({
-      products: CartData.getCart(),
+      products: LocalStorage.getItem('cart'),
     });
   }
+
+  removeItem = (product) => {
+    let tempCart = LocalStorage.getItem('cart');
+    tempCart = tempCart.filter((item) => item.id !== product.id);
+    LocalStorage.setItem('cart', tempCart);
+    this.setState({
+      products: LocalStorage.getItem('cart'),
+    });
+  };
 
   render() {
     const { products } = this.state;
@@ -41,7 +51,7 @@ export default class CartView extends Component {
     let renderProducts;
     if (products && Object.keys(products) !== 0) {
       renderProducts = () => products.map((product) => (
-          <ShoppingCartCard productData={product}/>
+          <ShoppingCartCard key={product.id} productData={product} removeItem={() => this.removeItem(product)}/>
       ));
     }
     const submitButton = () => {
