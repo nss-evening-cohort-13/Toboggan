@@ -22,6 +22,7 @@ createOrderWithLineItems = (order) => {
 createLineItems = (order) => {
   const cart = cartStorage.getCart();
   cart.forEach((item) => {
+    console.warn(item);
     let cartItem = {};
     cartItem = {
       ProductId: item.id,
@@ -70,7 +71,9 @@ clearCart = () => cartStorage.emptyCart();
         this.setState({ id: response.id });
         this.props.onUpdate?.(this.state.userId);
         this.MakeOrder(grandTotal, response.id);
-        this.clearCart();
+        setTimeout(() => {
+          this.clearCart();
+        }, 3000);
       });
     } else {
       const updatePaymentObject = {
@@ -84,7 +87,9 @@ clearCart = () => cartStorage.emptyCart();
         this.props.onUpdate?.(this.state.userId);
       });
       this.MakeOrder(grandTotal, this.state.id);
-      this.clearCart();
+      setTimeout(() => {
+        this.clearCart();
+      }, 3000);
     }
   };
 
