@@ -18,6 +18,8 @@ const useStyles = makeStyles({
   },
 });
 
+// TO DO: render to account info page
+
 export default function BioCard({ userData }) {
   const classes = useStyles();
   const date = new Date(userData.createdDate);
