@@ -76,7 +76,7 @@ class SingleShopView extends Component {
     return (
       <>
         {shop !== null && (
-        <div className="d-flex justify-content-center m-5">
+        <div className="d-flex justify-content-center singleShopContainer">
           <div className='d-flex flex-column m-1 shopDetailsSection'>
             <img src={shop.shopImage} alt='shop' className="singleShopImg" />
             <h1 className="shopTitle mt-2">{shop.name}</h1>
@@ -102,7 +102,7 @@ class SingleShopView extends Component {
             }
 
           </div>
-          <div className='d-flex flex-wrap justify-content-center'>
+          <div className='d-flex flex-wrap justify-content-center shopProductContainer'>
               {shopsProducts && shopsProducts.map((product) => <ProductCard key={product.id} authed={authed} deleteProd={this.deleteProd} productData={product}/>)}
           </div>
         </div>

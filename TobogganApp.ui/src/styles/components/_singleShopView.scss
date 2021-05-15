@@ -1,4 +1,8 @@
 // TO DO: fonts
+.singleShopContainer {
+    margin-top: 100px;
+}
+
 .shopDetailsSection {
     align-self: flex-start;
     padding-left: 3rem;
@@ -16,5 +20,9 @@
 
 p.shopDescription {
     font-size: 28px;
-    // text-align: left;
+    padding: 0 5px;
+}
+
+.shopProductContainer {
+    max-width: 1300px;
 }
