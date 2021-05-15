@@ -77,7 +77,7 @@ class SingleShopView extends Component {
       <>
         {shop !== null && (
         <div className="d-flex justify-content-center m-5">
-          <div className='d-flex flex-column m-5 shopDetailsSection'>
+          <div className='d-flex flex-column m-1 shopDetailsSection'>
             <img src={shop.shopImage} alt='shop' className="singleShopImg" />
             <h1 className="shopTitle m-3">{shop.name}</h1>
             <p className="shopDescription m-3">{shop.description}</p>
