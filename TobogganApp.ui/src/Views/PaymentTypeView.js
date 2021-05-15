@@ -11,7 +11,7 @@ export default class PaymentTypeView extends Component {
   };
 
   componentDidMount() {
-    // this.loadThePayments(this.state.user.id);
+    this.loadThePayments(this.state.user.id);
   }
 
   loadThePayments = (userId) => {

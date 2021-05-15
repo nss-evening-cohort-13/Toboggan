@@ -4,7 +4,6 @@ import userData from '../../helpers/data/userData';
 import orderData from '../../helpers/data/orderData';
 import catData from '../../helpers/data/categoryData';
 import Dashboard from '../../Components/Card/Dashboard';
-import Dashboard2 from '../../Components/Card/Dashboard2';
 
 export default class ShopDashboardView extends Component {
   state = {
@@ -67,7 +66,7 @@ export default class ShopDashboardView extends Component {
       <div>
       <h2 className="m-3">Shop Dashboard</h2>
       <div className='d-flex justify-content-center m-3'>
-        <Dashboard2 totalInfo={ totalInfo } salesThisMonth={this.salesThisMonth} categoryData={categoryData} toBeShipped={toBeShipped} />
+        <Dashboard totalInfo={ totalInfo } salesThisMonth={this.salesThisMonth} categoryData={categoryData} toBeShipped={toBeShipped} />
       </div>
       </div>
     );
