@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 250,
-    maxHeight: 250,
+    maxWidth: 350,
+    maxHeight: 350,
   },
   media: {
-    height: 250,
-    width: 250,
+    height: 350,
+    width: 350,
   },
 });
 
