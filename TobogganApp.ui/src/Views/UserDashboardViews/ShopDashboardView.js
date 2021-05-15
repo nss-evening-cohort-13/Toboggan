@@ -11,7 +11,7 @@ export default class ShopDashboardView extends Component {
     userInfo: '',
     totalInfo: '',
     totalByDate: '',
-    categoryDate: '',
+    categoryData: '',
     toBeShipped: '',
     orderLineItems: [],
     error: '',
