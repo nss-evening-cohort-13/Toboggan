@@ -7,6 +7,7 @@ import ShoppingCartCard from '../Components/Card/ShoppingCartCard';
 export default class CartView extends Component {
   state = {
     products: [],
+    totalCost: 0,
     show: false,
   };
 
@@ -14,6 +15,9 @@ export default class CartView extends Component {
     this.Mounted = true;
     const { products } = this.state;
     this.getCartProducts();
+    if (products.length) {
+      const total = products.reduce((totalCost, qP) => totalCost + parseInt(qP.price * qP.quantity, 10), 0);
+    }
   }
 
   componentWillUnmount() {
@@ -28,11 +32,16 @@ export default class CartView extends Component {
 
   render() {
     const { products } = this.state;
+
+    let grandTotal = 0;
+    if (products.length) {
+      grandTotal += products.reduce((totalCost, product) => totalCost + parseInt(product.price * product.quantity, 10), 0);
+    }
+
     let renderProducts;
     if (products && Object.keys(products) !== 0) {
       renderProducts = () => products.map((product) => (
           <ShoppingCartCard productData={product}/>
-
       ));
     }
     const submitButton = () => {
@@ -49,6 +58,9 @@ export default class CartView extends Component {
         <button className="btn btn-danger productButtons" onClick={() => submitButton()}>Submit Order</button>
         </Typography>
         {this.state.show && <PaymentSubmitForm products={ products } userId={this.props.user.uid} />}
+      </div>
+      <div className="d-flex justify-content-center m-2">
+        <h2>Your total is ${grandTotal}</h2>
       </div>
       </>
     );
