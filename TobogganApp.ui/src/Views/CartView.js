@@ -44,7 +44,7 @@ export default class CartView extends Component {
     const { products } = this.state;
 
     let grandTotal = 0;
-    if (products.length) {
+    if (products != null && products.length) {
       grandTotal += products.reduce((totalCost, product) => totalCost + parseInt(product.price * product.quantity, 10), 0);
     }
 
@@ -63,7 +63,7 @@ export default class CartView extends Component {
       <>
       <h1>Your Cart</h1>
       <div className="d-flex flex-column justify-content-center">
-        {renderProducts()}
+        {(products != null) ? renderProducts() : ''}
         <Typography variant="body2" color="textSecondary" component="p">
         <button className="btn btn-danger productButtons" onClick={() => submitButton()}>Submit Order</button>
         </Typography>
