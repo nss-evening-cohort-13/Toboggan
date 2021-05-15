@@ -4,7 +4,7 @@ import PurchaseHistoryCard from '../../Components/Card/PurchaseHistoryCard';
 
 export default class PurchaseHistoryView extends Component {
   state = {
-    userId: this.props.user?.uid,
+    userId: '14',
     orders: [],
   }
 
