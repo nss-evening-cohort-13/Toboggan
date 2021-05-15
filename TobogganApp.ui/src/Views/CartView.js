@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CartData from '../helpers/data/cartData';
 import ShoppingCartCard from '../Components/Card/ShoppingCartCard';
+import LocalStorage from '../helpers/localStorage';
 
 export default class CartView extends Component {
   state = {
@@ -22,6 +23,18 @@ export default class CartView extends Component {
     });
   }
 
+  removeItem = (product) => {
+    // console.warn('remove this product: ', product.id);
+    let tempCart = LocalStorage.getItem('cart');
+    // console.warn('tempcart', tempCart);
+    // console.warn('tempcart-item', tempCart[0]);
+    tempCart = tempCart.filter((item) => item.id !== product.id);
+    LocalStorage.setItem('cart', tempCart);
+    this.setState({
+      products: LocalStorage.getItem('cart'),
+    });
+  };
+
   render() {
     const { products } = this.state;
 
@@ -33,7 +46,7 @@ export default class CartView extends Component {
     let renderProducts;
     if (products && Object.keys(products) !== 0) {
       renderProducts = () => products.map((product) => (
-          <ShoppingCartCard key={product.id} productData={product} removeItem={() => CartData.removeItem(product)}/>
+          <ShoppingCartCard key={product.id} productData={product} removeItem={() => this.removeItem(product)}/>
       ));
     }
     return (
