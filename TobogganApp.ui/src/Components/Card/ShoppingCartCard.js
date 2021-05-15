@@ -46,7 +46,7 @@ export default function ShoppingCartCard({ productData, removeItem }) {
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
                 <Typography gutterBottom variant="h4">
-                  {productData.Title}
+                  {productData.title}
                 </Typography>
                 <Typography variant="h5" color="textSecondary" gutterBottom>
                   {productData.description}
@@ -67,7 +67,7 @@ export default function ShoppingCartCard({ productData, removeItem }) {
               </Grid>
             </Grid>
             <Grid item>
-              <Typography variant="h5" color="textSecondary">${productData.price}</Typography>
+              <Typography variant="h5" color="textSecondary">${productData.price}/each</Typography>
             </Grid>
           </Grid>
         </Grid>
