@@ -26,8 +26,17 @@ export default class ProductDetailsView extends Component {
     });
     const { singleProduct, quantity } = this.state;
     e.preventDefault();
+    const productObject = {
+      id: singleProduct.id,
+      title: singleProduct.title,
+      productImage: singleProduct.productImage,
+      decription: singleProduct.description,
+      shopId: singleProduct.shopId,
+      price: singleProduct.price,
+      quantity,
+    };
     if (quantity >= 1) {
-      CartData.setCart(`{id: ${singleProduct.id},shop: ${singleProduct.shopId}, price: ${singleProduct.price},quantity: ${quantity}}`);
+      CartData.setCart(productObject);
       this.setState({
         addedToCart: true,
       });

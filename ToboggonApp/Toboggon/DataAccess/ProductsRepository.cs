@@ -52,17 +52,10 @@ namespace Toboggan.DataAccess
                        ,ShopId=@ShopId
                        ,CategoryId=@CategoryId
                        ,ProductImage=@ProductImage
+                       ,Active=@Active
                        WHERE Id= @id";
 
             db.Execute(sql, product);
-        }
-
-        public void DeleteProduct(int id)
-        {
-            using var db = new SqlConnection(ConnectionString);
-            var sql = @"DELETE FROM Product WHERE Id= @id";
-
-            db.Execute(sql, new { id });
         }
 
         public List<Product> GetProductsOfAShop(int shopId)

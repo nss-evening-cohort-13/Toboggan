@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Auth from '../Auth';
 
-export default function Nav() {
+export default function Nav(props) {
+  // const { user } = props;
   return (
     <>
     <div className="navbar-container">
@@ -21,8 +23,17 @@ export default function Nav() {
           <Link to="/user-dashboard" className="user-icon m-2">
             <FontAwesomeIcon icon={faUserCircle} />
           </Link>
+          <Link to="/shopping-cart" className="navbar-item">
+            <ShoppingCartIcon />
+          </Link>
         </div>
       </nav>
+      {/* <div className='user-icon-container'>
+      <div>
+        <Link to="/user-dashboard" className="user-icon">
+          <FontAwesomeIcon icon={faUserCircle} />
+        </Link>
+      </div> */}
       <div className='user-icon-container'>
         <Auth />
       </div>
