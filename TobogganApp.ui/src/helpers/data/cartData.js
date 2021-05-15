@@ -32,13 +32,12 @@ const emptyCart = () => {
 // };
 
 const removeItem = (product) => {
-  console.warn('remove this product: ', product.id);
-  const tempCart = LocalStorage.getItem('cart');
-  console.warn('tempcart', tempCart);
-  // tempCart.filter((item) => item.id !== product.id);
-  // setCart(tempCart);
-  // LocalStorage.cart.filter((item) => item.id !== product.id);
-  // LocalStorage.removeItem(product.id);
+  // console.warn('remove this product: ', product.id);
+  let tempCart = LocalStorage.getItem('cart');
+  // console.warn('tempcart', tempCart);
+  // console.warn('tempcart-item', tempCart[0]);
+  tempCart = tempCart.filter((item) => item.id !== product.id);
+  LocalStorage.setItem('cart', tempCart);
 };
 
 export default {
