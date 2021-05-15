@@ -23,8 +23,7 @@ export default class CartView extends Component {
     let renderProducts;
     if (products && Object.keys(products) !== 0) {
       renderProducts = () => products.map((product) => (
-          <ShoppingCartCard productData={product}/>
-
+          <ShoppingCartCard productData={product} removeItem={() => CartData.removeItem(product)}/>
       ));
     }
     return (

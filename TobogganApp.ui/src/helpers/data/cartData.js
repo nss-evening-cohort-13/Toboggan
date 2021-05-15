@@ -16,18 +16,23 @@ const setCart = (item) => {
 };
 
 const getCart = () => cart;
+
 const emptyCart = () => {
   cart.length = 0;
 
   LocalStorage.removeItem('cart');
 };
 
-const removeItems = (e) => {
-  const itemTitle = e.target.closest('tr').id;
-  const filteredItems = cart.filter((item) => item.title !== itemTitle);
-  cart = filteredItems;
+// const removeItems = (e) => {
+//   const itemTitle = e.target.closest('tr').id;
+//   const filteredItems = cart.filter((item) => item.title !== itemTitle);
+//   cart = filteredItems;
 
-  LocalStorage.setItem('cart', cart);
+//   LocalStorage.setItem('cart', cart);
+// };
+
+const removeItem = (product) => {
+  LocalStorage.removeItem(product.id);
 };
 
 export default {
@@ -35,5 +40,5 @@ export default {
   setCart,
   getCart,
   emptyCart,
-  removeItems,
+  removeItem,
 };
