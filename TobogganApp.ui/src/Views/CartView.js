@@ -19,7 +19,7 @@ export default class CartView extends Component {
 
   getCartProducts = () => {
     this.setState({
-      products: CartData.getCart(),
+      products: LocalStorage.getItem('cart'),
     });
   }
 
