@@ -82,23 +82,23 @@ class SingleShopView extends Component {
             <h1 className="shopTitle mt-2">{shop.name}</h1>
             <p className="shopDescription">{shop.description}</p>
             {authed
-            && <>
+            && <div className='myShopBtnContainer d-flex flex-column'>
             <Link
             to={{
               pathname: '/shopForm',
               state: shop,
             }}>
-            <button className="btn btn-primary">Edit Shop</button>
+            <button className="btn btn-info w-100 m-2">Edit Shop</button>
             </Link>
-            <button className="btn btn-danger" onClick={() => this.deleteShop(shopId)}>Delete Shop</button>
+            <button className="btn btn-danger w-100 m-2" onClick={() => this.deleteShop(shopId)}>Delete Shop</button>
              <Link
              to={{
                pathname: '/productsForm',
                state: shop.id,
              }}>
-             <button className="btn btn-primary">Add Product</button>
+             <button className="btn btn-primary w-100 m-2">Add Product</button>
              </Link>
-             </>
+             </div>
             }
 
           </div>
