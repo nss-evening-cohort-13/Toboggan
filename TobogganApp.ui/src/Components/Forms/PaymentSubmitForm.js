@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import paymentData from '../../helpers/data/paymentTypeData';
 import OrderData from '../../helpers/data/orderData';
 import OrderLineItems from '../../helpers/data/orderLineItemData';
@@ -98,10 +99,28 @@ clearCart = () => cartStorage.emptyCart();
     return (
       <div className="shopForm mr-auto ml-auto mt-5">
         {success && (
+          <>
           <div className='alert alert-success' role='alert'>
             Your Order Was Submitted
           </div>
+          <div className='dflex'>
+          <Link
+             to={{
+               pathname: '/',
+             }}>
+             <button className="btn btn-primary w-100 m-2">Back To Home Page</button>
+             </Link>
+             <Link
+             to={{
+               pathname: '/user-dashboard/purchase-history',
+             }}>
+             <button className="btn btn-primary w-100 m-2">Go To Order Summary</button>
+             </Link>
+          </div>
+          </>
         )}
+      {!success && (
+        <>
         <form onSubmit={this.handleSubmit}>
           <div>
             <input
@@ -140,6 +159,7 @@ clearCart = () => cartStorage.emptyCart();
             Submit
           </button>
         </form>
+      </>)}
       </div>
     );
   }
