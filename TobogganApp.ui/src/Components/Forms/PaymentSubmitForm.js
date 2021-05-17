@@ -13,6 +13,10 @@ class PaymentForm extends Component {
     grandTotal: 0,
   };
 
+  componentDidMount() {
+    
+}
+
 createOrderWithLineItems = (order) => {
   OrderData.createOrder(order).then((orderId) => {
     this.createLineItems(orderId);

@@ -16,9 +16,6 @@ export default class CartView extends Component {
     this.Mounted = true;
     const { products } = this.state;
     this.getCartProducts();
-    if (products.length) {
-      const total = products.reduce((totalCost, qP) => totalCost + parseInt(qP.price * qP.quantity, 10), 0);
-    }
   }
 
   componentWillUnmount() {
