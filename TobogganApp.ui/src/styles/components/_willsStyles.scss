@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100&family=Rock+Salt&display=swap');
+body {
+    font-family: 'Raleway', Roboto, Sans-serif;
+    background-color: #000;
+}
+
+.brand {
+    font-family: 'Rock Salt', cursive;
+    color: #fff;
+}
+
+.home-title {
+background-color: #000;;
+color: #fff;
+}
+
+.home-products {
+background-color: rgb(19, 122, 148);
+color: #fff;
+}
+
+.home-products :nth-child(2n) {padding-top: 1em;} 
+
+.navbar-container {
+color: #fff;
+background-color: rgb(150,201,61);
+}
+
+.makeStyles-media-2 {
+width: 200px!important;
+}
+
+.makeStyles-media-2 :hover{
+    width: 200px!important;
+    }
+
+.homeSearch {
+    margin-top: 1.11em;
+}
