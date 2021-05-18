@@ -11,6 +11,7 @@ const loadCart = () => {
 };
 
 const setCart = (item) => {
+  loadCart();
   cart.push(item);
   LocalStorage.setItem('cart', cart);
 };
