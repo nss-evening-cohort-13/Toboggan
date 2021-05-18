@@ -29,8 +29,9 @@ export default function PaymentCard({ paymentData, onUpdate, deletePayment }) {
       case 3:
         return 'Discover';
         break;
+      default:
+        return 'Type Not Found';
     }
-    return 'Type Not Found';
   };
 
   return (
