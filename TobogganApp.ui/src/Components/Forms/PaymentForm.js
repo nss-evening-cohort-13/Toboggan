@@ -6,7 +6,7 @@ class PaymentForm extends Component {
     id: this.props.paymentData?.id || '',
     accountNumber: this.props.paymentData?.accountNumber || '',
     typeName: this.props.paymentData?.typeName || '',
-    userId: this.props.paymentData?.userId || this.props?.userId,
+    userId: this.props.paymentData?.userId || this.props.user?.id,
   };
 
   handleChange = (e) => {

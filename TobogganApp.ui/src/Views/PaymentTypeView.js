@@ -41,7 +41,7 @@ export default class PaymentTypeView extends Component {
           buttonLabel={'Add A Payment'}
           className2={'btn btn-md'}
         >
-          <PaymentForm onUpdate={() => this.loadThePayments()}/>
+          <PaymentForm user={user} onUpdate={this.loadThePayments}/>
         </AppModal>
           <div className="d-flex flex-wrap justify-content-center">
           {renderPayments()}

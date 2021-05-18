@@ -10,11 +10,21 @@ class PaymentForm extends Component {
     accountNumber: this.props.paymentData?.accountNumber || '',
     typeName: this.props.paymentData?.typeName || '',
     userId: this.props.paymentData?.userId || this.props?.userId,
+    preExistingPayment: '',
     grandTotal: 0,
+    paymentTypes: [],
   };
 
   componentDidMount() {
-    
+    this.loadThePayments(this.state.userId);
+  }
+
+loadThePayments = (userId) => {
+  paymentData.getUsersPaymentTypes(userId).then((response) => {
+    this.setState({
+      paymentTypes: response,
+    });
+  });
 }
 
 createOrderWithLineItems = (order) => {
@@ -98,8 +108,22 @@ clearCart = () => cartStorage.emptyCart();
   };
 
   render() {
-    const { success } = this.state;
+    const { success, paymentTypes } = this.state;
     return (
+      <>
+        <select
+            as='select'
+            name='preExistingPayment'
+            className='form-control form-control-lg m-1'
+            value={this.state.preExistingPayment}
+            onChange={this.handleChange}
+            defaultValue={this.state?.preExistingPayment}
+            required
+            >
+            {paymentTypes.map((payment) => {
+               <option value={payment.id}>{payment.accountNumber}</option>;
+            })}
+          </select>
       <div className="shopForm mr-auto ml-auto mt-5">
         {success && (
           <div className='alert alert-success' role='alert'>
@@ -145,6 +169,7 @@ clearCart = () => cartStorage.emptyCart();
           </button>
         </form>
       </div>
+      </>
     );
   }
 }
