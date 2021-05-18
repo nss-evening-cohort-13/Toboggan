@@ -10,9 +10,17 @@ const loadCart = () => {
   }
 };
 
-const setCart = (item) => {
+const setCart = (addedItem) => {
   loadCart();
-  cart.push(item);
+  const addedItemQuantity = parseInt(addedItem.quantity, 10);
+  const productIndex = cart.findIndex((product) => product.id === addedItem.id);
+
+  if (productIndex !== -1) {
+    const previousQuantity = parseInt(cart[productIndex].quantity, 10);
+    cart[productIndex].quantity = addedItemQuantity + previousQuantity;
+  } else {
+    cart.push(addedItem);
+  }
   LocalStorage.setItem('cart', cart);
 };
 

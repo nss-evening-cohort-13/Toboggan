@@ -63,7 +63,7 @@ export default class ProductDetailsView extends Component {
           <img
             className='singleProductImage m-2'
             src={singleProduct.productImage}
-            alt='product Image'
+            alt='product'
           />
           <div className='d-flex p-5 productDescription flex-column'>
             <p>{singleProduct.description}</p>
@@ -76,7 +76,7 @@ export default class ProductDetailsView extends Component {
              )}
             {addedToCart && <AddedToCartAlert productData={singleProduct} />}
             <input
-              type='text'
+              type='number'
               name='quantity'
               value={this.state.name}
               onChange={this.handleChange}
