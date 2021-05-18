@@ -28,6 +28,7 @@ loadThePayments = (userId) => {
 }
 
 createOrderWithLineItems = (order) => {
+  console.warn(order);
   OrderData.createOrder(order).then((orderId) => {
     this.createLineItems(orderId);
   });
@@ -35,6 +36,8 @@ createOrderWithLineItems = (order) => {
 
 createLineItems = (order) => {
   const cart = cartStorage.getCart();
+  console.warn(cart);
+  console.warn(order);
   cart.forEach((item) => {
     console.warn(item);
     let cartItem = {};
@@ -43,7 +46,7 @@ createLineItems = (order) => {
       Quantity: parseInt(item.quantity, 10),
       OrderId: order.id,
     };
-    OrderLineItems.createLineItem(cartItem);
+    OrderLineItems.createLineItem(cartItem).then(() => console.warn('orderlineItems'));
   });
 }
 
@@ -54,7 +57,7 @@ MakeOrder = (grandTotal, paymentId) => {
     TotalCost: grandTotal,
     PaymentTypeId: parseInt(paymentId, 10),
     SaleDate: date.toJSON(),
-    Completed: 1,
+    Completed: true,
   };
   this.createOrderWithLineItems(myOrder);
 }
@@ -73,13 +76,13 @@ clearCart = () => cartStorage.emptyCart();
     if (this.props.products.length) {
       grandTotal += this.props.products.reduce((totalCost, product) => totalCost + parseInt(product.price * product.quantity, 10), 0);
     }
+    this.MakeOrder(grandTotal, this.state.preExistingPayment);
     this.setState({
       success: true,
       grandTotal,
     });
     setTimeout(() => {
       this.clearCart();
-      this.MakeOrder(grandTotal, this.state.preExistingPayment);
     }, 2000);
   };
 
@@ -138,7 +141,6 @@ clearCart = () => cartStorage.emptyCart();
             className='form-control form-control-lg m-auto w-50'
             value={this.state.preExistingPayment}
             onChange={this.handleChange}
-            defaultValue='Choose an existing payment'
             required
             >
             <option>Choose an existing payment</option>
