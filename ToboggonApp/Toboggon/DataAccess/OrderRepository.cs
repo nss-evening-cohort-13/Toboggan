@@ -25,7 +25,7 @@ namespace Toboggan.DataAccess
             return results;
         }
 
-        public Order GetSingleOrder(int id)
+        public Order GetSingleOrder(string id)
         {
             var sql = @"select *
                         from [Order]
@@ -79,7 +79,7 @@ namespace Toboggan.DataAccess
                DATEPART(month, o.SaleDate)[month], 
                DATEPART(day, o.SaleDate)[day]
                FROM[Order] o JOIN[OrderLineItem] oli ON oli.OrderId = o.Id
-               JOIN[Product] p ON p.Id = oli.Id
+               JOIN[Product] p ON p.Id = oli.ProductId
                JOIN[Shop] s ON s.Id = p.ShopId
                JOIN[User] u ON u.Id = s.UserId
                 WHERE u.Id = @id
@@ -99,7 +99,7 @@ namespace Toboggan.DataAccess
 
             var sql = @"select sum(oli.Quantity*p.Price) as total,  sum(oli.Quantity) as totQuantity from [Order] o
                           JOIN [OrderLineItem] oli on oli.OrderId = o.Id 
-                          JOIN [Product] p ON p.Id = oli.Id
+                          JOIN [Product] p ON p.Id = oli.ProductId
                           JOIN [Shop] s ON s.Id = p.ShopId
                           JOIN [User] u ON u.Id = s.UserId
                           WHERE u.Id = @id";
@@ -116,7 +116,7 @@ namespace Toboggan.DataAccess
                           p.Description, p.Price, oli.Quantity as QuantityBought, 
                           p.Quantity as QuantityLeft from [Order] o
                           JOIN [OrderLineItem] oli on oli.OrderId = o.Id 
-                          JOIN [Product] p ON p.Id = oli.Id
+                          JOIN [Product] p ON p.Id = oli.ProductId
                           JOIN [Category] c ON c.Id = P.CategoryId
                           JOIN [Shop] s ON s.Id = p.ShopId
                           JOIN [User] u ON u.Id = s.UserId
