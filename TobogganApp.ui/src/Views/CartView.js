@@ -10,6 +10,7 @@ export default class CartView extends Component {
     products: [],
     totalCost: 0,
     show: false,
+    oderDone: false,
   };
 
   componentDidMount() {
@@ -28,6 +29,12 @@ export default class CartView extends Component {
     });
   }
 
+  orderDoneFlip = () => {
+    this.setState({
+      orderDone: !this.state.orderDone,
+    });
+  }
+
   removeItem = (product) => {
     let tempCart = LocalStorage.getItem('cart');
     tempCart = tempCart.filter((item) => item.id !== product.id);
@@ -38,7 +45,7 @@ export default class CartView extends Component {
   };
 
   render() {
-    const { products } = this.state;
+    const { products, orderDone } = this.state;
 
     let grandTotal = 0;
     if (products != null && products.length) {
@@ -61,10 +68,9 @@ export default class CartView extends Component {
       <h1>Your Cart</h1>
       <div className="d-flex flex-column justify-content-center">
         {(products != null) ? renderProducts() : ''}
-        <Typography variant="body2" color="textSecondary" component="p">
-        <button className="btn btn-danger productButtons" onClick={() => submitButton()}>Proceed to Checkout</button>
-        </Typography>
-        {this.state.show && <PaymentSubmitForm products={ products } userId={this.props.user.uid}/>}
+        {!orderDone
+        && <button className="btn btn-danger productButtons" onClick={() => submitButton()}>Proceed to Checkout</button> }
+        {this.state.show && <PaymentSubmitForm products={ products } userId={this.props.user.uid} buttonFlip={this.orderDoneFlip}/>}
       </div>
       <div className="d-flex justify-content-center m-2">
         <h2>Your total is ${grandTotal}</h2>

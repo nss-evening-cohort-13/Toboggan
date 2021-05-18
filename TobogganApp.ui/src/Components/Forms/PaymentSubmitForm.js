@@ -28,7 +28,6 @@ loadThePayments = (userId) => {
 }
 
 createOrderWithLineItems = (order) => {
-  console.warn(order);
   OrderData.createOrder(order).then((orderId) => {
     this.createLineItems(orderId);
   });
@@ -36,8 +35,6 @@ createOrderWithLineItems = (order) => {
 
 createLineItems = (order) => {
   const cart = cartStorage.getCart();
-  console.warn(cart);
-  console.warn(order);
   cart.forEach((item) => {
     console.warn(item);
     let cartItem = {};
@@ -81,6 +78,7 @@ clearCart = () => cartStorage.emptyCart();
       success: true,
       grandTotal,
     });
+    this.props.buttonFlip();
     setTimeout(() => {
       this.clearCart();
     }, 2000);
