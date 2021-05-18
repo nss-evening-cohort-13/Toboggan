@@ -14,7 +14,7 @@ export default function Dashboard(props) {
       <h5>${ totalInfo && totalInfo.length > 0 ? totalInfo[0].total : ''}</h5>
     </div>
     <div className="dash-container m-2 p-2">
-      <h2>{ salesThisMonth ? `Sales this month: $${salesThisMonth.toFixed(2)}` : 'Sales this month: 0'}:</h2>
+      <h2>{ salesThisMonth ? `Sales this month: $${salesThisMonth.toFixed(2)}` : 'Sales this month: 0'}</h2>
     </div>
     <div className="dash-container m-2 p-2">
       <h2>Average Per Item</h2>
