@@ -98,7 +98,7 @@ namespace Toboggan.DataAccess
             db.Execute(sql, new { id });
         }
 
-        public List<CategoryData> CategoriesTotalSalesAndInventory(int id)
+        public List<CategoryData> CategoriesTotalSalesAndInventory(string id)
         {
             using var db = new SqlConnection(ConnectionString);
 

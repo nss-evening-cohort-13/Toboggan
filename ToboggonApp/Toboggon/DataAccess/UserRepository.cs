@@ -131,7 +131,7 @@ namespace Toboggan.DataAccess
 				        JOIN [Product] p on p.Id = oli.ProductId
                         JOIN [Shop] s on s.Id = p.ShopId
 				        JOIN [User] u on u.Id = s.UserId
-				        WHERE o.UserId = @id
+				        WHERE o.UserId = @Id
 				        ORDER BY o.SaleDate DESC";
 
             var purchaseHistory = db.Query(sql, new { Id = id }).ToList();
