@@ -76,7 +76,7 @@ export default class ProductDetailsView extends Component {
              )}
             {addedToCart && <AddedToCartAlert productData={singleProduct} />}
             <input
-              type='text'
+              type='number'
               name='quantity'
               value={this.state.name}
               onChange={this.handleChange}
