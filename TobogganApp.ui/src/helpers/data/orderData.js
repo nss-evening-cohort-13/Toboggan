@@ -53,7 +53,6 @@ const fetchOrdersToBeShipped = (id) => new Promise((resolve, reject) => {
 
 const createOrder = (productObj) => new Promise((resolve, reject) => {
   axios.post(orderDataUrl, productObj).then((response) => {
-    console.warn(response);
     resolve(response.data);
   }).catch((error) => reject(error));
 });

@@ -36,14 +36,13 @@ createOrderWithLineItems = (order) => {
 createLineItems = (order) => {
   const cart = cartStorage.getCart();
   cart.forEach((item) => {
-    console.warn(item);
     let cartItem = {};
     cartItem = {
       ProductId: item.id,
       Quantity: parseInt(item.quantity, 10),
       OrderId: order.id,
     };
-    OrderLineItems.createLineItem(cartItem).then(() => console.warn('orderlineItems'));
+    OrderLineItems.createLineItem(cartItem);
   });
 }
 

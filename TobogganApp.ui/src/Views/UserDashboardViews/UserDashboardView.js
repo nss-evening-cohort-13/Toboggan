@@ -21,7 +21,6 @@ export default function UserDashboardView(props) {
     shopData.getSingleShopByUserId(userId)
       .then((response) => {
         setUserId(userId);
-        // console.warn('response', response);
         if (response) {
           setUserHasAShop(true);
         } else {
