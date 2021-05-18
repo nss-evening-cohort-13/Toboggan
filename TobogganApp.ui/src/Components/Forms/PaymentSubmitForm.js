@@ -27,7 +27,6 @@ loadThePayments = (userId) => {
 }
 
 createOrderWithLineItems = (order) => {
-  console.warn('order', order);
   OrderData.createOrder(order).then((orderId) => {
     this.createLineItems(orderId);
   });
@@ -113,7 +112,7 @@ clearCart = () => cartStorage.emptyCart();
       <select
             as='select'
             name='preExistingPayment'
-            className='form-control form-control-lg m-autow-50'
+            className='form-control form-control-lg m-auto w-50'
             value={this.state.preExistingPayment}
             onChange={this.handleChange}
             defaultValue='Choose an existing payment'
@@ -123,21 +122,19 @@ clearCart = () => cartStorage.emptyCart();
             {paymentTypes.map((payment) => <option key={payment.id} value={payment.id}>{
             this.conditionalType(payment.typeName)}{payment.accountNumber}</option>)}
           </select>
-      <div className="shopForm mr-auto ml-auto mt-5">
-        {success && (
-          <div className='alert alert-success' role='alert'>
-            Your Order Was Submitted
-          </div>
-        )}
         <AppModal
           btnColor={'outline-info'}
           title='Add A Payment'
           buttonLabel={'Add A Payment'}
-          className2={'btn btn-md'}
+          className2={'btn btn-md w-100 m-3'}
         >
           <PaymentForm userId={userId} onUpdate={this.loadThePayments}/>
         </AppModal>
-      </div>
+      {success && (
+          <div className='alert alert-success' role='alert'>
+            Your Order Was Submitted
+          </div>
+      )}
           <button
             ref={(btn) => {
               this.btn = btn;
