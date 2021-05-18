@@ -66,10 +66,10 @@ export default class CartView extends Component {
     return (
       <>
       <h1>Your Cart</h1>
-      <div className="d-flex flex-column justify-content-center">
+      <div className="d-flex flex-column justify-content-center align-items-center">
         {(products != null) ? renderProducts() : ''}
-        {!orderDone
-        && <button className="btn btn-danger productButtons" onClick={() => submitButton()}>Proceed to Checkout</button> }
+        {!orderDone && products
+        && <button className="btn btn-danger proceedBtn productButtons" onClick={() => submitButton()}>Proceed to Checkout</button> }
         {this.state.show && <PaymentSubmitForm products={ products } userId={this.props.user.uid} buttonFlip={this.orderDoneFlip}/>}
       </div>
       <div className="d-flex justify-content-center m-2">

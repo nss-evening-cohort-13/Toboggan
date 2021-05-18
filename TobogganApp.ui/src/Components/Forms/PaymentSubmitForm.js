@@ -124,7 +124,7 @@ clearCart = () => cartStorage.emptyCart();
              to={{
                pathname: '/user-dashboard/purchase-history',
              }}>
-             <button className="btn btn-primary w-100 m-2">Go To Order Summary</button>
+             <button className="btn btn-primary w-100 m-2">Go To Purchase History</button>
              </Link>
           </div>
           </>
@@ -132,11 +132,11 @@ clearCart = () => cartStorage.emptyCart();
       {!success && (
         <>
         <form onSubmit={this.handleSubmit}>
-          <div className='d-flex flex-column w-50 justify-content-center align-items-center m-auto'>
+          <div className='d-flex flex-column justify-content-center align-items-center m-auto'>
           <select
             as='select'
             name='preExistingPayment'
-            className='form-control form-control-lg m-auto w-50'
+            className='form-control form-control-lg m-2 existingPaymentSelect'
             value={this.state.preExistingPayment}
             onChange={this.handleChange}
             required
@@ -149,7 +149,7 @@ clearCart = () => cartStorage.emptyCart();
           btnColor={'outline-info'}
           title='Add A Payment'
           buttonLabel={'Add A Payment'}
-          className2={'btn btn-md w-100 m-3'}
+          className2={'btn btn-md w-100 mr-2 mb-4'}
         >
           <PaymentForm userId={userId} onUpdate={this.loadThePayments}/>
         </AppModal>
@@ -163,7 +163,7 @@ clearCart = () => cartStorage.emptyCart();
             ref={(btn) => {
               this.btn = btn;
             }}
-            className='btn btn-primary mt-4 w-50 m-auto'
+            className='btn btn-primary w-50 m-auto ml-2 submitButton'
           >
             Submit
           </button>
