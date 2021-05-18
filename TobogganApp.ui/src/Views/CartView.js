@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
 import PaymentSubmitForm from '../Components/Forms/PaymentSubmitForm';
-import CartData from '../helpers/data/cartData';
 import ShoppingCartCard from '../Components/Card/ShoppingCartCard';
 import LocalStorage from '../helpers/localStorage';
 
@@ -14,11 +13,7 @@ export default class CartView extends Component {
 
   componentDidMount() {
     this.Mounted = true;
-    const { products } = this.state;
     this.getCartProducts();
-    if (products.length) {
-      const total = products.reduce((totalCost, qP) => totalCost + parseInt(qP.price * qP.quantity, 10), 0);
-    }
   }
 
   componentWillUnmount() {

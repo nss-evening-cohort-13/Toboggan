@@ -63,7 +63,7 @@ export default class ProductDetailsView extends Component {
           <img
             className='singleProductImage m-2'
             src={singleProduct.productImage}
-            alt='product Image'
+            alt='product'
           />
           <div className='d-flex p-5 productDescription flex-column'>
             <p>{singleProduct.description}</p>
@@ -71,7 +71,7 @@ export default class ProductDetailsView extends Component {
             {quantity > singleProduct.quantity && (
               <QuantityAlert productData={singleProduct} />
             )}
-             {clicked && quantity == 0 && (
+             {clicked && quantity === 0 && (
               <NoQuantitySelected productData={singleProduct} />
              )}
             {addedToCart && <AddedToCartAlert productData={singleProduct} />}

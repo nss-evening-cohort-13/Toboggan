@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import UserDashboardCard from '../../Components/Card/UserDashboardCard';
@@ -21,7 +20,6 @@ export default function UserDashboardView(props) {
     shopData.getSingleShopByUserId(userId)
       .then((response) => {
         setUserId(userId);
-        // console.warn('response', response);
         if (response) {
           setUserHasAShop(true);
         } else {

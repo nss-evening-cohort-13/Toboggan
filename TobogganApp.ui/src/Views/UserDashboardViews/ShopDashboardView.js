@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import BioCard from '../../Components/Card/UserBioCard';
 import userData from '../../helpers/data/userData';
 import orderData from '../../helpers/data/orderData';
 import catData from '../../helpers/data/categoryData';
@@ -54,7 +53,7 @@ export default class ShopDashboardView extends Component {
     return new Date();
   }
 
-  salesThisMonth = () => this.state.totalByDate.filter((tot) => (this.getDate().getFullYear() === tot.year) && ((this.getDate().getMonth() + 1) == tot.month));
+  salesThisMonth = () => this.state.totalByDate.filter((tot) => (this.getDate().getFullYear() === tot.year) && ((this.getDate().getMonth() + 1) === tot.month));
 
   render() {
     const {

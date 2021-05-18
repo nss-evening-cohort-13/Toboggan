@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import firebase from 'firebase/app';
 import 'firebase/storage';
-import getUser from '../../helpers/data/authData';
 import shopData from '../../helpers/data/shopData';
 import productData from '../../helpers/data/productData';
 import categoryData from '../../helpers/data/categoryData';
