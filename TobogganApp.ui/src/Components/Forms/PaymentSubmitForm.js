@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import paymentData from '../../helpers/data/paymentTypeData';
 import OrderData from '../../helpers/data/orderData';
 import OrderLineItems from '../../helpers/data/orderLineItemData';
@@ -76,7 +77,6 @@ clearCart = () => cartStorage.emptyCart();
       success: true,
       grandTotal,
     });
-    this.props.getCartProducts();
     setTimeout(() => {
       this.clearCart();
       this.MakeOrder(grandTotal, this.state.preExistingPayment);
@@ -107,9 +107,32 @@ clearCart = () => cartStorage.emptyCart();
     const { success, paymentTypes, userId } = this.state;
     return (
       <>
-      <form onSubmit={this.handleSubmit}>
-      <div className='d-flex flex-column paymentContainer justify-content-center align-items-center'>
-      <select
+        {success && (
+          <>
+          <div className='alert alert-success' role='alert'>
+            Your Order Was Submitted
+          </div>
+          <div className='dflex'>
+          <Link
+             to={{
+               pathname: '/',
+             }}>
+             <button className="btn btn-primary w-100 m-2">Back To Home Page</button>
+             </Link>
+             <Link
+             to={{
+               pathname: '/user-dashboard/purchase-history',
+             }}>
+             <button className="btn btn-primary w-100 m-2">Go To Order Summary</button>
+             </Link>
+          </div>
+          </>
+        )}
+      {!success && (
+        <>
+        <form onSubmit={this.handleSubmit}>
+          <div className='d-flex flex-column w-50 justify-content-center align-items-center m-auto'>
+          <select
             as='select'
             name='preExistingPayment'
             className='form-control form-control-lg m-auto w-50'
@@ -130,6 +153,7 @@ clearCart = () => cartStorage.emptyCart();
         >
           <PaymentForm userId={userId} onUpdate={this.loadThePayments}/>
         </AppModal>
+        </div>
       {success && (
           <div className='alert alert-success' role='alert'>
             Your Order Was Submitted
@@ -143,8 +167,8 @@ clearCart = () => cartStorage.emptyCart();
           >
             Submit
           </button>
-      </div>
-      </form>
+        </form>
+      </>)}
       </>
     );
   }
