@@ -107,6 +107,26 @@ clearCart = () => cartStorage.emptyCart();
     }
   };
 
+  conditionalType(type) {
+    switch (type) {
+      case 0:
+        return 'MasterCard  ';
+        break;
+      case 1:
+        return 'Visa  ';
+        break;
+      case 2:
+        return 'Paypal  ';
+        break;
+      case 3:
+        return 'Discover  ';
+        break;
+      default:
+        return '';
+        break;
+    }
+  }
+
   render() {
     const { success, paymentTypes } = this.state;
     return (
@@ -120,9 +140,8 @@ clearCart = () => cartStorage.emptyCart();
             defaultValue={this.state?.preExistingPayment}
             required
             >
-            {paymentTypes.map((payment) => {
-               <option value={payment.id}>{payment.accountNumber}</option>;
-            })}
+            {paymentTypes.map((payment) => <option value={payment.id}>{
+            this.conditionalType(payment.typeName)}{payment.accountNumber}</option>)}
           </select>
       <div className="shopForm mr-auto ml-auto mt-5">
         {success && (
