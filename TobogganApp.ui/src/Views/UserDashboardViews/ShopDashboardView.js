@@ -1,73 +1,64 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import userData from '../../helpers/data/userData';
 import orderData from '../../helpers/data/orderData';
 import catData from '../../helpers/data/categoryData';
 import Dashboard from '../../Components/Card/Dashboard';
 
-export default class ShopDashboardView extends Component {
-  state = {
-    userInfo: '',
-    totalInfo: '',
-    totalByDate: '',
-    categoryDate: '',
-    toBeShipped: '',
-    orderLineItems: [],
-    error: '',
-    userId: this.props.user?.uid,
-  }
+export default function ShopDashboardView(props) {
+  const [userInfo, setUserInfo] = useState([]);
+  const [myid, setId] = useState([]);
+  const [totalInfo, setTotalInfo] = useState([]);
+  const [totalByDate, SetTotalByDate] = useState([]);
+  const [categoryData, setCategoryData] = useState([]);
+  const [toBeShipped, setToBeShipped] = useState([]);
+  const [orderLineItems, setOrderLineItems] = useState();
+  const id = props.user?.uid;
 
-  componentDidMount() {
-    userData.getSingleUser(this.state.userId)
-      .then((response) => {
-        this.setState({
-          userInfo: response,
-        });
+  useEffect(() => {
+    userData.getSingleUser(id)
+      .then((data) => {
+        setUserInfo(data);
+        setId(id);
       });
-    orderData.fetchTotalAllSalesAvgById(this.state.userId)
-      .then((response) => {
-        this.setState({
-          totalInfo: response,
-        });
+    orderData.fetchTotalAllSalesAvgById(id)
+      .then((results) => {
+        const totals = results;
+        setTotalInfo(totals);
       });
-    orderData.fetchTotalSalesByDate(this.state.userId)
-      .then((response) => {
-        this.setState({
-          totalByDate: response,
-        });
+    orderData.fetchTotalSalesByDate(id)
+      .then((results) => {
+        const total = results;
+        SetTotalByDate(total);
       });
-    catData.GetCategoryData(this.state.userId)
-      .then((response) => {
-        this.setState({
-          categoryData: response,
-        });
+    catData.GetCategoryData(id)
+      .then((results) => {
+        const total = results;
+        setCategoryData(total);
       });
-    orderData.fetchOrdersToBeShipped(this.state.userId)
-      .then((response) => {
-        this.setState({
-          toBeShipped: response,
-        });
+    orderData.fetchOrdersToBeShipped(id)
+      .then((results) => {
+        const things = results;
+        setToBeShipped(things);
       });
-  }
+  }, []);
 
-  getDate() {
+  function getDate() {
     return new Date();
   }
 
   salesThisMonth = () => this.state.totalByDate.filter((tot) => (this.getDate().getFullYear() === tot.year) && ((this.getDate().getMonth() + 1) === tot.month));
 
-  render() {
-    const {
-      totalInfo,
-      categoryData,
-      toBeShipped,
-    } = this.state;
-    return (
-      <div>
-      <h2 className="m-3">Shop Dashboard</h2>
-      <div className='d-flex justify-content-center m-3'>
-        <Dashboard totalInfo={ totalInfo } salesThisMonth={this.salesThisMonth} categoryData={categoryData} toBeShipped={toBeShipped} />
-      </div>
-      </div>
-    );
-  }
+  const salesThisMonth = totalByDate.filter((tot) => (getDate().getFullYear() === tot.year) && ((getDate().getMonth() + 1) == tot.month));
+  const totalSalesMonth = salesThisMonth.reduce((sum, order) => (sum + order.total), 0);
+
+
+  return (
+    <>
+    <h2>Your Order History</h2>
+    <div className='d-flex User-Profile'>
+      <Dashboard totalInfo={ totalInfo } salesThisMonth={totalSalesMonth}
+                 categoryData={categoryData} toBeShipped={toBeShipped} />
+    </div>
+    </>
+  );
 }
