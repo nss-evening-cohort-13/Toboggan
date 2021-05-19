@@ -109,7 +109,7 @@ namespace Toboggan.DataAccess
                           p.Description, p.Price, oli.Quantity as QuantityBought
                           from [Order] o
                           JOIN [OrderLineItem] oli on oli.OrderId = o.Id 
-                          JOIN [Product] p ON p.Id = oli.Id
+                          JOIN [Product] p ON p.Id = oli.ProductId
                           JOIN [Category] c ON c.Id = P.CategoryId
                           JOIN [Shop] s ON s.Id = p.ShopId
                           JOIN [User] u ON u.Id = s.UserId
@@ -126,12 +126,12 @@ namespace Toboggan.DataAccess
         {
             using var db = new SqlConnection(ConnectionString);
 
-            var sql = @"select p.Title, p.Description, p.Price, p.ProductImage, p.ShopId,oli.Quantity, o.SaleDate, u.FirstName, u.LastName, o.Id from [OrderLineItem] oli
+            var sql = @"select p.Id as ProductId, p.Title, p.Description, p.Price, p.ProductImage, p.ShopId as ShopId, oli.Quantity, o.SaleDate, u.FirstName, u.LastName, o.Id as OrderId from [OrderLineItem] oli
 				        JOIN [Order] o on o.Id = oli.OrderId
 				        JOIN [Product] p on p.Id = oli.ProductId
                         JOIN [Shop] s on s.Id = p.ShopId
 				        JOIN [User] u on u.Id = s.UserId
-				        WHERE o.UserId = @id
+				        WHERE o.UserId = @Id
 				        ORDER BY o.SaleDate DESC";
 
             var purchaseHistory = db.Query(sql, new { Id = id }).ToList();

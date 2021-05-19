@@ -17,12 +17,12 @@ const getSingleProduct = (id) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const getFilteredProductsBackEnd = (searchInput) => new Promise((resolve, reject) => {
-  axios.get(`${productsUrl}/search/${searchInput}`).then((response) => {
-    resolve(response.data);
-  })
-    .catch((error) => reject(error));
-});
+// const getFilteredProductsBackEnd = (searchInput) => new Promise((resolve, reject) => {
+//   axios.get(`${productsUrl}/search/${searchInput}`).then((response) => {
+//     resolve(response.data);
+//   })
+//     .catch((error) => reject(error));
+// });
 
 const getFilteredProducts = (searchInput) => new Promise((resolve, reject) => {
   axios.get(productsUrl).then((response) => {
@@ -39,7 +39,6 @@ const getProductsOfAShop = (shopId) => new Promise((resolve, reject) => {
 });
 
 const updateProduct = (productObj) => new Promise((resolve, reject) => {
-  console.warn(productObj);
   axios.patch(productsUrl, productObj).then((response) => {
     resolve(response.data);
   }).catch((error) => reject(error));

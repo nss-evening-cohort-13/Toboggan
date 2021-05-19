@@ -25,7 +25,7 @@ export default class PurchaseHistoryView extends Component {
 
   render() {
     const { orders } = this.state;
-    const renderOrders = orders.map((order) => <PurchaseHistoryCard key={order.Id} orderData={order} />);
+    const renderOrders = orders.map((order) => <PurchaseHistoryCard key={order.ProductId} orderData={order} />);
     return (
       <div className="m-4">
         <h2>Purchase History</h2>

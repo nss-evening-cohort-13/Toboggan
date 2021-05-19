@@ -103,11 +103,10 @@ namespace Toboggan.Controllers
 
 
         [HttpPost]
-        [AllowAnonymous]
         public IActionResult AddAnOrder(Order order)
         {
             _repo.AddAnOrder(order);
-            return Created($"api/Users/{order.Id}", order);
+            return Created($"api/Orders/{order.Id}", order);
         }
 
         [HttpPatch]
