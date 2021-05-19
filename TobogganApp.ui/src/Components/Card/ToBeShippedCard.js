@@ -30,6 +30,7 @@ const createRows = (orderData) => orderData.map((order) => {
     rows.push(createData(orderData, order.orderTableId, order.saleDate, order.firstName, order.lastName,
       order.shopId, order.shopName, order.totalCost));
   }
+  return '';
 });
 
 const createData = (orderData, orderTableId, saleDate, firstName, lastName, shopId, shopName, totalCost) => {

@@ -145,7 +145,7 @@ export default class ProductsForm extends Component {
           </div>
           <div>
               <select name='CategoryId' onChange={this.handleChange} >
-              {this.state.allCategories.map((category) => (<option value={category.id}>{category.name}</option>))}
+              {this.state.allCategories.map((category) => (<option key={category.id} value={category.id}>{category.name}</option>))}
               </select>
           </div>
           <button
