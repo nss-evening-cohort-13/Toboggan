@@ -82,8 +82,8 @@ function OrderRow(row) {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell component="th" scope="row">{row.order.saleDate}</TableCell>
-        <TableCell component="right" scope="row">{row.order.orderTableId}</TableCell>
+        <TableCell scope="row">{row.order.saleDate}</TableCell>
+        <TableCell scope="row">{row.order.orderTableId}</TableCell>
         <TableCell align="right">{row.order.firstName}</TableCell>
         <TableCell align="right">{row.order.lastName}</TableCell>
         <TableCell align="right">{row.order.shopId}</TableCell>
@@ -140,7 +140,7 @@ export default function OrdersToBeShipped(props) {
         </TableHead>
         <TableBody>
           { createRows(orderData) }
-          { rows.map((row) => (<OrderRow key={row.id} order={row} />)) }
+          { rows.map((row, index) => (<OrderRow key={index} order={row} />)) }
         </TableBody>
       </Table>
     </TableContainer>

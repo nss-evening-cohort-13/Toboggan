@@ -40,7 +40,7 @@ export default function Routes({ user, authed }) {
       <PrivateRoute exact path='/user-dashboard/create-shop' user={user} component={(props) => <CreateShopView user={user} />}/>
       <PrivateRoute exact path='/user-dashboard/purchase-history' user={user} component={() => <PurchaseHistoryView user={user}/>} />
       <PrivateRoute exact path='/user-dashboard/my-shop' user={user} component={(props) => <MyShopView {...props} user={user}/> } />
-      <PrivateRoute exact path='/user-dashboard/shop-dashboard' user={user} component={() => <ShopDashboardView user={user}/>} />
+      <PrivateRoute exact path='/user-dashboard/shop-dashboard' user={user} component={(props) => <ShopDashboardView {...props} user={user}/>} />
       <PrivateRoute exact path='/user-dashboard/shop-orders' user={user} component={(props) => <ShopOrderView {...props} user={user}/>} />
     </Switch>
   );

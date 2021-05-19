@@ -26,10 +26,10 @@ export default function ProductCard({ productData }) {
         image={productData.productImage}
         title="ProductCards"
       >
-      <div class="product-card d-flex">
-          <div class="hover-content">
-            <p class={`${classes.h3} product-title`}>{productData.title}</p>
-            <h6 class="product-price">${productData.price}</h6>
+      <div className="product-card d-flex">
+          <div className="hover-content">
+            <p className={`${classes.h3} product-title`}>{productData.title}</p>
+            <h6 className="product-price">${productData.price}</h6>
           </div>
         </div>
       </CardMedia>

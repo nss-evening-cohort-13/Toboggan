@@ -14,20 +14,19 @@ export default function Dashboard(props) {
       <h5>${ totalInfo && totalInfo.length > 0 ? totalInfo[0].total : ''}</h5>
     </div>
     <div className="dash-container m-2 p-2">
-      <h2>Total sales for { salesThisMonth && salesThisMonth.length ? `$  {salesThisMonth[0].month}/${salesThisMonth[0].year}` : ''}:</h2>
-      <h5>{ salesThisMonth && salesThisMonth.length ? salesThisMonth[0].total : ''}</h5>
+      <h2>{ salesThisMonth ? `Sales this month: $${salesThisMonth.toFixed(2)}` : 'Sales this month: 0'}</h2>
     </div>
     <div className="dash-container m-2 p-2">
       <h2>Average Per Item</h2>
-      <div> { totalInfo && totalInfo.length > 0 ? (totalInfo[0].total / totalInfo[0].totQuantity).toFixed(2) : '' }
+      <div> ${ totalInfo && totalInfo.length > 0 ? (totalInfo[0].total / totalInfo[0].totQuantity).toFixed(2) : '' }
       </div>
     </div>
     <div className="dash-container m-2 p-2">
       <h2> Total Inventory by Category</h2>
-        <div>{categoryData && categoryData.length && categoryData.map((catData) => <CategoryInventory catData={catData} key={catData.id}/>)}
+        <div>{categoryData && categoryData.length && categoryData.map((catData, index) => <CategoryInventory key={index} catData={catData} />)}
         </div>
       <h2>Total Sales by Category:</h2>
-        <div>{categoryData && categoryData.length && categoryData.map((catData) => <CategorySales catData={catData} key={catData.id}/>)}
+        <div>{categoryData && categoryData.length && categoryData.map((catData, index) => <CategorySales key={index} catData={catData} />)}
         </div>
     </div>
     <div className="dash-container m-2 p-2">
