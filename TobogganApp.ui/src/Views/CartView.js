@@ -61,7 +61,7 @@ export default class CartView extends Component {
 
     return (
       <>
-      <h1>Your Cart</h1>
+      <h1 className='m-3'>Your Cart</h1>
       <div className="d-flex flex-column justify-content-center">
         {(products != null) ? renderProducts() : ''}
         <Typography variant="body2" color="textSecondary" component="p">
@@ -70,7 +70,7 @@ export default class CartView extends Component {
         {this.state.show && <PaymentSubmitForm products={ products } userId={this.props.user.uid} />}
       </div>
       <div className="d-flex justify-content-center m-2">
-        <h2>Your total is ${grandTotal}</h2>
+        <h2 className='mt-3'>Your total is ${grandTotal}</h2>
       </div>
       </>
     );
