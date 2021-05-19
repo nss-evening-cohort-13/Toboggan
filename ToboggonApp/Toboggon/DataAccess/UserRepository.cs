@@ -109,7 +109,7 @@ namespace Toboggan.DataAccess
                           p.Description, p.Price, oli.Quantity as QuantityBought
                           from [Order] o
                           JOIN [OrderLineItem] oli on oli.OrderId = o.Id 
-                          JOIN [Product] p ON p.Id = oli.Id
+                          JOIN [Product] p ON p.Id = oli.ProductId
                           JOIN [Category] c ON c.Id = P.CategoryId
                           JOIN [Shop] s ON s.Id = p.ShopId
                           JOIN [User] u ON u.Id = s.UserId
