@@ -9,11 +9,11 @@ body {
 
 .btnPrimary {
     border: 1px solid $primaryColor;
-    // color: $primaryColor;
+    color: $primaryColor;
     font-size: 20px;
     font-weight: bolder;
-    background-color: $primaryColor;
-    color: white;
+    // background-color: $primaryColor;
+    // color: white;
 }
 
 .btnPrimary:hover {
@@ -26,12 +26,12 @@ body {
 
 .btnSecondary {
     border: 1px solid $secondaryColor;
-    // color: $secondaryColor;
+    color: $secondaryColor;
     font-size: 20px;
     font-weight: bolder;
     width: 100%;
-    background-color: $secondaryColor;
-    color: white;
+    // background-color: $secondaryColor;
+    // color: white;
 }
 
 .btnSecondary:hover {
