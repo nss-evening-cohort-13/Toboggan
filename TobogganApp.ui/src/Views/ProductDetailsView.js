@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import QuantityAlert from '../Components/Alerts/QuantityAlert';
 import AddedToCartAlert from '../Components/Alerts/AddedToCartAlert';
 import NoQuantitySelected from '../Components/Alerts/NoQuantitySelectedAlert';
-import CartData from '../helpers/data/cartData';
+import cartData from '../helpers/data/cartData';
 
 export default class ProductDetailsView extends Component {
   state = {
@@ -36,7 +36,7 @@ export default class ProductDetailsView extends Component {
       quantity,
     };
     if (quantity >= 1) {
-      CartData.setCart(productObject);
+      cartData.setCart(productObject);
       this.setState({
         addedToCart: true,
       });
