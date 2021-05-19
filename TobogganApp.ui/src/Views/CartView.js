@@ -65,7 +65,7 @@ export default class CartView extends Component {
       <div className="d-flex flex-column justify-content-center">
         {(products != null) ? renderProducts() : ''}
         <Typography variant="body2" color="textSecondary" component="p">
-        <button className="btn btn-danger productButtons" onClick={() => submitButton()}>Submit Order</button>
+        <button className="btn btnTertiary" onClick={() => submitButton()}>Submit Order</button>
         </Typography>
         {this.state.show && <PaymentSubmitForm products={ products } userId={this.props.user.uid} />}
       </div>

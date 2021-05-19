@@ -9,25 +9,48 @@ body {
 
 .btnPrimary {
     border: 1px solid $primaryColor;
-    color: $primaryColor;
+    // color: $primaryColor;
     font-size: 20px;
     font-weight: bolder;
+    background-color: $primaryColor;
+    color: white;
 }
 
 .btnPrimary:hover {
-    color: white;
-    background-color: $primaryColor;
+    // color: white;
+    // background-color: $primaryColor;
+    color: $primaryColor;
+    background-color: transparent;
+    border: 1px solid $primaryColor;
 }
 
 .btnSecondary {
     border: 1px solid $secondaryColor;
-    color: $secondaryColor;
+    // color: $secondaryColor;
     font-size: 20px;
     font-weight: bolder;
-    width: 100%
+    width: 100%;
+    background-color: $secondaryColor;
+    color: white;
 }
 
 .btnSecondary:hover {
+    // color: white;
+    color: $secondaryColor;
+    background-color: transparent;
+    border: 1px solid $secondaryColor;
+    // background-color: $secondaryColor;
+}
+
+.btnTertiary {
+    border: 1px solid $tertiaryColor;
+    color: $tertiaryColor;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.btnTertiary:hover {
     color: white;
-    background-color: $secondaryColor;
+    border: 1px solid $secondaryColor;
+    background-color: $tertiaryColor;
 }
