@@ -84,7 +84,7 @@ export default class ProductsForm extends Component {
       return (
             <div className="shopForm mr-auto ml-auto mt-5">
         {success && (
-          <div className='alert alert-success' role='alert'>
+          <div className='alert alertSuccess' role='alert'>
             Your Product was Updated/Created
           </div>
         )}

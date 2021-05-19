@@ -56,7 +56,7 @@ class PaymentForm extends Component {
     return (
       <div className="shopForm mr-auto ml-auto mt-5">
         {success && (
-          <div className='alert alert-success' role='alert'>
+          <div className='alert alertSuccess' role='alert'>
             Your Payment was Updated/Created
           </div>
         )}
