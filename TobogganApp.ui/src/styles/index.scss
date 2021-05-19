@@ -6,3 +6,15 @@
 body {
 
 } 
+
+.btnPrimary {
+    border: 1px solid $primaryColor;
+    color: $primaryColor;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.btnPrimary:hover {
+    color: white;
+    background-color: $primaryColor;
+}

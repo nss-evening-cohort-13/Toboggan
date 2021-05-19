@@ -58,16 +58,16 @@ export default class ProductDetailsView extends Component {
 
     return (
       <>
-        <h1 className='mb-4 mt-2'>{singleProduct.title}</h1>
+        <h1 className='mb-4 mt-2 productTitle'>{singleProduct.title}</h1>
         <div className='d-flex justify-content-center'>
           <img
             className='singleProductImage m-2'
             src={singleProduct.productImage}
             alt='product'
           />
-          <div className='d-flex p-5 productDescription flex-column'>
-            <p>{singleProduct.description}</p>
-            <h6>${singleProduct.price}</h6>
+          <div className='d-flex p-5 productDescriptionSection flex-column justify-content-center'>
+            <p className='singleProductDescription'>{singleProduct.description}</p>
+            <h6 className='productPrice'>${singleProduct.price}</h6>
             {quantity > singleProduct.quantity && (
               <QuantityAlert productData={singleProduct} />
             )}
@@ -81,12 +81,12 @@ export default class ProductDetailsView extends Component {
               value={this.state.name}
               onChange={this.handleChange}
               placeholder='Enter a Quantity'
-              className='form-control form-control mb-2 mr-2'
+              className='form-control mb-2 mr-2 inputQuantity'
               required
             />
             <button
               onClick={this.addToCart}
-              className='btn btn-outline-success m-1'
+              className='btn btn-outline-success m-1 btnPrimary'
             >
               Add to cart
             </button>
