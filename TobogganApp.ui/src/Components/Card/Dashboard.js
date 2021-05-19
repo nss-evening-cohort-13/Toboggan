@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
+    fontSize: '2.5rem',
   },
 }));
 
@@ -33,14 +34,13 @@ export default function Dashboard2(props) {
         </Grid>
         <Grid item xs>
           <Paper className={classes.paper}>
-          <h5 className='titleDash'>{ salesThisMonth ? `Sales this month: $${salesThisMonth.toFixed(2)}` : 'Sales this month: 0'}</h5>
+          { salesThisMonth ? `Sales this month: $${salesThisMonth.toFixed(2)}` : 'Sales this month: 0'}
           </Paper>
         </Grid>
         <Grid item xs>
           <Paper className={classes.paper}>
           <h2 className='titleDash'>Average Per Item</h2>
-            <h5>${ totalInfo && totalInfo.length > 0 ? (totalInfo[0].total / totalInfo[0].totQuantity).toFixed(2) : '' }
-            </h5>
+            ${ totalInfo && totalInfo.length > 0 ? (totalInfo[0].total / totalInfo[0].totQuantity).toFixed(2) : '' }
           </Paper>
         </Grid>
       </Grid>
@@ -48,15 +48,13 @@ export default function Dashboard2(props) {
         <Grid item xs>
           <Paper className={classes.paper}>
           <h2 className='titleDash'> Total Inventory by Category</h2>
-            <h5>{categoryData && categoryData.length && categoryData.map((catData, index) => <CategoryInventory key={index} catData={catData} />)}
-            </h5>
+            {categoryData && categoryData.length && categoryData.map((catData, index) => <CategoryInventory key={index} catData={catData} />)}
           </Paper>
         </Grid>
         <Grid item xs={6}>
           <Paper className={classes.paper}>
           <h2 className='titleDash'>Total Sales by Category:</h2>
-            <h5>{categoryData && categoryData.length && categoryData.map((catData, index) => <CategorySales key={index} catData={catData} />)}
-            </h5>
+            {categoryData && categoryData.length && categoryData.map((catData, index) => <CategorySales key={index} catData={catData} />)}
           </Paper>
         </Grid>
         <Grid item xs>
