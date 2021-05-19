@@ -59,7 +59,7 @@ export default class ProductDetailsView extends Component {
     return (
       <>
         <h1 className='mb-4 mt-2 productTitle'>{singleProduct.title}</h1>
-        <div className='d-flex justify-content-center'>
+        <div className='d-flex justify-content-center singleProductContainer'>
           <img
             className='singleProductImage m-2'
             src={singleProduct.productImage}
@@ -86,7 +86,7 @@ export default class ProductDetailsView extends Component {
             />
             <button
               onClick={this.addToCart}
-              className='btn btn-outline-success m-1 btnPrimary'
+              className='btn m-1 btnPrimary'
             >
               Add To Cart
             </button>
@@ -96,7 +96,7 @@ export default class ProductDetailsView extends Component {
                 state: singleProduct.shopId,
               }}
             >
-              <button className='btn btn-outline-primary m-1 btnSecondary'>
+              <button className='btn m-1 btnSecondary'>
                 View Shop's Page
               </button>
             </Link>
