@@ -35,7 +35,7 @@ export default class Auth extends Component {
 
     return (
       <>
-      { !user ? <button className='nav-link btn btn-primary' onClick={(e) => AuthData.loginClickEvent(e)}>Login</button>
+      { !user ? <button className='nav-link btn btnLogin' onClick={(e) => AuthData.loginClickEvent(e)}>Login</button>
         : <>
       <div className='row'>
         <div className='user-icon-container'>
@@ -51,7 +51,7 @@ export default class Auth extends Component {
               </DropdownItem>
               <DropdownItem>
                 <div
-                  className='nav-link btn btn-danger'
+                  className='nav-link btn btnSecondary'
                   onClick={(e) => AuthData.logoutClickEvent(e)}
                 >
                   Logout

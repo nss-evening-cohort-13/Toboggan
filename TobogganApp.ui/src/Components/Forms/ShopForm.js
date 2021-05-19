@@ -92,7 +92,7 @@ class ShopForm extends Component {
             ref={(btn) => {
               this.btn = btn;
             }}
-            className='btn btn-primary m-2'
+            className='btn btnTertiary m-2'
           >
             Submit
           </button>
