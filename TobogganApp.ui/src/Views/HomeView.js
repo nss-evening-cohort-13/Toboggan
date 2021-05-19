@@ -24,9 +24,8 @@ export default class HomePageView extends Component {
 
     return (
         <>
-        <SearchBar/>
-          <h1 className="m-2">Products</h1>
-          <div className="d-flex flex-wrap justify-content-center">
+          <div className="d-flex justify-content-between"><h1 className="m-2 home-title">Products</h1><span className="homeSearch"><SearchBar/></span></div>
+          <div className="d-flex flex-wrap justify-content-center home-products">
           {renderProducts()}
           </div>
         </>

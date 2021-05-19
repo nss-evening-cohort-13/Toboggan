@@ -33,14 +33,13 @@ export default function Dashboard2(props) {
         </Grid>
         <Grid item xs>
           <Paper className={classes.paper}>
-          <h2 className='titleDash'>Total sales for { salesThisMonth && salesThisMonth.length ? `${salesThisMonth[0].month}/${salesThisMonth[0].year}` : ''}:</h2>
-          <h5>{ salesThisMonth && salesThisMonth.length ? salesThisMonth[0].total : ''}</h5>
+          <h5 className='titleDash'>{ salesThisMonth ? `Sales this month: $${salesThisMonth.toFixed(2)}` : 'Sales this month: 0'}</h5>
           </Paper>
         </Grid>
         <Grid item xs>
           <Paper className={classes.paper}>
           <h2 className='titleDash'>Average Per Item</h2>
-            <h5> { totalInfo && totalInfo.length > 0 ? (totalInfo[0].total / totalInfo[0].totQuantity).toFixed(2) : '' }
+            <h5>${ totalInfo && totalInfo.length > 0 ? (totalInfo[0].total / totalInfo[0].totQuantity).toFixed(2) : '' }
             </h5>
           </Paper>
         </Grid>
@@ -49,21 +48,21 @@ export default function Dashboard2(props) {
         <Grid item xs>
           <Paper className={classes.paper}>
           <h2 className='titleDash'> Total Inventory by Category</h2>
-            <h5>{categoryData && categoryData.length && categoryData.map((catData) => <CategoryInventory catData={catData} key={catData.id}/>)}
+            <h5>{categoryData && categoryData.length && categoryData.map((catData, index) => <CategoryInventory key={index} catData={catData} />)}
             </h5>
           </Paper>
         </Grid>
         <Grid item xs={6}>
           <Paper className={classes.paper}>
           <h2 className='titleDash'>Total Sales by Category:</h2>
-            <h5>{categoryData && categoryData.length && categoryData.map((catData) => <CategorySales catData={catData} key={catData.id}/>)}
+            <h5>{categoryData && categoryData.length && categoryData.map((catData, index) => <CategorySales key={index} catData={catData} />)}
             </h5>
           </Paper>
         </Grid>
         <Grid item xs>
           <Paper className={classes.paper}>
           <h2 className='titleDash'> Orders that require shipping</h2>
-            { toBeShipped && (<OrdersToBeShipped orderData={toBeShipped} />) }
+          { toBeShipped && (<OrdersToBeShipped orderData={toBeShipped} />) }
           </Paper>
         </Grid>
       </Grid>

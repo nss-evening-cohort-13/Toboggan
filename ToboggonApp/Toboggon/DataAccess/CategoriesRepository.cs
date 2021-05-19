@@ -104,7 +104,7 @@ namespace Toboggan.DataAccess
 
             var sql = @"select c.Name as CategoryName, SUM(p.Quantity) as ItemsLeft, SUM(p.Price*oli.Quantity) as Cattotal from [Order] o
                           JOIN [OrderLineItem] oli on oli.OrderId = o.Id 
-                          JOIN [Product] p ON p.Id = oli.Id
+                          JOIN [Product] p ON p.Id = oli.ProductId
                           JOIN [Category] c ON c.Id = P.CategoryId
                           JOIN [Shop] s ON s.Id = p.ShopId
                           JOIN [User] u ON u.Id = s.UserId
