@@ -45,3 +45,12 @@ body {
     border: 1px solid $tertiaryColor;
     background-color: $tertiaryColor;
 }
+
+.alertSuccess {
+    background-color: $primaryColor;
+    color:white;
+    font-size: 22px;
+    font-weight: bolder;
+    letter-spacing: 1px;
+
+}
