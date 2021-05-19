@@ -23,10 +23,10 @@ export default function Dashboard(props) {
     </div>
     <div className="dash-container m-2 p-2">
       <h2> Total Inventory by Category</h2>
-        <div>{categoryData && categoryData.length && categoryData.map((catData) => <CategoryInventory catData={catData} key={catData.id}/>)}
+        <div>{categoryData && categoryData.length && categoryData.map((catData, index) => <CategoryInventory key={index} catData={catData} />)}
         </div>
       <h2>Total Sales by Category:</h2>
-        <div>{categoryData && categoryData.length && categoryData.map((catData) => <CategorySales catData={catData} key={catData.id}/>)}
+        <div>{categoryData && categoryData.length && categoryData.map((catData, index) => <CategorySales key={index} catData={catData} />)}
         </div>
     </div>
     <div className="dash-container m-2 p-2">

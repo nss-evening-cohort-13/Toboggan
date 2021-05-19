@@ -12,7 +12,6 @@ export default function ShopDashboardView(props) {
   const [categoryData, setCategoryData] = useState([]);
   const [toBeShipped, setToBeShipped] = useState([]);
   const [orderLineItems, setOrderLineItems] = useState();
-  const [error, updateError] = useState([]);
   const id = props.user?.uid;
 
   useEffect(() => {
