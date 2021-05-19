@@ -88,7 +88,7 @@ function OrderRow(row) {
         <TableCell align="right">{row.order.lastName}</TableCell>
         <TableCell align="right">{row.order.shopId}</TableCell>
         <TableCell align="right">{row.order.shopName}</TableCell>
-        <TableCell align="right">{row.order.totalCost}</TableCell>
+        <TableCell align="right">${row.order.totalCost}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>

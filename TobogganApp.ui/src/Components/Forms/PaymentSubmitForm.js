@@ -4,15 +4,28 @@ import paymentData from '../../helpers/data/paymentTypeData';
 import OrderData from '../../helpers/data/orderData';
 import OrderLineItems from '../../helpers/data/orderLineItemData';
 import cartStorage from '../../helpers/data/cartData';
+import AppModal from '../AppModal';
+import PaymentForm from './PaymentForm';
 
-class PaymentForm extends Component {
+class PaymentSubmitForm extends Component {
   state = {
-    id: this.props.paymentData?.id || '',
-    accountNumber: this.props.paymentData?.accountNumber || '',
-    typeName: this.props.paymentData?.typeName || '',
     userId: this.props.paymentData?.userId || this.props?.userId,
+    preExistingPayment: '',
     grandTotal: 0,
+    paymentTypes: [],
   };
+
+  componentDidMount() {
+    this.loadThePayments(this.state.userId);
+  }
+
+loadThePayments = (userId) => {
+  paymentData.getUsersPaymentTypes(userId).then((response) => {
+    this.setState({
+      paymentTypes: response,
+    });
+  });
+}
 
 createOrderWithLineItems = (order) => {
   OrderData.createOrder(order).then((orderId) => {
@@ -23,7 +36,6 @@ createOrderWithLineItems = (order) => {
 createLineItems = (order) => {
   const cart = cartStorage.getCart();
   cart.forEach((item) => {
-    console.warn(item);
     let cartItem = {};
     cartItem = {
       ProductId: item.id,
@@ -37,11 +49,11 @@ createLineItems = (order) => {
 MakeOrder = (grandTotal, paymentId) => {
   const date = new Date();
   const myOrder = {
-    UserId: this.props.userId,
+    UserId: this.state.userId,
     TotalCost: grandTotal,
-    PaymentTypeId: paymentId,
+    PaymentTypeId: parseInt(paymentId, 10),
     SaleDate: date.toJSON(),
-    Completed: false,
+    Completed: true,
   };
   this.createOrderWithLineItems(myOrder);
 }
@@ -60,44 +72,41 @@ clearCart = () => cartStorage.emptyCart();
     if (this.props.products.length) {
       grandTotal += this.props.products.reduce((totalCost, product) => totalCost + parseInt(product.price * product.quantity, 10), 0);
     }
-    this.setState({ grandTotal });
-    if (this.state.id === '') {
-      const paymentObject = {
-        AccountNumber: parseInt(this.state.accountNumber, 10),
-        TypeName: parseInt(this.state.typeName, 10),
-        UserId: this.state.userId,
-      };
-      paymentData.createPayment(paymentObject).then((response) => {
-        this.setState({ success: true });
-        this.setState({ id: response.id });
-        this.props.onUpdate?.(this.state.userId);
-        this.MakeOrder(grandTotal, response.id);
-        setTimeout(() => {
-          this.clearCart();
-        }, 3000);
-      });
-    } else {
-      const updatePaymentObject = {
-        Id: this.state.id,
-        AccountNumber: parseInt(this.state.accountNumber, 10),
-        TypeName: parseInt(this.state.typeName, 10),
-        UserId: this.state.userId,
-      };
-      paymentData.updatePayment(updatePaymentObject).then(() => {
-        this.setState({ success: true });
-        this.props.onUpdate?.(this.state.userId);
-      });
-      this.MakeOrder(grandTotal, this.state.id);
-      setTimeout(() => {
-        this.clearCart();
-      }, 3000);
-    }
+    this.MakeOrder(grandTotal, this.state.preExistingPayment);
+    this.setState({
+      success: true,
+      grandTotal,
+    });
+    this.props.buttonFlip();
+    setTimeout(() => {
+      this.clearCart();
+    }, 2000);
   };
 
+  conditionalType(type) {
+    switch (type) {
+      case 0:
+        return 'MasterCard  ';
+        break;
+      case 1:
+        return 'Visa  ';
+        break;
+      case 2:
+        return 'Paypal  ';
+        break;
+      case 3:
+        return 'Discover  ';
+        break;
+      default:
+        return '';
+        break;
+    }
+  }
+
   render() {
-    const { success } = this.state;
+    const { success, paymentTypes, userId } = this.state;
     return (
-      <div className="shopForm mr-auto ml-auto mt-5">
+      <>
         {success && (
           <>
           <div className='alert alert-success' role='alert'>
@@ -114,7 +123,7 @@ clearCart = () => cartStorage.emptyCart();
              to={{
                pathname: '/user-dashboard/purchase-history',
              }}>
-             <button className="btn btn-primary w-100 m-2">Go To Order Summary</button>
+             <button className="btn btn-primary w-100 m-2">Go To Purchase History</button>
              </Link>
           </div>
           </>
@@ -122,47 +131,46 @@ clearCart = () => cartStorage.emptyCart();
       {!success && (
         <>
         <form onSubmit={this.handleSubmit}>
-          <div>
-            <input
-              type='text'
-              name='accountNumber'
-              value={this.state.accountNumber}
-              onChange={this.handleChange}
-              placeholder='Account Number'
-              className='form-control form-control-lg m-2'
-              required
-            />
-          </div>
-          <div>
+          <div className='d-flex flex-column justify-content-center align-items-center m-auto'>
           <select
             as='select'
-            name='typeName'
-            className='form-control form-control-lg m-1'
-            value={this.state.typeName}
+            name='preExistingPayment'
+            className='form-control form-control-lg m-2 existingPaymentSelect'
+            value={this.state.preExistingPayment}
             onChange={this.handleChange}
-            defaultValue={this.state?.typeName}
             required
             >
-            <option>Pick Payment Type</option>
-            <option value={0}>MasterCard</option>
-            <option value={1}>Visa</option>
-            <option value={2}>Paypal</option>
-            <option value={3}>Discover</option>
+            <option>Choose an existing payment</option>
+            {paymentTypes.map((payment) => <option key={payment.id} value={payment.id}>{
+            this.conditionalType(payment.typeName)}{payment.accountNumber}</option>)}
           </select>
+        <AppModal
+          btnColor={'outline-info'}
+          title='Add A Payment'
+          buttonLabel={'Add A Payment'}
+          className2={'btn btn-md w-100 mr-2 mb-4'}
+        >
+          <PaymentForm userId={userId} onUpdate={this.loadThePayments}/>
+        </AppModal>
+        </div>
+      {success && (
+          <div className='alert alert-success' role='alert'>
+            Your Order Was Submitted
           </div>
+      )}
           <button
             ref={(btn) => {
               this.btn = btn;
             }}
-            className='btn btn-primary m-2'
+            className='btn btn-primary w-50 m-auto ml-2 submitButton'
           >
             Submit
           </button>
         </form>
       </>)}
-      </div>
+      </>
     );
   }
 }
 
-export default PaymentForm;
+export default PaymentSubmitForm;
