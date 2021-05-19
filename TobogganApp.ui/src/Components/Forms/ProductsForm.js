@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import firebase from 'firebase/app';
 import 'firebase/storage';
-import getUser from '../../helpers/data/authData';
 import shopData from '../../helpers/data/shopData';
 import productData from '../../helpers/data/productData';
 import categoryData from '../../helpers/data/categoryData';
@@ -147,7 +145,7 @@ export default class ProductsForm extends Component {
           </div>
           <div>
               <select name='CategoryId' onChange={this.handleChange} >
-              {this.state.allCategories.map((category) => (<option value={category.id}>{category.name}</option>))}
+              {this.state.allCategories.map((category) => (<option key={category.id} value={category.id}>{category.name}</option>))}
               </select>
           </div>
           <button

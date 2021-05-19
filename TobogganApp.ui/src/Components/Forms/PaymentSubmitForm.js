@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import paymentData from '../../helpers/data/paymentTypeData';
-import OrderData from '../../helpers/data/orderData';
-import OrderLineItems from '../../helpers/data/orderLineItemData';
+import orderData from '../../helpers/data/orderData';
+import orderLineItems from '../../helpers/data/orderLineItemData';
 import cartStorage from '../../helpers/data/cartData';
 import AppModal from '../AppModal';
 import PaymentForm from './PaymentForm';
@@ -28,7 +28,7 @@ loadThePayments = (userId) => {
 }
 
 createOrderWithLineItems = (order) => {
-  OrderData.createOrder(order).then((orderId) => {
+  orderData.createOrder(order).then((orderId) => {
     this.createLineItems(orderId);
   });
 }
@@ -42,7 +42,7 @@ createLineItems = (order) => {
       Quantity: parseInt(item.quantity, 10),
       OrderId: order.id,
     };
-    OrderLineItems.createLineItem(cartItem);
+    orderLineItems.createLineItem(cartItem);
   });
 }
 

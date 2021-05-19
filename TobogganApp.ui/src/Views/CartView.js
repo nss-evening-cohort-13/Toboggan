@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
 import PaymentSubmitForm from '../Components/Forms/PaymentSubmitForm';
-import CartData from '../helpers/data/cartData';
 import ShoppingCartCard from '../Components/Card/ShoppingCartCard';
-import LocalStorage from '../helpers/localStorage';
+import localStorage from '../helpers/localStorage';
 
 export default class CartView extends Component {
   state = {
@@ -15,7 +14,6 @@ export default class CartView extends Component {
 
   componentDidMount() {
     this.Mounted = true;
-    const { products } = this.state;
     this.getCartProducts();
   }
 
@@ -25,7 +23,7 @@ export default class CartView extends Component {
 
   getCartProducts = () => {
     this.setState({
-      products: LocalStorage.getItem('cart'),
+      products: localStorage.getItem('cart'),
     });
   }
 
@@ -36,11 +34,11 @@ export default class CartView extends Component {
   }
 
   removeItem = (product) => {
-    let tempCart = LocalStorage.getItem('cart');
+    let tempCart = localStorage.getItem('cart');
     tempCart = tempCart.filter((item) => item.id !== product.id);
-    LocalStorage.setItem('cart', tempCart);
+    localStorage.setItem('cart', tempCart);
     this.setState({
-      products: LocalStorage.getItem('cart'),
+      products: localStorage.getItem('cart'),
     });
   };
 

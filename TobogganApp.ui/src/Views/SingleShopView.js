@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Link, Route, withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import shopData from '../helpers/data/shopData';
 import productData from '../helpers/data/productData';
 import ProductCard from '../Components/Card/ProductCard';
-import FavoriteData from '../helpers/data/favoriteShopData';
+import favoriteData from '../helpers/data/favoriteShopData';
 
 class SingleShopView extends Component {
   state = {
@@ -20,7 +20,7 @@ class SingleShopView extends Component {
       });
     });
     productData.getProductsOfAShop(this.state.shopId).then((response) => {
-      const productsActive = response.filter((product) => product.active == 1);
+      const productsActive = response.filter((product) => product.active === 1);
       this.setState({
         shopsProducts: productsActive,
       });
@@ -58,7 +58,7 @@ class SingleShopView extends Component {
   };
 
   deleteShop = (shopId) => {
-    FavoriteData.deleteFavoritesOfASpecificShop(shopId).then(() => {
+    favoriteData.deleteFavoritesOfASpecificShop(shopId).then(() => {
       shopData.deleteShop(shopId).then(() => {
         this.props.history.push('/user-dashboard/my-shop');
       });
