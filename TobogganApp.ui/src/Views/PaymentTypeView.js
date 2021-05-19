@@ -39,7 +39,7 @@ export default class PaymentTypeView extends Component {
           btnColor={'outline-info'}
           title='Add A Payment'
           buttonLabel={'Add A Payment'}
-          className2={'btn btn-md'}
+          className2={'btn btn-md btnSecondary'}
         >
           <PaymentForm onUpdate={() => this.loadThePayments()}/>
         </AppModal>

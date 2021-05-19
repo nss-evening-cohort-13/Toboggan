@@ -92,7 +92,7 @@ class PaymentForm extends Component {
             ref={(btn) => {
               this.btn = btn;
             }}
-            className='btn btn-primary m-2'
+            className='btn btnSecondary m-2'
           >
             Submit
           </button>

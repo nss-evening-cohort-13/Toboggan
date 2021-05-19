@@ -28,7 +28,7 @@ export default class AccountInfoView extends Component {
           pathname: '/paymentType',
           state: user,
         }}>
-        <button className="btn btn-warning m-4">
+        <button className="btn btnTertiary m-4">
           Payment Types
         </button>
       </Link>
