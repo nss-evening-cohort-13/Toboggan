@@ -29,6 +29,18 @@ export default class ProductsForm extends Component {
         });
     }
 
+    compare = (a, b) => {
+      const nameA = a.name.toUpperCase();
+      const nameB = b.name.toUpperCase();
+      let comparison = 0;
+      if (nameA > nameB) {
+        comparison = 1;
+      } else if (nameA < nameB) {
+        comparison = -1;
+      }
+      return comparison;
+    }
+
     handleChange = (e) => {
       this.setState({
         [e.target.name]: e.target.value,
@@ -145,7 +157,7 @@ export default class ProductsForm extends Component {
           </div>
           <div>
               <select name='CategoryId' onChange={this.handleChange} >
-              {this.state.allCategories.map((category) => (<option key={category.id} value={category.id}>{category.name}</option>))}
+              {this.state.allCategories.sort(this.compare).map((category) => (<option key={category.id} value={category.id}>{category.name}</option>))}
               </select>
           </div>
           <button
