@@ -11,20 +11,18 @@ const useStyles = makeStyles({
   },
   media: {
     height: 350,
-    width: 400,
+    minWidth: 400,
   },
   card: {
     position: 'relative',
-    margin: '5px',
-
+    margin: '10px !important',
+    boxShadow: '-10px -10px #137a94',
   },
   overlay: {
     position: 'absolute',
     color: 'white',
-    opacity: '50%',
     fontWeight: 'bolder',
     textAlign: 'center',
-    height: '100%',
     width: '100%',
   },
 });
