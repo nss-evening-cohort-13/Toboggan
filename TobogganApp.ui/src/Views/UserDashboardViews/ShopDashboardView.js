@@ -51,7 +51,6 @@ export default function ShopDashboardView(props) {
   const salesThisMonth = totalByDate.filter((tot) => (getDate().getFullYear() === tot.year) && ((getDate().getMonth() + 1) == tot.month));
   const totalSalesMonth = salesThisMonth.reduce((sum, order) => (sum + order.total), 0);
 
-
   return (
     <>
     <h2>Your Order History</h2>

@@ -29,7 +29,7 @@ export default class PaymentTypeView extends Component {
   }
 
   render() {
-    const { paymentTypes } = this.state;
+    const { paymentTypes, user } = this.state;
     const renderPayments = () => paymentTypes.map((payment) => (<PaymentCard key={payment.id} deletePayment={this.deletePayment} paymentData={payment} onUpdate={this.loadThePayments} />));
 
     return (
