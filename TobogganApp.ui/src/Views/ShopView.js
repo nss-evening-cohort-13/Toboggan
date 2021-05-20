@@ -39,9 +39,11 @@ class Shops extends React.Component {
         {loading ? (
           <h1>Loading</h1>
         ) : (
+          <>
           <div id='shops-container' className='d-flex flex-wrap justify-content-center'>
             {renderShops()}
           </div>
+          </>
         )}
       </>
     );
