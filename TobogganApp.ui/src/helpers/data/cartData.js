@@ -1,10 +1,10 @@
-import LocalStorage from '../localStorage';
+import localStorage from '../localStorage';
 
 let cart = [];
 
 const loadCart = () => {
-  if (LocalStorage.getItem('cart')) {
-    cart = LocalStorage.getItem('cart');
+  if (localStorage.getItem('cart')) {
+    cart = localStorage.getItem('cart');
   } else {
     cart = [];
   }
@@ -21,7 +21,7 @@ const setCart = (addedItem) => {
   } else {
     cart.push(addedItem);
   }
-  LocalStorage.setItem('cart', cart);
+  localStorage.setItem('cart', cart);
 };
 
 const getCart = () => cart;
@@ -29,7 +29,7 @@ const getCart = () => cart;
 const emptyCart = () => {
   cart.length = 0;
 
-  LocalStorage.removeItem('cart');
+  localStorage.removeItem('cart');
 };
 
 export default {

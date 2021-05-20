@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, withTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
@@ -13,7 +13,6 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import userData from '../../helpers/data/userData';
 
 const useRowStyles = makeStyles({
   root: {
@@ -31,6 +30,7 @@ const createRows = (orderData) => orderData.map((order) => {
     rows.push(createData(orderData, order.orderTableId, order.saleDate, order.firstName, order.lastName,
       order.shopId, order.shopName, order.totalCost));
   }
+  return '';
 });
 
 const createData = (orderData, orderTableId, saleDate, firstName, lastName, shopId, shopName, totalCost) => {
@@ -82,13 +82,13 @@ function OrderRow(row) {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell component="th" scope="row">{row.order.saleDate}</TableCell>
-        <TableCell component="right" scope="row">{row.order.orderTableId}</TableCell>
+        <TableCell scope="row">{row.order.saleDate}</TableCell>
+        <TableCell scope="row">{row.order.orderTableId}</TableCell>
         <TableCell align="right">{row.order.firstName}</TableCell>
         <TableCell align="right">{row.order.lastName}</TableCell>
         <TableCell align="right">{row.order.shopId}</TableCell>
         <TableCell align="right">{row.order.shopName}</TableCell>
-        <TableCell align="right">{row.order.totalCost}</TableCell>
+        <TableCell align="right">${row.order.totalCost}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -140,7 +140,7 @@ export default function OrdersToBeShipped(props) {
         </TableHead>
         <TableBody>
           { createRows(orderData) }
-          { rows.map((row) => (<OrderRow key={row.id} order={row} />)) }
+          { rows.map((row, index) => (<OrderRow key={index} order={row} />)) }
         </TableBody>
       </Table>
     </TableContainer>

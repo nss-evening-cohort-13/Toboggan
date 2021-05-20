@@ -63,7 +63,7 @@ namespace Toboggan.Controllers
         }
 
         [HttpGet("SellerTotalCategoryInventory/{id}")]
-        public IActionResult CategoriesTotalSalesAndInventory(int id)
+        public IActionResult CategoriesTotalSalesAndInventory(string id)
         {
             var categoryInventory = _repo.CategoriesTotalSalesAndInventory(id);
 

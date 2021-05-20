@@ -60,7 +60,7 @@ class PaymentForm extends Component {
             Your Payment was Updated/Created
           </div>
         )}
-        <form onSubmit={this.handleSubmit}>
+        <div>
           <div>
             <input
               type='text'
@@ -89,14 +89,12 @@ class PaymentForm extends Component {
           </select>
           </div>
           <button
-            ref={(btn) => {
-              this.btn = btn;
-            }}
+            onClick={this.handleSubmit}
             className='btn btnSecondary m-2'
           >
             Submit
           </button>
-        </form>
+        </div>
       </div>
     );
   }

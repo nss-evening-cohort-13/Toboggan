@@ -7,7 +7,7 @@ export default function CategorySales(props) {
   return (
       <>
       <div className='flex-column'>
-       { catData.categoryName } : { catData.cattotal }
+       { catData.categoryName } : ${ catData.cattotal }
       </div>
       </>
   );

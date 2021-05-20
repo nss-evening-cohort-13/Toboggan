@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import firebase from 'firebase/app';
 import 'firebase/storage';
-import getUser from '../../helpers/data/authData';
 import shopData from '../../helpers/data/shopData';
 
 class ShopForm extends Component {
