@@ -94,7 +94,7 @@ export default class ProductsForm extends Component {
       return (
             <div className="shopForm mr-auto ml-auto mt-5">
         {success && (
-          <div className='alert alert-success' role='alert'>
+          <div className='alert alertSuccess' role='alert'>
             Your Product was Updated/Created
           </div>
         )}
@@ -164,7 +164,7 @@ export default class ProductsForm extends Component {
             ref={(btn) => {
               this.btn = btn;
             }}
-            className='btn btn-primary m-2'
+            className='btn btnSecondary m-2'
           >
             Submit
           </button>

@@ -56,7 +56,7 @@ class PaymentForm extends Component {
     return (
       <div className="shopForm mr-auto ml-auto mt-5">
         {success && (
-          <div className='alert alert-success' role='alert'>
+          <div className='alert alertSuccess' role='alert'>
             Your Payment was Updated/Created
           </div>
         )}
@@ -90,7 +90,7 @@ class PaymentForm extends Component {
           </div>
           <button
             onClick={this.handleSubmit}
-            className='btn btn-primary m-2'
+            className='btn btnSecondary m-2'
           >
             Submit
           </button>
