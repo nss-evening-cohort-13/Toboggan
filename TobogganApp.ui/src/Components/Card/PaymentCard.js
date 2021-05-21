@@ -40,11 +40,11 @@ export default function PaymentCard({ paymentData, onUpdate, deletePayment }) {
           btnColor={'outline-info'}
           title='Update Payment'
           buttonLabel={'Update'}
-          className2={'btn btn-md m-2'}
+          className2={'btn btnPrimary m-2'}
         >
           <PaymentForm paymentData={paymentData} onUpdate={onUpdate}/>
         </AppModal>
-        <button onClick={() => deletePayment(paymentData.id)} className='btn btn-outline-danger m-2'>Delete Payment</button>
+        <button onClick={() => deletePayment(paymentData.id)} className='btn btnTertiary m-2'>Delete Payment</button>
         </div>
     </Card>
     </>
