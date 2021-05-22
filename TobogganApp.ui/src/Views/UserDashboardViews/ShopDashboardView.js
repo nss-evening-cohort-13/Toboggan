@@ -46,9 +46,7 @@ export default function ShopDashboardView(props) {
     return new Date();
   }
 
-  salesThisMonth = () => this.state.totalByDate.filter((tot) => (this.getDate().getFullYear() === tot.year) && ((this.getDate().getMonth() + 1) === tot.month));
-
-  const salesThisMonth = totalByDate.filter((tot) => (getDate().getFullYear() === tot.year) && ((getDate().getMonth() + 1) == tot.month));
+  const salesThisMonth = totalByDate.filter((tot) => (getDate().getFullYear() === tot.year) && ((getDate().getMonth() + 1) === tot.month));
   const totalSalesMonth = salesThisMonth.reduce((sum, order) => (sum + order.total), 0);
 
   return (

@@ -16,3 +16,7 @@ img.userInfo {
     position: absolute;
     right:10px;
 }
+
+input::placeholder{
+    color: black !important;
+  }
