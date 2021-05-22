@@ -39,7 +39,7 @@ class App extends React.Component {
           <Nav user={this.state.user} />
           <Routes authed={this.state.authed} user={this.state.user} />
         </Router>
-        <div class="spacer"></div>
+        <div className="spacer"></div>
         <Footer />
       </div>
     );
