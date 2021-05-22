@@ -60,7 +60,7 @@ class ShopForm extends Component {
               value={this.state.name}
               onChange={this.handleChange}
               placeholder='Shop Name'
-              className='form-control form-control-lg m-2'
+              className='form-control form-control-lg m-2 inputText'
               required
             />
           </div>
@@ -71,7 +71,7 @@ class ShopForm extends Component {
               value={this.state.description}
               onChange={this.handleChange}
               placeholder='Shop Description'
-              className='form-control form-control-lg m-2'
+              className='form-control form-control-lg m-2 inputText'
               required
             />
           </div>
@@ -82,7 +82,7 @@ class ShopForm extends Component {
               value={this.state.shopImage}
               onChange={this.handleChange}
               placeholder='Enter an Image URL'
-              className='form-control form-control-lg m-2'
+              className='form-control form-control-lg m-2 inputText'
               required
             />
           </div>

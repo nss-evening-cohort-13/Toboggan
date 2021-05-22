@@ -68,7 +68,7 @@ class PaymentForm extends Component {
               value={this.state.accountNumber}
               onChange={this.handleChange}
               placeholder='Account Number'
-              className='form-control form-control-lg m-2'
+              className='form-control form-control-lg m-2 inputText'
               required
             />
           </div>
