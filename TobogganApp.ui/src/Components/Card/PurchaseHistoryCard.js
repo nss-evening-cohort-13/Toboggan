@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { Box } from '@material-ui/core';
+import cartData from '../../helpers/data/cartData';
+import AddedToCartAlert from '../Alerts/AddedToCartAlert';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,10 +32,33 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PurchaseHistoryCard({ orderData }) {
+  const [clicked, setClicked] = useState(false);
+  const [addedToCart, setAddedToCart] = useState(false);
   const classes = useStyles();
+
+  const addToCart = (e) => {
+    setClicked(true);
+
+    e.preventDefault();
+    const productObject = {
+      id: orderData.ProductId,
+      title: orderData.Title,
+      productImage: orderData.ProductImage,
+      decription: orderData.Description,
+      shopId: orderData.ShopId,
+      price: orderData.Price,
+      quantity: 1,
+    };
+    cartData.setCart(productObject);
+    setAddedToCart(true);
+    setTimeout(() => {
+      setAddedToCart(false);
+    }, 3500);
+  };
 
   return (
     <div className={classes.root}>
+    {addedToCart && <AddedToCartAlert productData={orderData} />}
       <Paper className={classes.paper}>
         <Grid container spacing={2}>
           <Grid item>
@@ -67,9 +92,17 @@ export default function PurchaseHistoryCard({ orderData }) {
                 </Typography>
               </Grid>
             </Grid>
+            <div className='d-flex align-items-center flex-column'>
             <Grid item>
               <Typography variant="h5" color="textSecondary">${orderData.Price}/each</Typography>
             </Grid>
+            <button
+              onClick={addToCart}
+              className='btn mt-auto btnPrimary'
+            >
+              Buy Again
+            </button>
+            </div>
           </Grid>
         </Grid>
       </Paper>
