@@ -107,7 +107,7 @@ export default class ProductsForm extends Component {
               value={this.state.title}
               onChange={this.handleChange}
               placeholder='Product Name'
-              className='form-control form-control-lg m-2'
+              className='form-control form-control-lg m-2 inputText'
               required
             />
           </div>
@@ -118,7 +118,7 @@ export default class ProductsForm extends Component {
               value={this.state.description}
               onChange={this.handleChange}
               placeholder='Product Description'
-              className='form-control form-control-lg m-2'
+              className='form-control form-control-lg m-2 inputText'
               required
             />
           </div>
@@ -129,7 +129,7 @@ export default class ProductsForm extends Component {
               value={this.state.price}
               onChange={this.handleChange}
               placeholder='Product Price'
-              className='form-control form-control-lg m-2'
+              className='form-control form-control-lg m-2 inputText'
               required
             />
           </div>
@@ -140,7 +140,7 @@ export default class ProductsForm extends Component {
               value={this.state.quantity}
               onChange={this.handleChange}
               placeholder='Enter a Quanity'
-              className='form-control form-control-lg m-2'
+              className='form-control form-control-lg m-2 inputText'
               required
             />
           </div>
@@ -151,7 +151,7 @@ export default class ProductsForm extends Component {
               value={this.state.productImage}
               onChange={this.handleChange}
               placeholder='Enter an Image URL'
-              className='form-control form-control-lg m-2'
+              className='form-control form-control-lg m-2 inputText'
               required
             />
           </div>
