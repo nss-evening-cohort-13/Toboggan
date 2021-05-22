@@ -5,7 +5,7 @@ class PaymentForm extends Component {
   state = {
     id: this.props.paymentData?.id || '',
     accountNumber: this.props.paymentData?.accountNumber || '',
-    typeName: this.props.paymentData?.typeName || '',
+    typeName: this.props.paymentData?.typeName || 0,
     userId: this.props.paymentData?.userId || this.props?.userId,
   };
 
@@ -79,7 +79,6 @@ class PaymentForm extends Component {
             className='form-control form-control-lg m-1'
             value={this.state.typeName}
             onChange={this.handleChange}
-            defaultValue={this.state?.typeName}
             required
             >
             <option value={0}>MasterCard</option>

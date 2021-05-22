@@ -25,7 +25,8 @@ export default class PurchaseHistoryView extends Component {
 
   render() {
     const { orders } = this.state;
-    const renderOrders = orders.map((order) => <PurchaseHistoryCard key={order.ProductId} orderData={order} />);
+    const randomNumberGenerator = () => Math.floor(Math.random() * 100000);
+    const renderOrders = orders.map((order) => <PurchaseHistoryCard key={randomNumberGenerator()} orderData={order} />);
     return (
       <div className="m-4">
         <h2>Purchase History</h2>

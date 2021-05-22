@@ -87,19 +87,14 @@ clearCart = () => cartStorage.emptyCart();
     switch (type) {
       case 0:
         return 'MasterCard  ';
-        break;
       case 1:
         return 'Visa  ';
-        break;
       case 2:
         return 'Paypal  ';
-        break;
       case 3:
         return 'Discover  ';
-        break;
       default:
         return '';
-        break;
     }
   }
 

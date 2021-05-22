@@ -16,7 +16,7 @@ export default function AddedToCart({ productData }) {
 
   return (
     <div className={`${classes.root} mb-2`}>
-      <Alert severity="success">{productData.title} was added to your cart!</Alert>
+      <Alert severity="success">{productData.title || productData.Title} was added to your cart!</Alert>
     </div>
   );
 }

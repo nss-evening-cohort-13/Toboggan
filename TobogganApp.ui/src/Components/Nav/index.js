@@ -8,8 +8,8 @@ export default function Nav(props) {
   // const { user } = props;
   return (
     <>
-    <div className="navbar-container">
-      <header className="brand-container mt-2">
+    <div className="navbar-container p-2 d-flex justify-content-center align-items-center">
+      <header className="brand-container">
         <Link to="/" className='brand'>Toboggan</Link>
       </header>
       <nav className="navbar">
@@ -28,13 +28,7 @@ export default function Nav(props) {
           </Link>
         </div>
       </nav>
-      {/* <div className='user-icon-container'>
-      <div>
-        <Link to="/user-dashboard" className="user-icon">
-          <FontAwesomeIcon icon={faUserCircle} />
-        </Link>
-      </div> */}
-      <div className='user-icon-container'>
+      <div className='user-icon-container '>
         <Auth />
       </div>
     </div>

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Typography from '@material-ui/core/Typography';
 import PaymentSubmitForm from '../Components/Forms/PaymentSubmitForm';
 import ShoppingCartCard from '../Components/Card/ShoppingCartCard';
 import localStorage from '../helpers/localStorage';
