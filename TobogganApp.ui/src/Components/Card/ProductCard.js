@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CardMedia from '@material-ui/core/CardMedia';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
@@ -17,9 +17,11 @@ const useStyles = makeStyles({
 
 export default function ProductCard({ productData, authed, deleteProd }) {
   const classes = useStyles();
+  const location = useLocation().pathname;
+  console.warn(location);
   return (
     <>
-    <Link className="spaceIt" to={{
+    <Link className={(location === '/user-dashboard/my-shop') ? 'spaceItEdit' : 'spaceIt'} to={{
       pathname: '/productDetails',
       state: productData,
     }}>
