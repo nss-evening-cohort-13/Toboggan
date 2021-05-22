@@ -8,8 +8,8 @@ export default function Nav(props) {
   // const { user } = props;
   return (
     <>
-    <div className="navbar-container p-2">
-      <header className="brand-container mt-2">
+    <div className="navbar-container p-2 d-flex justify-content-center align-items-center">
+      <header className="brand-container">
         <Link to="/" className='brand'>Toboggan</Link>
       </header>
       <nav className="navbar">
