@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PaymentSubmitForm from '../Components/Forms/PaymentSubmitForm';
 import ShoppingCartCard from '../Components/Card/ShoppingCartCard';
 import localStorage from '../helpers/localStorage';
+import cartStorage from '../helpers/data/cartData';
 
 export default class CartView extends Component {
   state = {
@@ -36,6 +37,7 @@ export default class CartView extends Component {
     let tempCart = localStorage.getItem('cart');
     tempCart = tempCart.filter((item) => item.id !== product.id);
     localStorage.setItem('cart', tempCart);
+    cartStorage.loadCart();
     this.setState({
       products: localStorage.getItem('cart'),
     });
