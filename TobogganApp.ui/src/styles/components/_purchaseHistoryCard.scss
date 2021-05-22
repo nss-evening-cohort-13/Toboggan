@@ -1,0 +1,36 @@
+.buyAgainBtn{
+    background:white;
+    color: $tertiaryColor;
+    border:none;
+    height:40px;
+    font-size:1.6em;
+    position: relative;
+    padding:0 2em;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+  }
+  .buyAgainBtn:hover{
+    background: #fff;
+    color: $tertiaryColor;
+  }
+  .buyAgainBtn:before,buyAgainBtn:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: $tertiaryColor;
+    transition:400ms ease all;
+  }
+  .buyAgainBtn:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+  .buyAgainBtn:hover:before,.buyAgainBtn:hover:after{
+    width:100%;
+    transition:800ms ease all;
+  }

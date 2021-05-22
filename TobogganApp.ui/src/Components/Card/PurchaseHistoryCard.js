@@ -98,7 +98,7 @@ export default function PurchaseHistoryCard({ orderData }) {
             </Grid>
             <button
               onClick={addToCart}
-              className='btn mt-auto btnPrimary'
+              className='btn mt-auto btnPrimary buyAgainBtn'
             >
               Buy Again
             </button>
