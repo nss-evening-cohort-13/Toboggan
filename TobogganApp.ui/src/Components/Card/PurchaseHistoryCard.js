@@ -56,9 +56,19 @@ export default function PurchaseHistoryCard({ orderData }) {
                   Seller: {orderData.FirstName} {orderData.LastName}
                 </Typography>
               </Grid>
+              <Grid item>
+                <Typography variant="h6">
+                 Quantity Purchased: {orderData.Quantity}
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant="h6">
+                 Total Cost: ${orderData.Quantity * orderData.Price}
+                </Typography>
+              </Grid>
             </Grid>
             <Grid item>
-              <Typography variant="h5" color="textSecondary">${orderData.Price}</Typography>
+              <Typography variant="h5" color="textSecondary">${orderData.Price}/each</Typography>
             </Grid>
           </Grid>
         </Grid>
