@@ -48,3 +48,9 @@
     font-weight: bolder;
     color: $secondaryColor;
   }
+
+  .deleteBtn:hover:before{
+    z-index: 5;
+    position: absolute;
+    background-color: $primaryColor;
+  }

@@ -26,7 +26,7 @@ export default function ProductCard({ productData, authed, deleteProd }) {
       state: productData,
     }}>
       <CardMedia
-        className={`${classes.media} ${classes.root} d-flex flex-column m-1 product-card`}
+        className={`${classes.media} ${classes.root} d-flex flex-column m-1 align-items-center product-card`}
         image={productData.productImage}
         title="ProductCards"
       >
@@ -36,7 +36,8 @@ export default function ProductCard({ productData, authed, deleteProd }) {
             <h6 className="product-price">${productData.price}</h6>
           </div>
         </div>
-        <div className="editButtons mt-auto">
+      </CardMedia>
+      <div className="editButtons mt-auto">
         <Typography variant="body2" color="textSecondary" component="p">
             {authed
             && <>
@@ -45,13 +46,12 @@ export default function ProductCard({ productData, authed, deleteProd }) {
               pathname: '/user-dashboard/my-shop',
               state: productData,
             }}>
-            <button className="btn btnSecondary m-1" onClick={() => deleteProd(productData.id)}>Delete Product</button>
+            <button className="btn btnSecondary m-1 deleteBtn" onClick={() => deleteProd(productData.id)}>Delete Product</button>
             </Link>
              </>
 }
           </Typography>
           </div>
-      </CardMedia>
     </Link>
     </>
   );
