@@ -26,7 +26,7 @@ export default function ProductCard({ productData, authed, deleteProd }) {
       state: productData,
     }}>
       <CardMedia
-        className={`${classes.media} ${classes.root} d-flex flex-column m-1`}
+        className={`${classes.media} ${classes.root} d-flex flex-column m-1 product-card`}
         image={productData.productImage}
         title="ProductCards"
       >
