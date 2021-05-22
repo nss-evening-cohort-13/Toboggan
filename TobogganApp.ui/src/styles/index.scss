@@ -6,6 +6,9 @@
 body {
     color: white;
 } 
+.spacer{
+    flex: 1;
+}
 
 .btnPrimary {
     border: 1px solid $primaryColor;

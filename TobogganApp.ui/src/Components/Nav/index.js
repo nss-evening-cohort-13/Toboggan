@@ -28,12 +28,6 @@ export default function Nav(props) {
           </Link>
         </div>
       </nav>
-      {/* <div className='user-icon-container'>
-      <div>
-        <Link to="/user-dashboard" className="user-icon">
-          <FontAwesomeIcon icon={faUserCircle} />
-        </Link>
-      </div> */}
       <div className='user-icon-container'>
         <Auth />
       </div>

@@ -3,7 +3,6 @@ import firebase from 'firebase/app';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Routes from '../helpers/Routes';
 import Nav from '../Components/Nav';
-import './App.scss';
 import fbConnection from '../helpers/data/fbConnection';
 import Footer from '../Components/Footer';
 
@@ -40,6 +39,7 @@ class App extends React.Component {
           <Nav user={this.state.user} />
           <Routes authed={this.state.authed} user={this.state.user} />
         </Router>
+        <div class="spacer"></div>
         <Footer />
       </div>
     );
