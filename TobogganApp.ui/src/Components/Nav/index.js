@@ -8,7 +8,7 @@ export default function Nav(props) {
   // const { user } = props;
   return (
     <>
-    <div className="navbar-container">
+    <div className="navbar-container p-2">
       <header className="brand-container mt-2">
         <Link to="/" className='brand'>Toboggan</Link>
       </header>
@@ -28,7 +28,7 @@ export default function Nav(props) {
           </Link>
         </div>
       </nav>
-      <div className='user-icon-container'>
+      <div className='user-icon-container '>
         <Auth />
       </div>
     </div>
