@@ -25,6 +25,7 @@
   .product-card:hover:before {
     background: #e7e7e7;
     opacity: 1;
+    height: 100%;
   }
   
   .product-card .hover-content {
@@ -47,4 +48,9 @@
     font-weight: bolder;
     color: $secondaryColor;
   }
-  
+
+  .deleteBtn:hover:before{
+    z-index: 5;
+    position: absolute;
+    background-color: $primaryColor;
+  }
