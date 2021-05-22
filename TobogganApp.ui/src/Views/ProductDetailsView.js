@@ -81,7 +81,7 @@ export default class ProductDetailsView extends Component {
               value={this.state.name}
               onChange={this.handleChange}
               placeholder='Enter a Quantity'
-              className='form-control mb-2 mr-2 inputQuantity'
+              className='form-control mb-2 mr-2 inputText'
               required
             />
             <button
