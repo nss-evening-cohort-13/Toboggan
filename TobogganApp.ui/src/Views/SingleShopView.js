@@ -88,15 +88,15 @@ class SingleShopView extends Component {
               pathname: '/shopForm',
               state: shop,
             }}>
-            <button className="btn btn-info w-100 m-2">Edit Shop</button>
+            <button className="btn w-100 m-2 btnPrimary">Edit Shop</button>
             </Link>
-            <button className="btn btn-danger w-100 m-2" onClick={() => this.deleteShop(shopId)}>Delete Shop</button>
+            <button className="btn w-100 m-2 btnTertiary" onClick={() => this.deleteShop(shopId)}>Delete Shop</button>
              <Link
              to={{
                pathname: '/productsForm',
                state: shop.id,
              }}>
-             <button className="btn btn-primary w-100 m-2">Add Product</button>
+             <button className="btn w-100 m-2 btnSecondary">Add Product</button>
              </Link>
              </div>
             }

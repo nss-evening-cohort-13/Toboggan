@@ -109,7 +109,7 @@ clearCart = () => cartStorage.emptyCart();
       <>
         {success && (
           <>
-          <div className='alert alert-success' role='alert'>
+          <div className='alert alertSuccess' role='alert'>
             Your Order Was Submitted
           </div>
           <div className='dflex'>
@@ -148,7 +148,7 @@ clearCart = () => cartStorage.emptyCart();
           btnColor={'outline-info'}
           title='Add A Payment'
           buttonLabel={'Add A Payment'}
-          className2={'btn btn-md w-100 mr-2 mb-4'}
+          className2={'btn btnTertiary w-100 mr-2 mb-4'}
         >
           <PaymentForm userId={userId} onUpdate={this.loadThePayments}/>
         </AppModal>

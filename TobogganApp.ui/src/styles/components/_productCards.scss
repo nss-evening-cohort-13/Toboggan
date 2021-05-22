@@ -23,7 +23,7 @@
   }
   
   .product-card:hover:before {
-    background: #F0E4D8;
+    background: #e7e7e7;
     opacity: 1;
   }
   
@@ -42,7 +42,9 @@
 
   .product-title, .product-price {
     font-size: 28px;
-    padding: 0px;
+    padding: 0px 5px;
     margin: 0px;
+    font-weight: bolder;
+    color: $secondaryColor;
   }
   
